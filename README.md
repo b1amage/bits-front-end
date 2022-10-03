@@ -13,7 +13,7 @@
 
 -   Supervisor: Dr. Shan Chen
 
--   Project manager: An (s)
+-   Technical writer + Frontend Developer: Do Le Long An (s3963207)
 -   Frontend developer: Nguyen Luu Quoc Bao (s3877698)
 -   Frontend developer: Bui Quang An (s3877482)
 -   Backend developer: Dao Kha Tuan (s3877347)
@@ -83,7 +83,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### Note
 
--   View demo available at: https://rmit-tinder.netlify.app/
+-   View demo available at:
 
 ### Supporting tools used
 
