@@ -9,11 +9,28 @@ module.exports = {
 	},
 	theme: {
 		extend: {
-			colors: {},
+			colors: {
+				primary: {
+					100: "#864AFC",
+					30: "#EBE0FF",
+				},
+				secondary: {
+					100: "#585858",
+					50: "#F6F6F6",
+				},
+				teriary: {
+					pink: "#D48FD5",
+					purple: "#A77CFB",
+					red: "#FBA0B3",
+					cyan: "#CDF8F3",
+				},
+			},
 			keyframes: {},
 			animation: {},
 		},
-		fontFamily: {},
+		fontFamily: {
+			dmSans: ["DM Sans", "sans-serif"],
+		},
 	},
 	plugins: [],
 };
