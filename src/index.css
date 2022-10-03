@@ -10,4 +10,9 @@
 	body {
 		@apply m-0 scroll-smooth antialiased font-dmSans;
 	}
+
+	/* apply to all container of view */
+	.page-container {
+		@apply container mx-auto p-6 md:p-8 lg:p-12;
+	}
 }
