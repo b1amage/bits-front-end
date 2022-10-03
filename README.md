@@ -83,7 +83,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### Note
 
--   View demo available at:
+-   View demo available at: https://rmit-blogie.netlify.app/
 
 ### Supporting tools used
 
