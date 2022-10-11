@@ -14,6 +14,7 @@ const Input = ({
 	err,
 	fluid,
 	className,
+	name,
 }) => {
 	return (
 		<div className="flex flex-col gap-1 md:gap-2 lg:gap-3">
@@ -28,7 +29,7 @@ const Input = ({
 					type={type || "text"} // TODO: Optimize using PropTypes
 					placeholder={placeholder}
 					id={label}
-					name={label}
+					name={name || label}
 					required={required}
 					value={value}
 					onChange={onChange}
