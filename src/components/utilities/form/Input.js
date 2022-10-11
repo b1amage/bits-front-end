@@ -16,7 +16,7 @@ const Input = ({
 	className,
 }) => {
 	return (
-		<div>
+		<div className="flex flex-col gap-1 md:gap-2 lg:gap-3">
 			<Label required={required}>{label}</Label>
 
 			<div className="relative">
@@ -25,7 +25,7 @@ const Input = ({
 					className={`w-full px-4 py-2 text-sm transition-all duration-300 outline-none rounded-2xl bg-secondary-50 md:text-base md:px-6 md:py-4 focus:border-primary-100 placeholder:text-secondary-100 ${
 						fluid ? "w-full" : "w-1/2"
 					} ${className}`}
-					type={type || "text"}
+					type={type || "text"} // TODO: Optimize using PropTypes
 					placeholder={placeholder}
 					id={label}
 					name={label}
