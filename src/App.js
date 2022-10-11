@@ -1,5 +1,5 @@
 import { Routes, Route } from "react-router-dom";
-import Preview from "./Preview";
+import Preview from "./preview/Preview";
 
 const App = () => {
 	return (

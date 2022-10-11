@@ -1,10 +1,9 @@
 import React from "react";
-import Input from "./components/utilities/form/Input";
-import PageContainer from "../src/components/utilities/container/Container";
+import Input from "../components/utilities/form/Input";
 
-const Preview = () => {
+const InputPreview = () => {
 	return (
-		<PageContainer className="flex flex-col gap-10">
+		<>
 			<div className="flex flex-col gap-5">
 				<h1 className="text-2xl font-bold lg:text-4xl text-primary-100">
 					Input component
@@ -47,8 +46,8 @@ const Preview = () => {
 					placeholder="Sample input"
 				/>
 			</div>
-		</PageContainer>
+		</>
 	);
 };
 
-export default Preview;
+export default InputPreview;
