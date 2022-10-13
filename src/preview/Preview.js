@@ -3,6 +3,7 @@ import PageContainer from "../components/utilities/container/Container";
 import InputPreview from "./InputPreview";
 import ButtonPreview from "./ButtonPreview";
 import LoadingPreview from "./LoadingPreview";
+import CheckboxPreview from "./CheckboxPreview";
 
 const Preview = () => {
 	return (
@@ -10,6 +11,7 @@ const Preview = () => {
 			<InputPreview />
 			<ButtonPreview />
 			<LoadingPreview />
+			<CheckboxPreview />
 		</PageContainer>
 	);
 };

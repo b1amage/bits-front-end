@@ -18,7 +18,9 @@ const Input = ({
 }) => {
 	return (
 		<div className="flex flex-col gap-1 md:gap-2 lg:gap-3">
-			<Label required={required}>{label}</Label>
+			<Label id={label} required={required}>
+				{label}
+			</Label>
 
 			<div className="relative">
 				<input

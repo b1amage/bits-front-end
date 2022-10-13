@@ -1,8 +1,9 @@
 import React from "react";
 
-const Label = ({ id, required, className, children }) => {
+const Label = ({ id, required, className, children, onClick }) => {
 	return (
 		<label
+			onClick={onClick}
 			htmlFor={id}
 			className={`px-4 font-semibold capitalize md:text-xl ${className}`}
 		>
