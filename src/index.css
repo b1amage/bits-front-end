@@ -11,10 +11,12 @@
 		@apply m-0 scroll-smooth antialiased font-dmSans !overflow-x-hidden;
 	}
 
+	/* Selection */
 	::selection {
 		@apply bg-primary-100 text-white;
 	}
 
+	/* Scroll bar */
 	body::-webkit-scrollbar {
 		@apply w-2 h-10 transition-all;
 	}
@@ -32,6 +34,7 @@
 		@apply container mx-auto p-6 md:p-8 lg:p-12;
 	}
 
+	/* custom checkbox */
 	input[type="checkbox"] {
 		@apply appearance-none;
 		/* removing default appearance */
