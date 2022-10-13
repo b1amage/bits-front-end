@@ -1,4 +1,4 @@
-# RMITINDER - DATING WEB-APPLICATION
+# Bloggie Blog web-application
 
 ### Course Information
 
@@ -7,11 +7,11 @@
 
 -   Course: Building IT System
 -   Course code: COSC2634
--   Lecturer: Dr. Shan Chen
+-   Lecturer: Dr. Quang
 
 ### Contributors
 
--   Supervisor: Dr. Shan Chen
+-   Supervisor: Dr. Quang
 
 -   Technical writer + Frontend Developer: Do Le Long An (s3963207)
 -   Frontend developer: Nguyen Luu Quoc Bao (s3877698)
