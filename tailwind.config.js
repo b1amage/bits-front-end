@@ -26,8 +26,25 @@ module.exports = {
 					cyan: "#CDF8F3",
 				},
 			},
-			keyframes: {},
-			animation: {},
+			keyframes: {
+				flip: {
+					"0%": {
+						transform: "perspective(200px) rotateX(0) rotateY(0)",
+					},
+					"50%": {
+						transform:
+							"perspective(200px) rotateX(180deg) rotateY(0)",
+					},
+
+					"100%": {
+						transform:
+							"perspective(200px) rotateX(180deg) rotateY(180deg)",
+					},
+				},
+			},
+			animation: {
+				flip: "flip 1.2s ease-in-out infinite",
+			},
 		},
 		fontFamily: {
 			dmSans: ["DM Sans", "sans-serif"],

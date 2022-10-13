@@ -10,4 +10,15 @@
 	body {
 		@apply m-0 scroll-smooth antialiased font-dmSans;
 	}
+
+	/* apply to all container of view */
+	.page-container {
+		@apply container mx-auto p-6 md:p-8 lg:p-12;
+	}
+
+	input[type="checkbox"] {
+		@apply appearance-none;
+		/* removing default appearance */
+		-webkit-appearance: none;
+	}
 }
