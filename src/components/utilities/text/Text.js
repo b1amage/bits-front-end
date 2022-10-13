@@ -1,7 +1,11 @@
-import React from 'react'
+import React from "react";
 
-export const Text = ({text, className}) => {
-  return (
-    <p className={`${className} text-base leading-5 font-medium text-secondary-20`}>{text}</p>
-  )
-}
+export const Text = ({ children, className }) => {
+	return (
+		<p
+			className={`text-base leading-[24px] font-medium text-secondary-20 ${className}`}
+		>
+			{children}
+		</p>
+	);
+};

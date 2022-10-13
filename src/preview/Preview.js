@@ -4,6 +4,8 @@ import InputPreview from "./InputPreview";
 import ButtonPreview from "./ButtonPreview";
 import LoadingPreview from "./LoadingPreview";
 import CheckboxPreview from "./CheckboxPreview";
+import ImagePreview from "./ImagePreview";
+import TextPreview from "./TextPreview";
 
 const Preview = () => {
 	return (
@@ -12,6 +14,8 @@ const Preview = () => {
 			<ButtonPreview />
 			<LoadingPreview />
 			<CheckboxPreview />
+			<ImagePreview />
+			<TextPreview />
 		</PageContainer>
 	);
 };

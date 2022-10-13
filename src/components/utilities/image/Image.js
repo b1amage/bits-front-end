@@ -1,9 +1,25 @@
-import React from 'react'
+import React from "react";
 
-export const Image = ({src, alt, className, imageClassName}) => {
-  return (
-    <div className={`${className} w-full h-auto flex justify-center`}>
-        <img src={src} alt={alt} className={`object-contain ${imageClassName}`}/>
-    </div>
-  )
-}
+export const Image = ({
+	src,
+	alt,
+	className,
+	imageClassName,
+	animate,
+	onClick,
+}) => {
+	return (
+		<div
+			onClick={onClick}
+			className={`cursor-pointer rounded-lg overflow-hidden ${className}`}
+		>
+			<img
+				src={src}
+				alt={alt}
+				className={`object-cover w-full h-full ${
+					animate && "transition-all duration-200 hover:scale-110"
+				} ${imageClassName}`}
+			/>
+		</div>
+	);
+};
