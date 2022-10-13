@@ -4,11 +4,11 @@
 
 @layer components {
 	html {
-		@apply scroll-smooth;
+		@apply scroll-smooth !overflow-x-hidden;
 	}
 
 	body {
-		@apply m-0 scroll-smooth antialiased font-dmSans;
+		@apply m-0 scroll-smooth antialiased font-dmSans !overflow-x-hidden;
 	}
 
 	::selection {
