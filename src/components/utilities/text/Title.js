@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Title = ({ children, className }) => {
+const Title = ({ children, className }) => {
 	return (
 		<h1
 			className={`text-3xl leading-10 font-bold text-secondary-100 ${className} `}
@@ -9,3 +9,5 @@ export const Title = ({ children, className }) => {
 		</h1>
 	);
 };
+
+export default Title;

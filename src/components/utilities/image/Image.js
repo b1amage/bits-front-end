@@ -1,13 +1,6 @@
 import React from "react";
 
-export const Image = ({
-	src,
-	alt,
-	className,
-	imageClassName,
-	animate,
-	onClick,
-}) => {
+const Image = ({ src, alt, className, imageClassName, animate, onClick }) => {
 	return (
 		<div
 			onClick={onClick}
@@ -23,3 +16,5 @@ export const Image = ({
 		</div>
 	);
 };
+
+export default Image;
