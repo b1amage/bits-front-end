@@ -3,7 +3,7 @@ import React from "react";
 const Title = ({ children, className }) => {
 	return (
 		<h1
-			className={`text-3xl leading-10 font-bold text-secondary-100 ${className} `}
+			className={`text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl leading-10 font-bold text-secondary-100 ${className} `}
 		>
 			{children}
 		</h1>
