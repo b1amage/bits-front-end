@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+
 import Preview from "./preview/Preview";
 
 const App = () => {
@@ -7,6 +8,7 @@ const App = () => {
 			<Route path="/" element={<Preview />} />
 		</Routes>
 	);
+
 };
 
 export default App;

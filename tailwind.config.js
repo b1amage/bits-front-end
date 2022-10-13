@@ -17,6 +17,7 @@ module.exports = {
 				secondary: {
 					100: "#585858",
 					50: "#F6F6F6",
+					20: "#888888",
 				},
 				teriary: {
 					pink: "#D48FD5",
