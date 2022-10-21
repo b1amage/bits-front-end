@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Button from "./utilities/button/Button";
 import Logo from './utilities/image/Logo'
-import checkbox from './utilities/form/Checkbox'
 import Container from "./utilities/container/Container";
 import Input from "./utilities/form/Input";
 import Checkbox from "./utilities/form/Checkbox";
@@ -11,10 +10,8 @@ const Login = () => {
         <Container className="signIn">
             <Logo className="mx-auto" />
             <form  className="my-10 flex gap-5 flex-col">
-                <Input 
-              
-              
-              fluid
+                <Input  
+                 fluid
                     label="Email"
                     required
                     name="Email"
@@ -48,4 +45,4 @@ const Login = () => {
   );
 }
 
-export default View;
+export default Login;
