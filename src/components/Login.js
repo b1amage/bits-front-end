@@ -6,13 +6,15 @@ import Container from "./utilities/container/Container";
 import Input from "./utilities/form/Input";
 import Checkbox from "./utilities/form/Checkbox";
 import Text from "./utilities/text/Text"
-const View = () => {
+const Login = () => {
     return (
         <Container className="signIn">
             <Logo className="mx-auto" />
             <form  className="my-10 flex gap-5 flex-col">
                 <Input 
-                    fluid
+              
+              
+              fluid
                     label="Email"
                     required
                     name="Email"
