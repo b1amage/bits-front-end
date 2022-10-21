@@ -7,11 +7,11 @@ import Checkbox from "./utilities/form/Checkbox";
 import Text from "./utilities/text/Text"
 const Login = () => {
     return (
-        <Container className="signIn">
+        <Container className="login">
             <Logo className="mx-auto" />
             <form  className="my-10 flex gap-5 flex-col">
                 <Input  
-                 fluid
+                    fluid
                     label="Email"
                     required
                     name="Email"

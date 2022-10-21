@@ -2,11 +2,13 @@ import { Routes, Route } from "react-router-dom";
 
 import Preview from "./preview/Preview";
 import Login from "./components/Login"
+import Successful from "./components/Successful";
 const App = () => {
 	return (
 		<Routes>
 			<Route path="/" element={<Preview />} />
 			<Route path="/login" element={<Login />} />
+			<Route path="/successful" element={<Successful />} />
 		</Routes>
 	);
 
