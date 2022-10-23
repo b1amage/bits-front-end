@@ -10,6 +10,7 @@ const App = () => {
 			<Route path="/" element={<Preview />} />
 			<Route path="/forgot-password" element={<ForgotPasswordPage />} />
 			<Route path="/profile" element={<ProfilePage />} />
+			<Route path="/profile/:type" element={<ProfilePage />} />
 		</Routes>
 	);
 

@@ -1,16 +1,45 @@
-import React from 'react'
-import PostStat from '../statistic/PostStat'
+import React from "react";
+import PostStat from "../statistic/PostStat";
+import eye from "../../assets/svg/eye.svg";
+import comment from "../../assets/svg/comment.svg";
+import like from "../../assets/svg/like.svg";
 
-const PostStats = ({postStats, className}) => {
+const PostStats = ({ views, time, postType, className }) => {
   return (
-    <div className={`${className} flex gap-2 my-2 md:my-4 lg:my-5 xl:my-7 2xl:my-14`}>
-        {postStats.map((stat, index) => {
-            return (
-                <PostStat icon={stat.icon} quantity={stat.quantity} key={index} />
-            )
-        })}
+    <div
+      className={`${className} flex gap-2 my-2 md:my-4 lg:my-5 xl:my-7 2xl:my-14`}
+    >
+      {postType == null || postType === "post" ? (
+        <>
+          <PostStat
+            src={eye}
+            alt={"views"}
+            quantity={views}
+            postType={postType}
+          />
+          <PostStat
+            src={comment}
+            alt={"comments"}
+            quantity={views}
+            postType={postType}
+          />
+          <PostStat
+            src={like}
+            alt={"likes"}
+            quantity={views}
+            postType={postType}
+          />
+        </>
+      ) : postType === "latest" ? (
+        <PostStat time={time} postType={postType} />
+      ) : (
+        <>
+          <PostStat quantity={views} detail={"viewers"} postType={postType} />
+          <PostStat quantity={views} detail={"reads"} postType={postType} />
+        </>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default PostStats
+export default PostStats;
