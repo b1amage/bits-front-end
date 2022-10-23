@@ -27,7 +27,7 @@ const FeatureBlog = ({ className, userAvatar, name, readTime, title }) => {
 				</div>
 			</div>
 
-			<Title className="text-lg leading-tight">{title}</Title>
+			<Title className="text-lg leading-tight md:!text-xl">{title}</Title>
 		</div>
 	);
 };

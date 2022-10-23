@@ -43,71 +43,44 @@ const HomePage = () => {
 			<section className="my-8">
 				<Title>Feature</Title>
 
-				<ScrollContainer className="my-2">
-					<div className="relative flex w-full scroll-item">
-						<Image src={blogBg} className="w-full" />
+				<ScrollContainer className="my-2 md:!gap-4 lg:!gap-5">
+					{Array(10)
+						.fill()
+						.map((_, index) => (
+							<div
+								key={index}
+								className="relative flex w-full md:w-[400px] md:h-[400px] scroll-item"
+							>
+								<Image src={blogBg} className="w-full" />
 
-						<FeatureBlog
-							className="absolute -translate-x-1/2 bottom-10 left-1/2"
-							name="Kyle Nguyen"
-							readTime={20}
-							title="How to cua gai 101? Bach tan bach trung"
-						/>
-					</div>
-					{/* Dummy data for testing scroll feature */}
-					<div className="relative flex w-full scroll-item">
-						<Image src={blogBg} className="w-full" />
-
-						<FeatureBlog
-							className="absolute -translate-x-1/2 bottom-10 left-1/2"
-							name="Kyle Nguyen"
-							readTime={20}
-							title="How to cua gai 101? Bach tan bach trung"
-						/>
-					</div>
-
-					<div className="relative flex w-full scroll-item">
-						<Image src={blogBg} className="w-full" />
-
-						<FeatureBlog
-							className="absolute -translate-x-1/2 bottom-10 left-1/2"
-							name="Kyle Nguyen"
-							readTime={20}
-							title="How to cua gai 101? Bach tan bach trung"
-						/>
-					</div>
+								<FeatureBlog
+									className="absolute -translate-x-1/2 bottom-10 left-1/2"
+									name="Kyle Nguyen"
+									readTime={20}
+									title="How to cua gai 101? Bach tan bach trung"
+								/>
+							</div>
+						))}
 				</ScrollContainer>
 			</section>
 
 			{/* Blog */}
 			<section>
 				<Title>Blogs</Title>
-				<ScrollContainer className="my-2">
-					<Blog
-						author="Kyle Nguyen"
-						likeCount={810}
-						readCount={912}
-						date="09/12/2022"
-						className="scroll-item max-w-[90%]"
-						title="Kyle co mot ngui bo xinh dep ten Quynh"
-					/>
-					{/* Dummy data for testing scroll feature */}
-					<Blog
-						author="Kyle Nguyen"
-						likeCount={810}
-						readCount={912}
-						date="09/12/2022"
-						className="scroll-item max-w-[90%]"
-						title="Kyle co mot ngui bo xinh dep ten Quynh"
-					/>
-					<Blog
-						author="Kyle Nguyen"
-						likeCount={810}
-						readCount={912}
-						date="09/12/2022"
-						className="scroll-item max-w-[90%]"
-						title="Kyle co mot ngui bo xinh dep ten Quynh"
-					/>
+				<ScrollContainer className="my-2 md:!gap-4 lg:!gap-5">
+					{Array(10)
+						.fill()
+						.map((item, index) => (
+							<Blog
+								key={index}
+								author="Kyle Nguyen"
+								likeCount={810}
+								readCount={912}
+								date="09/12/2022"
+								className="scroll-item max-w-[90%]"
+								title="Kyle co mot ngui bo xinh dep ten Quynh"
+							/>
+						))}
 				</ScrollContainer>
 			</section>
 		</Container>

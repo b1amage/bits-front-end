@@ -15,7 +15,7 @@ const Blog = ({
 }) => {
 	return (
 		<div
-			className={`grid grid-cols-3 gap-4 px-5 py-3 rounded-xl bg-secondary-50 min-h-[120px] max-w-[380px] md:py-5 md:px-7 cursor-pointer shadow-md lg:max-w-[420px] ${className}`}
+			className={`grid grid-cols-3 gap-4 px-5 py-3 rounded-xl bg-secondary-50 min-h-[120px] max-w-[380px] lg:min-h-[160px] md:py-5 md:px-7 cursor-pointer shadow-md lg:max-w-[420px] ${className}`}
 		>
 			<div className="flex items-center justify-start">
 				<Image
