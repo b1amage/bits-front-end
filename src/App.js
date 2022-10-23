@@ -1,7 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import RegisterPage from "./views/RegisterPage";
 import Preview from "./preview/Preview";
-import Login from "./components/Login"
+import Login from "./components/Login";
 import Successful from "./components/Successful";
 
 const App = () => {
