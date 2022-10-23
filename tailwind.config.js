@@ -25,6 +25,7 @@ module.exports = {
 					purple: "#A77CFB",
 					red: "#FBA0B3",
 					cyan: "#CDF8F3",
+					gray: "#E5E5E5"
 				},
 			},
 			keyframes: {

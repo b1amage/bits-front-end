@@ -1,6 +1,6 @@
 import React from "react";
 
-const button = ({
+const Button = ({
 	children,
 	className,
 	primary,
@@ -46,4 +46,4 @@ const button = ({
 	);
 };
 
-export default button;
+export default Button;
