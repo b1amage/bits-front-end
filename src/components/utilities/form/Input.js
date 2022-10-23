@@ -17,7 +17,7 @@ const Input = ({
 	name,
 }) => {
 	return (
-		<div className="flex flex-col gap-1 md:gap-2 lg:gap-3">
+		<div className={`flex flex-col ${label && "gap-1 md:gap-2 lg:gap-3"}`}>
 			<Label id={label} required={required}>
 				{label}
 			</Label>

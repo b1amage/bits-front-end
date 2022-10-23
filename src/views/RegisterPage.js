@@ -52,7 +52,7 @@ const RegisterPage = () => {
 	});
 
 	return (
-		<Container className="flex flex-col items-center justify-center h-screen">
+		<Container className="flex flex-col items-center justify-center min-h-screen">
 			<Logo className="mx-auto" />
 
 			<form
