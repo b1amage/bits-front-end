@@ -1,4 +1,3 @@
-import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -7,39 +6,44 @@ import Logo from "../components/utilities/image/Logo";
 import Input from "../components/utilities/form/Input";
 import Button from "../components/utilities/button/Button";
 
+import REGISTER_CONSTANT from "../constant/RegisterConstant";
+
 const RegisterPage = () => {
 	const formik = useFormik({
 		initialValues: {
-			email: "",
-			username: "",
-			password: "",
-			confirmPassword: "",
+			email: REGISTER_CONSTANT.INITIAL_VALUE.email,
+			username: REGISTER_CONSTANT.INITIAL_VALUE.username,
+			password: REGISTER_CONSTANT.INITIAL_VALUE.password,
+			confirmPassword: REGISTER_CONSTANT.INITIAL_VALUE.confirmPassword,
 		},
 		validationSchema: Yup.object({
 			email: Yup.string()
-				.required("Please fill in this field!")
+				.required(REGISTER_CONSTANT.ERROR.required)
 				.matches(
-					/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
-					"Please enter a valid email address!"
+					REGISTER_CONSTANT.REGEX.email,
+					REGISTER_CONSTANT.ERROR.email
 				),
 			username: Yup.string()
-				.required("Please fill in this field!")
+				.required(REGISTER_CONSTANT.ERROR.required)
 				.matches(
-					/^[A-Za-z0-9 ]+$/,
-					"Username must not contain special character"
+					REGISTER_CONSTANT.REGEX.username,
+					REGISTER_CONSTANT.ERROR.username
 				),
 			password: Yup.string()
-				.required("Please fill in this field!")
+				.required(REGISTER_CONSTANT.ERROR.required)
 				.matches(
-					/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*].{8,}$/,
-					"Password must have at least 8 characters, has at least 1 uppercase, 1 lowercase, 1 digit, 1 special character!"
+					REGISTER_CONSTANT.REGEX.password,
+					REGISTER_CONSTANT.ERROR.password
 				),
 			confirmPassword: Yup.string()
-				.required("Please fill in this field!")
-				.oneOf([Yup.ref("password"), null], "Passwords must match")
+				.required(REGISTER_CONSTANT.ERROR.required)
+				.oneOf(
+					[Yup.ref("password"), null],
+					REGISTER_CONSTANT.ERROR.passwordMatch
+				)
 				.matches(
-					/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[a-zA-Z\d!@#$%^&*].{8,}$/,
-					"Password must have at least 8 characters, has at least 1 uppercase, 1 lowercase, 1 digit, 1 special character!"
+					REGISTER_CONSTANT.REGEX.password,
+					REGISTER_CONSTANT.ERROR.password
 				),
 		}),
 		onSubmit: (values) => {
