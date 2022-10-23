@@ -17,7 +17,7 @@ const Input = ({
 	name,
 }) => {
 	return (
-		<div className="flex flex-col gap-1 md:gap-2 lg:gap-3">
+		<div className={`flex flex-col ${label && "gap-1 md:gap-2 lg:gap-3"}`}>
 			<Label id={label} required={required}>
 				{label}
 			</Label>
@@ -25,7 +25,7 @@ const Input = ({
 			<div className="relative">
 				<input
 					autoComplete="off"
-					className={`w-full px-4 py-2 text-sm transition-all duration-300 outline-none rounded-2xl bg-secondary-50 md:text-base md:px-6 md:py-4 focus:border-primary-100 placeholder:text-secondary-100 ${
+					className={`w-full px-4 py-3 text-sm transition-all duration-300 outline-none rounded-2xl bg-secondary-50 md:text-base md:px-6 md:py-4 focus:border-primary-100 placeholder:text-secondary-100 ${
 						fluid ? "w-full" : "w-1/2"
 					} ${className}`}
 					type={type || "text"} // TODO: Optimize using PropTypes
