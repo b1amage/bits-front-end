@@ -5,13 +5,13 @@ import Container from '../utilities/container/Container';
 
 const PostListNavBar = () => {
   return (
-    <Container className=" text-secondary-20 flex gap-5 flex-wrap">
+    <Container className=" text-secondary-20 inline-flex flex-wrap">
         {navPostTypes.map((navType, index) => {
           return (
             <NavLink
               to={navType.to}
               children={navType.text}
-              className={`text-base lg:text-xl xl:text-2xl 2xl:text-3xl leading-[24px] md:text-lg text-center !text-secondary-20 hover:!text-primary-100 font-medium`}
+              className={`text-xs lg:text-xl xl:text-2xl 2xl:text-3xl leading-[24px] md:text-lg text-center !text-secondary-20 hover:!text-primary-100 font-medium md:p-6`}
               key={index}
             />
           );

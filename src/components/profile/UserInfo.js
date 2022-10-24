@@ -7,8 +7,8 @@ import Container from '../utilities/container/Container'
 
 const UserInfo = () => {
   return (
-    <Container className={'2xl:max-w-full w-full'}>
-        <Image src={setting} alt={'setting'} imageClassName={`w-[5vw] h-[5vw]`} className={`flex justify-end cursor-pointer`} />
+    <Container className={''}>
+        <Image src={setting} alt={'setting'} imageClassName={`w-[4vw] h-[4vw]`} className={`flex justify-end cursor-pointer`} />
         <Avatar />    
         <UserStats />
     </Container>
