@@ -10,7 +10,7 @@ const PostList = () => {
 
   return (
     <div
-      className={`2xl:max-w-full rounded-t-3xl bg-white flex flex-col justify-center md:px-0 px-8`}
+      className={`2xl:max-w-full rounded-t-3xl bg-white flex flex-col justify-center px-8 md:px-16 lg:px-24`}
     >
       <PostListNavBar />
 
