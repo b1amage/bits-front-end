@@ -1,13 +1,11 @@
 import { Routes, Route } from "react-router-dom";
 import RegisterPage from "./views/RegisterPage";
 import Preview from "./preview/Preview";
-
 import ForgotPasswordPage from "./views/ForgotPasswordPage";
 import ProfilePage from "./views/ProfilePage";
-
-import Login from "./components/Login";
 import Successful from "./components/Successful";
 import HomePage from "./views/HomePage";
+import LoginPage from "./views/LoginPage";
 
 const App = () => {
 	return (
@@ -18,7 +16,7 @@ const App = () => {
 			<Route path="/profile/:type" element={<ProfilePage />} />
 			<Route path="/preview" element={<Preview />} />
 			<Route path="/register" element={<RegisterPage />} />
-			<Route path="/login" element={<Login />} />
+			<Route path="/login" element={<LoginPage />} />
 			<Route path="/successful" element={<Successful />} />
 		</Routes>
 	);
