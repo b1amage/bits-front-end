@@ -12,11 +12,10 @@ import HomePage from "./views/HomePage";
 const App = () => {
 	return (
 		<Routes>
-			<Route path="/" element={<Preview />} />
+			<Route path="/" element={<HomePage />} />
 			<Route path="/forgot-password" element={<ForgotPasswordPage />} />
 			<Route path="/profile" element={<ProfilePage />} />
 			<Route path="/profile/:type" element={<ProfilePage />} />
-			<Route path="/" element={<HomePage />} />
 			<Route path="/preview" element={<Preview />} />
 			<Route path="/register" element={<RegisterPage />} />
 			<Route path="/login" element={<Login />} />
