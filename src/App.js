@@ -3,9 +3,9 @@ import RegisterPage from "./views/RegisterPage";
 import Preview from "./preview/Preview";
 import ForgotPasswordPage from "./views/ForgotPasswordPage";
 import ProfilePage from "./views/ProfilePage";
-import Successful from "./components/Successful";
 import HomePage from "./views/HomePage";
 import LoginPage from "./views/LoginPage";
+import SuccessfulPage from "./views/SuccessfulPage";
 
 const App = () => {
 	return (
@@ -17,7 +17,7 @@ const App = () => {
 			<Route path="/preview" element={<Preview />} />
 			<Route path="/register" element={<RegisterPage />} />
 			<Route path="/login" element={<LoginPage />} />
-			<Route path="/successful" element={<Successful />} />
+			<Route path="/successful" element={<SuccessfulPage />} />
 		</Routes>
 	);
 };
