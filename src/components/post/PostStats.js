@@ -7,7 +7,7 @@ import like from "../../assets/svg/like.svg";
 const PostStats = ({ views, time, postType, className }) => {
   return (
     <div
-      className={`${className} flex h-full gap-3 lg:gap-8 py-4 flex-wrap`}
+      className={`${className} flex h-full gap-2 lg:gap-8 md:py-2 flex-wrap`}
     >
       {postType == null || postType === "post" ? (
         <>

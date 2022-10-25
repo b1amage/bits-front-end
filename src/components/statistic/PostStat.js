@@ -4,29 +4,29 @@ import Text from "../utilities/text/Text";
 
 const PostStat = ({ postType, src, alt, quantity, time, detail }) => {
   return (
-    <div className="flex w-full gap-2 2xl:gap-12 items-center">
+    <div className="flex gap-1 2xl:gap-5 items-center">
       {postType == null || postType === "post" ? (
         <>
-          <Image src={src} alt={alt} imageClassName={``} className={`w-[3vw]`} />
+          <Image src={src} alt={alt} imageClassName={``} className={`w-[3vw] xl:w-[2vw] 2xl:w-[1vw]`} />
           <Text
             children={quantity}
-            className={`text-[10px] lg:text-xl xl:text-2xl leading-[24px] font-medium text-secondary-20 md:text-lg`}
+            className={`text-[10px] md:text-lg lg:text-xl xl:text-2xl leading-[24px] font-medium text-secondary-20`}
           />
         </>
       ) : postType === "latest" ? (
           <Text
             children={time}
-            className={`text-[10px] lg:text-xl xl:text-2xl leading-[24px] font-medium text-secondary-20 md:text-lg`}
+            className={`text-[10px] md:text-lg lg:text-xl xl:text-2xl leading-[24px] font-medium text-secondary-20`}
           />
       ) : (
         <>
           <Text
             children={quantity}
-            className={`text-[10px] lg:text-xl xl:text-2xl leading-[24px] font-medium text-secondary-20 md:text-lg`}
+            className={`text-[10px] md:text-lg lg:text-xl xl:text-2xl leading-[24px] font-medium text-secondary-20`}
           />
           <Text
             children={detail}
-            className={`text-[10px] lg:text-xl xl:text-2xl leading-[24px] font-medium text-secondary-20 md:text-lg`}
+            className={`text-[10px] md:text-lg lg:text-xl xl:text-2xl leading-[24px] font-medium text-secondary-20`}
           />
         </>
       )}

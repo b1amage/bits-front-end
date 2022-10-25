@@ -13,7 +13,7 @@ const Avatar = () => {
           <Image src={avatar} alt={"avatar"} imageClassName={``} className={`bg-teriary-purple !rounded-full`}/>
           <Image src={camera} alt={'camera'} imageClassName={``} className={`bg-primary-30 w-[10vw] h-[10vw] p-3 sm:p-4 md:p-5 lg:p-8 xl:p-12 2xl:p-16 !rounded-full absolute bottom-0 right-0 cursor-pointer`}/>
         </div>
-        <Title children={"Davis Gouse"} className={`text-center 2xl:!text-8xl lg:!text-4xl md:!text-3xl`} />
+        <Title children={"Davis Gouse"} className={`text-center text-lg md:!text-2xl lg:!text-3xl 2xl:!text-4xl`} />
     </div>
   )
 }
