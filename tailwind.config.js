@@ -22,10 +22,13 @@ module.exports = {
 				},
 				teriary: {
 					pink: "#D48FD5",
-					purple: "#A77CFB",
+					purple: {
+						100: "#A77CFB",
+						20: "#E8DDFF",
+					},
 					red: "#FBA0B3",
 					cyan: "#CDF8F3",
-					gray: "#E5E5E5"
+					gray: "#E5E5E5",
 				},
 			},
 			keyframes: {
