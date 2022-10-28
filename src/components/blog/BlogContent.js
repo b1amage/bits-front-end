@@ -1,4 +1,3 @@
-import React from "react";
 import Text from "../utilities/text/Text";
 
 const BlogContent = ({ content }) => {

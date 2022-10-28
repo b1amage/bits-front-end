@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "./Image";
 import purple from "../../../assets/svg/purple-blur.svg";
 

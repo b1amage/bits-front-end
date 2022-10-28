@@ -1,5 +1,3 @@
-import React from "react";
-
 const ScrollContainer = ({ children, vertical, className }) => {
 	return (
 		<div
