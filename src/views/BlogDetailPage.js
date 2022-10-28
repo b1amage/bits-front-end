@@ -1,5 +1,6 @@
 import React from "react";
 import Container from "../components/utilities/container/Container";
+
 import AuthorInfo from "../components/blog/AuthorInfo";
 import Title from "../components/utilities/text/Title";
 import banner from "../assets/svg/dummyBanner.svg";
