@@ -6,6 +6,7 @@ import ProfilePage from "./views/ProfilePage";
 import HomePage from "./views/HomePage";
 import LoginPage from "./views/LoginPage";
 import SuccessfulPage from "./views/SuccessfulPage";
+import BlogDetailPage from "./views/BlogDetailPage";
 
 const App = () => {
 	return (
@@ -18,6 +19,7 @@ const App = () => {
 			<Route path="/register" element={<RegisterPage />} />
 			<Route path="/login" element={<LoginPage />} />
 			<Route path="/successful" element={<SuccessfulPage />} />
+			<Route path="/blog/:id" element={<BlogDetailPage />} />
 		</Routes>
 	);
 };
