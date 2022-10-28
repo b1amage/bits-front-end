@@ -1,7 +1,7 @@
 const navPostTypes = [
-	{ text: "Post", to: "/profile/post" },
-	{ text: "Latest", to: "/profile/latest" },
-	{ text: "Like", to: "/profile/liked" },
+	{ text: "post", to: "/profile" },
+	{ text: "latest", to: "/profile" },
+	{ text: "like", to: "/profile" },
 ];
 
 export default navPostTypes;

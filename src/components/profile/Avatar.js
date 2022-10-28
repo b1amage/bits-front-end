@@ -18,7 +18,7 @@ const Avatar = () => {
 					src={avatar}
 					alt={"avatar"}
 					imageClassName={``}
-					className={`bg-teriary-purple !rounded-full`}
+					className={`bg-teriary-purple-100 !rounded-full`}
 				/>
 				<Image
 					src={camera}

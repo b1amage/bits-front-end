@@ -14,23 +14,23 @@ const PostStat = ({ postType, src, alt, quantity, time, detail }) => {
 					/>
 					<Text
 						children={quantity}
-						className={`text-[10px] md:text-lg lg:text-xl xl:text-2xl leading-[24px] font-medium text-secondary-20`}
+						className={`!text-[10px] sm:!text-base md:!text-lg 2xl:!text-2xl leading-[24px] font-medium text-secondary-20`}
 					/>
 				</>
 			) : postType === "latest" ? (
 				<Text
 					children={time}
-					className={`text-[10px] md:text-lg lg:text-xl xl:text-2xl leading-[24px] font-medium text-secondary-20`}
+					className={`!text-[10px] sm:!text-base md:!text-lg 2xl:!text-2xl leading-[24px] font-medium text-secondary-20`}
 				/>
 			) : (
 				<>
 					<Text
 						children={quantity}
-						className={`text-[10px] md:text-lg lg:text-xl xl:text-2xl leading-[24px] font-medium text-secondary-20`}
+						className={`!text-[10px] sm:!text-base md:!text-lg 2xl:!text-2xl leading-[24px] font-medium text-secondary-20`}
 					/>
 					<Text
 						children={detail}
-						className={`text-[10px] md:text-lg lg:text-xl xl:text-2xl leading-[24px] font-medium text-secondary-20`}
+						className={`!text-[10px] sm:!text-base md:!text-lg 2xl:!text-2xl leading-[24px] font-medium text-secondary-20`}
 					/>
 				</>
 			)}

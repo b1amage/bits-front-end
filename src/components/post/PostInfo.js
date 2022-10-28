@@ -16,7 +16,7 @@ const PostInfo = ({
 			<Title
 				children={title}
 				className={
-					"text-sm md:!text-2xl xl:!text-3xl 2xl:!text-4xl font-bold text-secondary-100 leading-[18px]"
+					"text-sm sm:text-lg md:!text-xl xl:!text-xl 2xl:!text-4xl font-bold text-secondary-100 leading-[18px]"
 				}
 			/>
 			<PostStats
@@ -32,7 +32,7 @@ const PostInfo = ({
 				children={
 					postType == null || postType === "post" ? time : author
 				}
-				className={`text-[9px] md:text-base lg:text-lg xl:!text-xl 2xl:text-2xl leading-[24px] font-medium text-secondary-20 h-full flex items-end`}
+				className={`text-[9px] sm:!text-sm md:!text-base 2xl:!text-xl leading-[24px] font-medium text-secondary-20 h-full flex items-end`}
 			/>
 		</div>
 	);

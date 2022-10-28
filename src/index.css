@@ -55,7 +55,6 @@
 		/* removing default appearance */
 		-webkit-appearance: none;
 	}
-
 	.form {
 		@apply flex flex-col w-full gap-10;
 	}
