@@ -11,7 +11,7 @@ const BlogStats = ({ viewCount, commentCount, likeCount }) => {
 	];
 
 	return (
-		<div className="flex items-center gap-5">
+		<div className="flex items-center gap-5 lg:gap-8">
 			{stats.length > 0 &&
 				stats.map((item, index) => (
 					<IconStat key={index} icon={item.icon} stat={item.stat} />

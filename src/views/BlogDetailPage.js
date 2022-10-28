@@ -15,24 +15,26 @@ const dummyContent = [
 
 const BlogDetailPage = () => {
 	return (
-		<Container className="flex flex-col gap-8">
+		<Container className="flex flex-col gap-8 lg:gap-12">
 			{/* Blog author's info */}
 			<AuthorInfo />
 
 			{/* Title */}
-			<Title className="!text-3xl">
+			<Title className="!text-3xl md:!text-4xl lg:!text-6xl">
 				Let’s Go Put Ourselves Out of Business
 			</Title>
 
-			{/* Banner */}
-			<Image
-				src={banner}
-				alt="blog banner"
-				className="overflow-hidden rounded-lg"
-			/>
+			<div className="flex flex-col gap-4 md:w-4/5 lg:w-full md:mx-auto md:gap-6">
+				{/* Banner */}
+				<Image
+					src={banner}
+					alt="blog banner"
+					className="overflow-hidden rounded-lg lg:w-[800px]"
+				/>
 
-			{/* Stats */}
-			<BlogStats />
+				{/* Stats */}
+				<BlogStats />
+			</div>
 
 			{/* Content */}
 			<BlogContent content={dummyContent} />
