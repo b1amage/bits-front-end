@@ -1,8 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Label from "./Label";
 import { AiOutlineCheck } from "react-icons/ai";
 
-const Checkbox = ({ label, labelClassName, value, onChange, className, name }) => {
+const Checkbox = ({
+	label,
+	labelClassName,
+	value,
+	onChange,
+	className,
+	name,
+}) => {
 	const [isChecked, setIsChecked] = useState(false);
 	return (
 		<div className="flex items-center gap-1 md:gap-2">
@@ -27,7 +34,11 @@ const Checkbox = ({ label, labelClassName, value, onChange, className, name }) =
 				/>
 			</div>
 
-			<Label className={labelClassName} id={label} onClick={() => setIsChecked((prev) => !prev)}>
+			<Label
+				className={labelClassName}
+				id={label}
+				onClick={() => setIsChecked((prev) => !prev)}
+			>
 				{label}
 			</Label>
 		</div>

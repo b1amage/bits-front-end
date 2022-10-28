@@ -1,4 +1,3 @@
-import React from "react";
 import PostList from "../components/list/PostList";
 import UserInfo from "../components/profile/UserInfo";
 

@@ -1,5 +1,3 @@
-import React from "react";
-
 const Label = ({ id, required, className, children, onClick }) => {
 	return (
 		<label

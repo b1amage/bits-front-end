@@ -1,4 +1,3 @@
-import React from "react";
 import ForgotPasswordForm from "../components/form/ForgotPasswordForm";
 import Container from "../components/utilities/container/Container";
 import Text from "../components/utilities/text/Text";

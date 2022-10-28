@@ -31,7 +31,7 @@
 
 	/* apply to all container of view */
 	.page-container {
-		@apply container mx-auto p-6 md:p-8 lg:p-12;
+		@apply container mx-auto px-6 py-[100px] md:px-8 md:py-[120px] lg:px-12 lg:py-[140px];
 	}
 
 	.scroll-item {
@@ -55,15 +55,7 @@
 		/* removing default appearance */
 		-webkit-appearance: none;
 	}
-
-	.active-post{
-		content: "";
-		position: absolute;
-		width: 0;
-		height: 3px;
-		background-color: black;
-		/* left: 0;
-		bottom: -10px;
-		transition: 0.5s; */
+	.form {
+		@apply flex flex-col w-full gap-10;
 	}
 }

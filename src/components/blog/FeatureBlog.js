@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "../utilities/image/Image";
 import Title from "../utilities/text/Title";
 
