@@ -8,6 +8,7 @@ import LoginPage from "./views/LoginPage";
 import SuccessfulPage from "./views/SuccessfulPage";
 import BlogDetailPage from "./views/BlogDetailPage";
 import NavBar from "./components/navigation/NavBar";
+import ResetPage from "./views/ResetPage";
 
 const App = () => {
 	return (
@@ -19,6 +20,7 @@ const App = () => {
 					path="/forgot-password"
 					element={<ForgotPasswordPage />}
 				/>
+				<Route path="/password/reset" element={<ResetPage />} />
 				<Route path="/profile" element={<ProfilePage />} />
 				<Route path="/profile/:type" element={<ProfilePage />} />
 				<Route path="/preview" element={<Preview />} />

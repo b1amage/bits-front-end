@@ -55,10 +55,7 @@ const RegisterPage = () => {
 		<Container className="flex flex-col items-center justify-center min-h-screen">
 			<Logo className="mx-auto" />
 
-			<form
-				onSubmit={formik.handleSubmit}
-				className="flex flex-col w-full gap-10 my-10"
-			>
+			<form onSubmit={formik.handleSubmit} className="my-10 form">
 				<Input
 					fluid
 					label="email"
