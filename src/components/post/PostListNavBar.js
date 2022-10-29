@@ -5,7 +5,7 @@ import Container from "../utilities/container/Container";
 
 const PostListNavBar = ({ current, setType }) => {
 	return (
-		<Container className="inline-flex flex-wrap text-secondary-20">
+		<Container className="inline-flex flex-wrap !py-10 text-secondary-20">
 			{navPostTypes.map((navType, index) => {
 				return (
 					<NavLink

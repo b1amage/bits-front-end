@@ -9,6 +9,7 @@ import SuccessfulPage from "./views/SuccessfulPage";
 import BlogDetailPage from "./views/BlogDetailPage";
 import NavBar from "./components/navigation/NavBar";
 import ResetPage from "./views/ResetPage";
+import WritePostPage from "./views/WritePostPage";
 
 const App = () => {
 	return (
@@ -27,6 +28,7 @@ const App = () => {
 				<Route path="/login" element={<LoginPage />} />
 				<Route path="/successful" element={<SuccessfulPage />} />
 				<Route path="/blog/:id" element={<BlogDetailPage />} />
+				<Route path="/post/write" element={<WritePostPage />} />
 			</Routes>
 		</>
 	);

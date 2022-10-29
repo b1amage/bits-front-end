@@ -28,7 +28,12 @@ module.exports = {
 					},
 					red: "#FBA0B3",
 					cyan: "#CDF8F3",
-					gray: "#E5E5E5",
+					gray: {
+						100: "#E5E5E5",
+						80: "#585858",
+						50: "#C6C6C6",
+						20: "#FAFAFA",
+					},
 				},
 			},
 			keyframes: {
