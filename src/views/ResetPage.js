@@ -7,31 +7,25 @@ import Input from "../components/utilities/form/Input";
 import Button from "../components/utilities/button/Button";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import REGISTER_CONSTANT from "../constant/RegisterConstant";
+import CONSTANT from "../constant/Constant";
 
 const ResetPage = () => {
 	const formik = useFormik({
 		initialValues: {
-			newPassword: REGISTER_CONSTANT.INITIAL_VALUE.password,
-			confirmPassword: REGISTER_CONSTANT.INITIAL_VALUE.confirmPassword,
+			newPassword: CONSTANT.INITIAL_VALUE.password,
+			confirmPassword: CONSTANT.INITIAL_VALUE.confirmPassword,
 		},
 		validationSchema: Yup.object({
 			newPassword: Yup.string()
-				.required(REGISTER_CONSTANT.ERROR.required)
-				.matches(
-					REGISTER_CONSTANT.REGEX.password,
-					REGISTER_CONSTANT.ERROR.password
-				),
+				.required(CONSTANT.ERROR.required)
+				.matches(CONSTANT.REGEX.password, CONSTANT.ERROR.password),
 			confirmPassword: Yup.string()
-				.required(REGISTER_CONSTANT.ERROR.required)
+				.required(CONSTANT.ERROR.required)
 				.oneOf(
 					[Yup.ref("newPassword"), null],
-					REGISTER_CONSTANT.ERROR.passwordMatch
+					CONSTANT.ERROR.passwordMatch
 				)
-				.matches(
-					REGISTER_CONSTANT.REGEX.password,
-					REGISTER_CONSTANT.ERROR.password
-				),
+				.matches(CONSTANT.REGEX.password, CONSTANT.ERROR.password),
 		}),
 		onSubmit: (values) => {
 			console.log(values);

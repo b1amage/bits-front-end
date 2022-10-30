@@ -1,4 +1,4 @@
-const REGISTER_CONSTANT = {
+const CONSTANT = {
 	REGEX: {
 		email: /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/,
 		username: /^[A-Za-z0-9 ]+$/,
@@ -23,4 +23,4 @@ const REGISTER_CONSTANT = {
 	},
 };
 
-export default REGISTER_CONSTANT;
+export default CONSTANT;

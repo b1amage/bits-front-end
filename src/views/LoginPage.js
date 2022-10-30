@@ -1,4 +1,3 @@
-import Button from "../components/utilities/button/Button";
 import Logo from "../components/utilities/image/Logo";
 import Container from "../components/utilities/container/Container";
 import Checkbox from "../components/utilities/form/Checkbox";
@@ -24,10 +23,6 @@ const LoginPage = () => {
 					className={"!text-primary-100 font-medium"}
 				/>
 			</div>
-
-			<Button primary fluid className="my-10">
-				Sign in
-			</Button>
 
 			<Text className="flex items-center justify-center gap-3 text-center my-15">
 				Don’t have an account?{" "}
