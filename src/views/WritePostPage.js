@@ -1,10 +1,10 @@
 import React from 'react'
-import TextArea from '../components/utilities/textarea/TextArea'
+import WritePostForm from '../components/form/WritePostForm'
 
 const WritePostPage = () => {
   return (
     <div className="bg-teriary-gray-20 h-screen relative">
-        <TextArea className='' children={'Write your story'}/>
+        <WritePostForm />
     </div>
   )
 }
