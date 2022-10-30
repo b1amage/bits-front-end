@@ -1,24 +1,36 @@
 import React from "react";
 import TextArea from "../utilities/textarea/TextArea";
 import NavLink from "../navigation/NavLink";
-import Input from "../utilities/form/Input";
-const WritePostForm = () => {
+import Button from "../utilities/button/Button";
+import Error from "../utilities/form/Error";
+const WritePostForm = ({ onSubmit, onChange, value, err, formClassName }) => {
   return (
-    <form className="items-end relative p-4 md:p-8 w-full h-screen flex flex-col">
+    <form
+      onSubmit={onSubmit}
+      className={`items-end relative p-4 md:p-8 w-full h-screen flex flex-col ${formClassName}`}
+    >
       <div className="flex gap-5 h-[25vh] items-end justify-end">
         <NavLink to="/draft" className="!p-2">
-          {" "}
-          Draft{" "}
+          Draft
         </NavLink>
-        <Input
+        <Button
+          children="Next"
           type="submit"
-          value="Next"
-          className="w-fit bg-none block capitalize !p-2 cursor-pointer transition-all duration-200 rounded text-secondary-100 bg-transparent md:p-0 md:!text-lg hover:text-primary-100 !font-dmSans"
+          className={`!min-w-[100px]`}
+          primary
         />
       </div>
 
-      <div className="h-full flex items-end w-full">
-        <TextArea className="" children={"Write your story"} />
+      <div className="max-h-[70vh] h-full flex flex-col justify-end w-full py-4">
+        {err && <Error children={err} className="" fluid />}
+        <TextArea
+          className=""
+          children={"Write your story"}
+          onChange={onChange}
+          name="content"
+          value={value}
+          err={err}
+        />
       </div>
     </form>
   );
