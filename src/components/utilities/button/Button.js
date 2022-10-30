@@ -1,4 +1,5 @@
 const Button = ({
+	type,
 	children,
 	className,
 	primary,
@@ -35,6 +36,7 @@ const Button = ({
 
 	return (
 		<button
+			type={type}
 			disabled={disabled}
 			onClick={onClick}
 			className={`${buttonStyles} ${className}`}

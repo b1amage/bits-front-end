@@ -2,6 +2,7 @@ import Label from "./Label";
 import Error from "./Error";
 
 const Input = ({
+	labelClassName,
 	placeholder,
 	label,
 	required,
@@ -17,7 +18,7 @@ const Input = ({
 }) => {
 	return (
 		<div className={`flex flex-col ${label && "gap-1 md:gap-2 lg:gap-3"}`}>
-			<Label id={label} required={required}>
+			<Label id={label} required={required} className={labelClassName}>
 				{label}
 			</Label>
 
