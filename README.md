@@ -11,7 +11,7 @@
 
 ### Contributors
 
--   Supervisor: Dr. Quang
+-   Supervisor: Mr. Tran Nhat Quang
 
 -   Technical writer + Frontend Developer: Do Le Long An (s3963207)
 -   Frontend developer: Nguyen Luu Quoc Bao (s3877698)
@@ -20,7 +20,7 @@
 
 ### Project Information
 
--   Project name: Blog Web-Application
+-   Project name: RBlog (Blog Web-Application)
 -   Purpose: Help users posting their blog in to a website
 -   Functionalities:
     -   Register
