@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Label from "./Label";
 import { AiOutlineCheck } from "react-icons/ai";
+import PropTypes from "prop-types";
 
 const Checkbox = ({
 	label,
@@ -43,6 +44,15 @@ const Checkbox = ({
 			</Label>
 		</div>
 	);
+};
+
+Checkbox.propTypes = {
+	label: PropTypes.string,
+	labelClassName: PropTypes.string,
+	value: PropTypes.string,
+	onChange: PropTypes.func,
+	className: PropTypes.string,
+	name: PropTypes.string,
 };
 
 export default Checkbox;

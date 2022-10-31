@@ -2,12 +2,13 @@ import eye from "../../assets/svg/eye.svg";
 import comment from "../../assets/svg/comment.svg";
 import like from "../../assets/svg/like.svg";
 import IconStat from "../utilities/stat/IconStat";
+import PropTypes from "prop-types";
 
 const BlogStats = ({ viewCount, commentCount, likeCount }) => {
 	const stats = [
-		{ icon: eye, stat: viewCount || 1234 },
-		{ icon: comment, stat: commentCount || 999 },
-		{ icon: like, stat: likeCount || 5678 },
+		{ icon: eye, stat: viewCount },
+		{ icon: comment, stat: commentCount },
+		{ icon: like, stat: likeCount },
 	];
 
 	return (
@@ -18,6 +19,18 @@ const BlogStats = ({ viewCount, commentCount, likeCount }) => {
 				))}
 		</div>
 	);
+};
+
+BlogStats.propTypes = {
+	viewCount: PropTypes.number,
+	commentCount: PropTypes.number,
+	likeCount: PropTypes.number,
+};
+
+BlogStats.defaultProps = {
+	viewCount: 0,
+	commentCount: 0,
+	likeCount: 0,
 };
 
 export default BlogStats;

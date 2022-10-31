@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Title = ({ children, className }) => {
 	return (
 		<h1
@@ -6,6 +8,10 @@ const Title = ({ children, className }) => {
 			{children}
 		</h1>
 	);
+};
+
+Title.propTypes = {
+	className: PropTypes.string,
 };
 
 export default Title;

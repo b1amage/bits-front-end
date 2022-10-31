@@ -1,5 +1,6 @@
 import Image from "./Image";
 import logo from "../../../assets/svg/logo.svg";
+import PropTypes from "prop-types";
 
 const Logo = ({ className }) => {
 	return (
@@ -9,6 +10,10 @@ const Logo = ({ className }) => {
 			src={logo}
 		/>
 	);
+};
+
+Logo.propTypes = {
+	className: PropTypes.string,
 };
 
 export default Logo;

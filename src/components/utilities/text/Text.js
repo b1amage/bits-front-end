@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Text = ({ children, className }) => {
 	return (
 		<p
@@ -6,6 +8,10 @@ const Text = ({ children, className }) => {
 			{children}
 		</p>
 	);
+};
+
+Text.propTypes = {
+	className: PropTypes.string,
 };
 
 export default Text;

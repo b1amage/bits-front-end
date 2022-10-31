@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Category = ({ children, id, isActive, className, onClick }) => {
 	return (
 		<span
@@ -12,6 +14,13 @@ const Category = ({ children, id, isActive, className, onClick }) => {
 			{children}
 		</span>
 	);
+};
+
+Category.propTypes = {
+	id: PropTypes.string,
+	isActive: PropTypes.string,
+	className: PropTypes.string,
+	onClick: PropTypes.func,
 };
 
 export default Category;

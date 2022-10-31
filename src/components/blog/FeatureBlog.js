@@ -1,8 +1,7 @@
 import Image from "../utilities/image/Image";
 import Title from "../utilities/text/Title";
-
-const defaultImg =
-	"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80";
+import PropTypes from "prop-types";
+import defaultAvatar from "../../assets/img/defaultAvatar.jpeg";
 
 const FeatureBlog = ({ className, userAvatar, name, readTime, title }) => {
 	return (
@@ -12,7 +11,7 @@ const FeatureBlog = ({ className, userAvatar, name, readTime, title }) => {
 			<div className="flex items-center gap-3">
 				<Image
 					className="!rounded-full w-[50px] h-[50px]"
-					src={userAvatar || defaultImg}
+					src={userAvatar}
 					alt="user avatar"
 				/>
 
@@ -29,6 +28,19 @@ const FeatureBlog = ({ className, userAvatar, name, readTime, title }) => {
 			<Title className="text-lg leading-tight md:!text-xl">{title}</Title>
 		</div>
 	);
+};
+
+FeatureBlog.propTypes = {
+	className: PropTypes.string,
+	name: PropTypes.string,
+	readTime: PropTypes.number,
+	title: PropTypes.string.isRequired,
+};
+
+FeatureBlog.defaultProps = {
+	userAvatar: defaultAvatar,
+	readTime: 10,
+	name: "Anonymous Author",
 };
 
 export default FeatureBlog;

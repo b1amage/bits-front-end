@@ -1,6 +1,8 @@
 import Image from "../utilities/image/Image";
 import Title from "../utilities/text/Title";
 import Text from "../utilities/text/Text";
+import PropTypes from "prop-types";
+import defaultImg from "../../assets/img/default.png";
 
 const Blog = ({
 	img,
@@ -46,6 +48,23 @@ const Blog = ({
 			</div>
 		</div>
 	);
+};
+
+Blog.propTypes = {
+	author: PropTypes.string,
+	likeCount: PropTypes.number,
+	readCount: PropTypes.number,
+	title: PropTypes.string.isRequired,
+	date: PropTypes.string,
+	className: PropTypes.string,
+};
+
+Blog.defaultProps = {
+	img: defaultImg,
+	author: "Anonymous Author",
+	likeCount: 0,
+	readCount: 0,
+	date: "Unknown date",
 };
 
 export default Blog;

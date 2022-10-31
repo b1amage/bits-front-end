@@ -1,3 +1,6 @@
+import PropTypes from "prop-types";
+import defaultImg from "../../../assets/img/default.png";
+
 const Image = ({ src, alt, className, imageClassName, animate, onClick }) => {
 	return (
 		<div
@@ -13,6 +16,18 @@ const Image = ({ src, alt, className, imageClassName, animate, onClick }) => {
 			/>
 		</div>
 	);
+};
+
+Image.propTypes = {
+	alt: PropTypes.string,
+	className: PropTypes.string,
+	imageClassName: PropTypes.string,
+	animate: PropTypes.bool,
+	onClick: PropTypes.func,
+};
+
+Image.defaultProps = {
+	src: defaultImg,
 };
 
 export default Image;

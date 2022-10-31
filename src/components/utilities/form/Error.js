@@ -1,4 +1,5 @@
 import { MdError } from "react-icons/md";
+import PropTypes from "prop-types";
 
 const Error = ({ children, fluid, className }) => {
 	return (
@@ -12,6 +13,11 @@ const Error = ({ children, fluid, className }) => {
 			<MdError className="text-lg md:text-xl" />
 		</div>
 	);
+};
+
+Error.propTypes = {
+	fluid: PropTypes.bool,
+	className: PropTypes.string,
 };
 
 export default Error;

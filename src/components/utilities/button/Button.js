@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Button = ({
 	type,
 	children,
@@ -44,6 +46,24 @@ const Button = ({
 			{children}
 		</button>
 	);
+};
+
+Button.propTypes = {
+	type: PropTypes.string,
+	children: PropTypes.string,
+	className: PropTypes.string,
+	primary: PropTypes.bool,
+	fluid: PropTypes.bool,
+	onClick: PropTypes.func,
+	isRound: PropTypes.bool,
+	shadow: PropTypes.bool,
+	animate: PropTypes.bool,
+	disabled: PropTypes.bool,
+};
+
+Button.defaultProps = {
+	type: "button",
+	children: "button",
 };
 
 export default Button;

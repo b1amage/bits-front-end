@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const ScrollContainer = ({ children, vertical, className }) => {
 	return (
 		<div
@@ -8,6 +10,11 @@ const ScrollContainer = ({ children, vertical, className }) => {
 			{children}
 		</div>
 	);
+};
+
+ScrollContainer.propTypes = {
+	className: PropTypes.string,
+	vertical: PropTypes.bool,
 };
 
 export default ScrollContainer;

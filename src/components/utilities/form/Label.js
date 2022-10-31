@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 const Label = ({ id, required, className, children, onClick }) => {
 	return (
 		<label
@@ -10,6 +12,13 @@ const Label = ({ id, required, className, children, onClick }) => {
 			{required && <span className="text-red-500">*</span>}
 		</label>
 	);
+};
+
+Label.propTypes = {
+	id: PropTypes.string,
+	required: PropTypes.bool,
+	className: PropTypes.string,
+	onClick: PropTypes.func,
 };
 
 export default Label;

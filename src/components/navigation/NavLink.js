@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
 
 const NavLink = ({ children, className, to, onClick }) => {
 	return (
@@ -10,6 +11,16 @@ const NavLink = ({ children, className, to, onClick }) => {
 			{children}
 		</Link>
 	);
+};
+
+NavLink.propTypes = {
+	className: PropTypes.string,
+	to: PropTypes.string,
+	onClick: PropTypes.func,
+};
+
+NavLink.defaultProps = {
+	to: "/",
 };
 
 export default NavLink;

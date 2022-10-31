@@ -1,6 +1,8 @@
 import Image from "../utilities/image/Image";
 import avatar from "../../assets/svg/dummyAva.svg";
 import Text from "../utilities/text/Text";
+import PropTypes from "prop-types";
+import defaultAvatar from "../../assets/img/defaultAvatar.jpeg";
 
 const AuthorInfo = ({ name, readTime, userImg }) => {
 	return (
@@ -12,14 +14,25 @@ const AuthorInfo = ({ name, readTime, userImg }) => {
 
 			<div>
 				<Text className="text-lg md:text-xl lg:text-2xl !font-bold !text-secondary-100">
-					Jakob Arcand
+					{name}
 				</Text>
 				<Text className="text-sm font-thin md:text-lg lg:text-xl text-secondary-20">
-					3 min reads
+					{readTime} min reads
 				</Text>
 			</div>
 		</div>
 	);
+};
+
+AuthorInfo.propTypes = {
+	name: PropTypes.string,
+	readTime: PropTypes.number,
+};
+
+AuthorInfo.defaultProps = {
+	name: "Anonymous Author",
+	readTime: 10,
+	userImg: defaultAvatar,
 };
 
 export default AuthorInfo;
