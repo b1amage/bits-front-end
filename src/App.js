@@ -10,6 +10,7 @@ import BlogDetailPage from "./views/BlogDetailPage";
 import NavBar from "./components/navigation/NavBar";
 import ResetPage from "./views/ResetPage";
 import WritePostPage from "./views/WritePostPage";
+import TopicPage from "./views/TopicPage";
 
 const App = () => {
 	return (
@@ -29,6 +30,7 @@ const App = () => {
 				<Route path="/successful" element={<SuccessfulPage />} />
 				<Route path="/blog/:id" element={<BlogDetailPage />} />
 				<Route path="/post/write" element={<WritePostPage />} />
+				<Route path="/topic" element={<TopicPage />} />
 			</Routes>
 		</>
 	);
