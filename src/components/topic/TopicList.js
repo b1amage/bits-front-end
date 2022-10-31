@@ -1,5 +1,6 @@
 import React from "react";
 import Topic from "./Topic";
+import PropTypes from "prop-types";
 
 const TopicList = ({ topics, selectedTopics, onClick }) => {
 	return (
@@ -16,6 +17,12 @@ const TopicList = ({ topics, selectedTopics, onClick }) => {
 				))}
 		</div>
 	);
+};
+
+TopicList.propTypes = {
+	topics: PropTypes.arrayOf(PropTypes.string).isRequired,
+	selectedTopics: PropTypes.arrayOf(PropTypes.string).isRequired,
+	onClick: PropTypes.func,
 };
 
 export default TopicList;

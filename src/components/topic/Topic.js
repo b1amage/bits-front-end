@@ -1,5 +1,6 @@
 import React from "react";
 import Image from "../utilities/image/Image";
+import PropTypes from "prop-types";
 
 const Topic = ({ id, icon, className, isActive, onClick }) => {
 	return (
@@ -13,6 +14,13 @@ const Topic = ({ id, icon, className, isActive, onClick }) => {
 			<Image src={icon} id={id} onClick={onClick} />
 		</div>
 	);
+};
+
+Topic.propTypes = {
+	id: PropTypes.string,
+	className: PropTypes.string,
+	isActive: PropTypes.bool,
+	onClick: PropTypes.func,
 };
 
 export default Topic;
