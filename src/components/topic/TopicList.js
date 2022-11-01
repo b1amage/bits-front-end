@@ -13,14 +13,16 @@ const TopicList = ({ topics, selectedTopics, onClick }) => {
 						key={item.value}
 						icon={item.icon}
 						isActive={selectedTopics.includes(item.value)}
-					/>
+					>
+						{item.value}
+					</Topic>
 				))}
 		</div>
 	);
 };
 
 TopicList.propTypes = {
-	topics: PropTypes.arrayOf(PropTypes.string).isRequired,
+	topics: PropTypes.arrayOf(PropTypes.object).isRequired,
 	selectedTopics: PropTypes.arrayOf(PropTypes.string).isRequired,
 	onClick: PropTypes.func,
 };

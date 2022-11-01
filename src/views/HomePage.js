@@ -3,12 +3,12 @@ import Container from "../components/utilities/container/Container";
 import SearchBox from "../components/search/SearchBox";
 import ScrollContainer from "../components/utilities/container/ScrollContainer";
 import Category from "../components/category/Category";
-import category from "../content/category";
 import blogBg from "../assets/svg/blog-bg.svg";
 import Image from "../components/utilities/image/Image";
 import Title from "../components/utilities/text/Title";
 import FeatureBlog from "../components/blog/FeatureBlog";
 import Blog from "../components/blog/Blog";
+import topics from "../content/topics";
 
 const HomePage = () => {
 	// const [blogs, setBlogs] = useState([]);
@@ -26,15 +26,15 @@ const HomePage = () => {
 
 			{/* Category list */}
 			<ScrollContainer className="my-4">
-				{category.length > 0 &&
-					category.map((item, index) => (
+				{topics.length > 0 &&
+					topics.map((item, index) => (
 						<Category
-							isActive={item === currentCategory}
-							id={item}
+							isActive={item.value === currentCategory}
+							id={item.value}
 							onClick={handleCategoryClick}
 							key={index}
 						>
-							{item}
+							{item.value}
 						</Category>
 					))}
 			</ScrollContainer>
