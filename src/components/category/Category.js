@@ -18,7 +18,7 @@ const Category = ({ children, id, isActive, className, onClick }) => {
 
 Category.propTypes = {
 	id: PropTypes.string,
-	isActive: PropTypes.string,
+	isActive: PropTypes.bool,
 	className: PropTypes.string,
 	onClick: PropTypes.func,
 };
