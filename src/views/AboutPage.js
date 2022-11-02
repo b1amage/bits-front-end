@@ -2,7 +2,7 @@ import React from "react";
 import Container from "components/utilities/container/Container";
 import AboutCard from "components/about/AboutCard";
 import about from "content/about";
-import Title from "../components/utilities/text/Title";
+import Title from "components/utilities/text/Title";
 
 const AboutPage = () => {
 	return (
