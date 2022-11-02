@@ -1,8 +1,8 @@
-import Image from "../utilities/image/Image";
-import background from "../../assets/svg/parallelogram.svg";
-import camera from "../../assets/svg/camera.svg";
-import avatar from "../../assets/svg/avatar.svg";
-import Title from "../utilities/text/Title";
+import Image from "components/utilities/image/Image";
+import background from "assets/svg/parallelogram.svg";
+import camera from "assets/svg/camera.svg";
+import avatar from "assets/svg/avatar.svg";
+import Title from "components/utilities/text/Title";
 
 const Avatar = () => {
 	return (

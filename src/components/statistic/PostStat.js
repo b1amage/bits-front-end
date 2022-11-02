@@ -1,5 +1,5 @@
-import Image from "../utilities/image/Image";
-import Text from "../utilities/text/Text";
+import Image from "components/utilities/image/Image";
+import Text from "components/utilities/text/Text";
 
 const PostStat = ({ postType, src, alt, quantity, time, detail }) => {
 	return (

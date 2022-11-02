@@ -1,10 +1,10 @@
-import Container from "../components/utilities/container/Container";
-import AuthorInfo from "../components/blog/AuthorInfo";
-import Title from "../components/utilities/text/Title";
-import banner from "../assets/svg/dummyBanner.svg";
-import Image from "../components/utilities/image/Image";
-import BlogStats from "../components/blog/BlogStats";
-import BlogContent from "../components/blog/BlogContent";
+import Container from "components/utilities/container/Container";
+import AuthorInfo from "components/blog/AuthorInfo";
+import Title from "components/utilities/text/Title";
+import banner from "assets/svg/dummyBanner.svg";
+import Image from "components/utilities/image/Image";
+import BlogStats from "components/blog/BlogStats";
+import BlogContent from "components/blog/BlogContent";
 
 const dummyContent = [
 	"Why do you do what you do? More specifically why do you do the work that you do?",

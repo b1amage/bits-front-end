@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Logo from "../utilities/image/Logo";
-import Button from "../utilities/button/Button";
+import Logo from "components/utilities/image/Logo";
+import Button from "components/utilities/button/Button";
 import { GiHamburgerMenu } from "react-icons/gi";
-import useViewport from "../../hooks/useViewport";
-import navItems from "../../content/navItems";
-import NavLink from "./NavLink";
+import useViewport from "hooks/useViewport";
+import navItems from "content/navItems";
+import NavLink from "components/navigation/NavLink";
 
 const BREAK_POINT_NAVBAR = 768;
 

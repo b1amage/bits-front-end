@@ -1,9 +1,9 @@
-import Logo from "../components/utilities/image/Logo";
-import Container from "../components/utilities/container/Container";
-import Checkbox from "../components/utilities/form/Checkbox";
-import Text from "../components/utilities/text/Text";
-import NavLink from "../components/navigation/NavLink";
-import LoginForm from "../components/form/LoginForm";
+import Logo from "components/utilities/image/Logo";
+import Container from "components/utilities/container/Container";
+import Checkbox from "components/utilities/form/Checkbox";
+import Text from "components/utilities/text/Text";
+import NavLink from "components/navigation/NavLink";
+import LoginForm from "components/form/LoginForm";
 
 const LoginPage = () => {
 	return (

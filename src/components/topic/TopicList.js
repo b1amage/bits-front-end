@@ -1,5 +1,4 @@
-import React from "react";
-import Topic from "./Topic";
+import Topic from "components/topic/Topic";
 import PropTypes from "prop-types";
 
 const TopicList = ({ topics, selectedTopics, onClick }) => {

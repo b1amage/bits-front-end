@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Input from "../utilities/form/Input";
-import search from "../../assets/svg/search.svg";
-import Image from "../utilities/image/Image";
+import Input from "components/utilities/form/Input";
+import search from "assets/svg/search.svg";
+import Image from "components/utilities/image/Image";
 
 const SearchBox = () => {
 	const [query, setQuery] = useState("");

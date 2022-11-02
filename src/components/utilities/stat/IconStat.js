@@ -1,4 +1,4 @@
-import Image from "../image/Image";
+import Image from "components/utilities/image/Image";
 import PropTypes from "prop-types";
 
 const IconStat = ({ icon, stat }) => {

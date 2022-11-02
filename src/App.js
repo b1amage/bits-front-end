@@ -1,20 +1,25 @@
+import React, { Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
-import RegisterPage from "./views/RegisterPage";
-import Preview from "./preview/Preview";
-import ForgotPasswordPage from "./views/ForgotPasswordPage";
-import ProfilePage from "./views/ProfilePage";
-import HomePage from "./views/HomePage";
-import LoginPage from "./views/LoginPage";
-import SuccessfulPage from "./views/SuccessfulPage";
-import BlogDetailPage from "./views/BlogDetailPage";
-import NavBar from "./components/navigation/NavBar";
-import ResetPage from "./views/ResetPage";
-import WritePostPage from "./views/WritePostPage";
-import TopicPage from "./views/TopicPage";
+
+const RegisterPage = React.lazy(() => import("views/RegisterPage"));
+const Preview = React.lazy(() => import("preview/Preview"));
+const ForgotPasswordPage = React.lazy(() =>
+	import("views/ForgotPasswordPage")
+);
+const ProfilePage = React.lazy(() => import("views/ProfilePage"));
+const HomePage = React.lazy(() => import("views/HomePage"));
+const LoginPage = React.lazy(() => import("views/LoginPage"));
+const SuccessfulPage = React.lazy(() => import("views/SuccessfulPage"));
+const BlogDetailPage = React.lazy(() => import("views/BlogDetailPage"));
+const NavBar = React.lazy(() => import("components/navigation/NavBar"));
+const ResetPage = React.lazy(() => import("views/ResetPage"));
+const WritePostPage = React.lazy(() => import("views/WritePostPage"));
+const TopicPage = React.lazy(() => import("views/TopicPage"));
+const LoadingPage = React.lazy(() => import("views/LoadingPage"));
 
 const App = () => {
 	return (
-		<>
+		<Suspense fallback={<LoadingPage />}>
 			<NavBar />
 			<Routes>
 				<Route path="/" element={<HomePage />} />
@@ -32,7 +37,7 @@ const App = () => {
 				<Route path="/post/write" element={<WritePostPage />} />
 				<Route path="/topic" element={<TopicPage />} />
 			</Routes>
-		</>
+		</Suspense>
 	);
 };
 

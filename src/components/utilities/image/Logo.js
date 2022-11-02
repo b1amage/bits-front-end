@@ -1,5 +1,5 @@
-import Image from "./Image";
-import logo from "../../../assets/svg/logo.svg";
+import Image from "components/utilities/image/Image";
+import logo from "assets/svg/logo.svg";
 import PropTypes from "prop-types";
 
 const Logo = ({ className }) => {

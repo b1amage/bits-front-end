@@ -1,7 +1,7 @@
-import ForgotPasswordForm from "../components/form/ForgotPasswordForm";
-import Container from "../components/utilities/container/Container";
-import Text from "../components/utilities/text/Text";
-import Title from "../components/utilities/text/Title";
+import ForgotPasswordForm from "components/form/ForgotPasswordForm";
+import Container from "components/utilities/container/Container";
+import Text from "components/utilities/text/Text";
+import Title from "components/utilities/text/Title";
 
 const ForgotPasswordPage = () => {
 	return (

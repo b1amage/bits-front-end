@@ -1,6 +1,6 @@
-import Container from "../utilities/container/Container";
-import Image from "../utilities/image/Image";
-import PostInfo from "./PostInfo";
+import Container from "components/utilities/container/Container";
+import Image from "components/utilities/image/Image";
+import PostInfo from "components/post/PostInfo";
 
 const PostCard = ({
 	thumbnail,

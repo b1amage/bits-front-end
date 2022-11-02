@@ -1,5 +1,5 @@
-import Label from "./Label";
-import Error from "./Error";
+import Label from "components/utilities/form/Label";
+import Error from "components/utilities/form/Error";
 import PropTypes from "prop-types";
 
 const Input = ({

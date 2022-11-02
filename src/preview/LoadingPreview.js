@@ -1,5 +1,4 @@
-import React from "react";
-import Loading from "../components/loading/Loading";
+import Loading from "components/loading/Loading";
 
 const LoadingPreview = () => {
 	return (

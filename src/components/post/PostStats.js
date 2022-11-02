@@ -1,7 +1,7 @@
-import PostStat from "../statistic/PostStat";
-import eye from "../../assets/svg/eye.svg";
-import comment from "../../assets/svg/comment.svg";
-import like from "../../assets/svg/like.svg";
+import PostStat from "components/statistic/PostStat";
+import eye from "assets/svg/eye.svg";
+import comment from "assets/svg/comment.svg";
+import like from "assets/svg/like.svg";
 
 const PostStats = ({ views, time, postType, className }) => {
 	return (

@@ -1,7 +1,6 @@
-import React from "react";
-import navPostTypes from "../../content/navPostTypes";
-import NavLink from "../navigation/NavLink";
-import Container from "../utilities/container/Container";
+import navPostTypes from "content/navPostTypes";
+import NavLink from "components/navigation/NavLink";
+import Container from "components/utilities/container/Container";
 
 const PostListNavBar = ({ current, setType }) => {
 	return (

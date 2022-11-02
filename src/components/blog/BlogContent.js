@@ -1,4 +1,4 @@
-import Text from "../utilities/text/Text";
+import Text from "components/utilities/text/Text";
 
 const BlogContent = ({ content }) => {
 	return (

@@ -1,13 +1,13 @@
-import Container from "../components/utilities/container/Container";
-import Title from "../components/utilities/text/Title";
-import Text from "../components/utilities/text/Text";
-import key from "../assets/svg/key.svg";
-import Image from "../components/utilities/image/Image";
-import Input from "../components/utilities/form/Input";
-import Button from "../components/utilities/button/Button";
+import Container from "components/utilities/container/Container";
+import Title from "components/utilities/text/Title";
+import Text from "components/utilities/text/Text";
+import key from "assets/svg/key.svg";
+import Image from "components/utilities/image/Image";
+import Input from "components/utilities/form/Input";
+import Button from "components/utilities/button/Button";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import CONSTANT from "../constant/Constant";
+import CONSTANT from "constant/Constant";
 
 const ResetPage = () => {
 	const formik = useFormik({

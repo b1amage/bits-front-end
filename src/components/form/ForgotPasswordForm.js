@@ -1,6 +1,5 @@
-import Button from "../utilities/button/Button";
-
-import Input from "../utilities/form/Input";
+import Button from "components/utilities/button/Button";
+import Input from "components/utilities/form/Input";
 
 const ForgotPasswordForm = () => {
 	return (

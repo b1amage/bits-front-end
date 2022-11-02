@@ -1,8 +1,8 @@
-import Input from "../utilities/form/Input";
+import Input from "components/utilities/form/Input";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import CONSTANT from "../../constant/Constant";
-import Button from "../utilities/button/Button";
+import CONSTANT from "constant/Constant";
+import Button from "components/utilities/button/Button";
 
 const LoginForm = () => {
 	const formik = useFormik({

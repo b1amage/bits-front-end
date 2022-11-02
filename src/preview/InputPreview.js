@@ -1,5 +1,4 @@
-import React from "react";
-import Input from "../components/utilities/form/Input";
+import Input from "components/utilities/form/Input";
 
 const InputPreview = () => {
 	return (

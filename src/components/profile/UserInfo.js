@@ -1,8 +1,8 @@
-import Image from "../utilities/image/Image";
-import Avatar from "./Avatar";
-import UserStats from "./UserStats";
-import setting from "../../assets/svg/setting.svg";
-import Container from "../utilities/container/Container";
+import Image from "components/utilities/image/Image";
+import Avatar from "components/profile/Avatar";
+import UserStats from "components/profile/UserStats";
+import setting from "assets/svg/setting.svg";
+import Container from "components/utilities/container/Container";
 
 const UserInfo = () => {
 	return (

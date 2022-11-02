@@ -1,5 +1,4 @@
 import autosize from "autosize";
-import React from "react";
 import PropTypes from "prop-types";
 
 const TextArea = ({ className, children, onChange, name, value, err }) => {

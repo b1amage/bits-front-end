@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import defaultImg from "../../../assets/img/default.png";
+import defaultImg from "assets/img/default.png";
 
 const Image = ({ src, alt, className, imageClassName, animate, onClick }) => {
 	return (

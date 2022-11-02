@@ -1,10 +1,10 @@
 import { useState } from "react";
-import Container from "../components/utilities/container/Container";
-import Title from "../components/utilities/text/Title";
-import Text from "../components/utilities/text/Text";
-import Button from "../components/utilities/button/Button";
-import topics from "../content/topics";
-import TopicList from "../components/topic/TopicList";
+import Container from "components/utilities/container/Container";
+import Title from "components/utilities/text/Title";
+import Text from "components/utilities/text/Text";
+import Button from "components/utilities/button/Button";
+import topics from "content/topics";
+import TopicList from "components/topic/TopicList";
 
 const TopicPage = () => {
 	const [selectedTopics, setSelectedTopics] = useState([]);

@@ -1,8 +1,8 @@
-import Image from "../utilities/image/Image";
-import avatar from "../../assets/svg/dummyAva.svg";
-import Text from "../utilities/text/Text";
+import Image from "components/utilities/image/Image";
+import avatar from "assets/svg/dummyAva.svg";
+import Text from "components/utilities/text/Text";
 import PropTypes from "prop-types";
-import defaultAvatar from "../../assets/img/defaultAvatar.jpeg";
+import defaultAvatar from "assets/img/defaultAvatar.jpeg";
 
 const AuthorInfo = ({ name, readTime, userImg }) => {
 	return (

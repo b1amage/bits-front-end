@@ -1,6 +1,6 @@
-import Text from "../utilities/text/Text";
-import Title from "../utilities/text/Title";
-import PostStats from "./PostStats";
+import Text from "components/utilities/text/Text";
+import Title from "components/utilities/text/Title";
+import PostStats from "components/post/PostStats";
 
 const PostInfo = ({
 	title,

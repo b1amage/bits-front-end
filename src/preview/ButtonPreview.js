@@ -1,5 +1,4 @@
-import React from "react";
-import Button from "../components/utilities/button/Button";
+import Button from "components/utilities/button/Button";
 
 const ButtonPreview = () => {
 	return (

@@ -1,12 +1,12 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
-import Container from "../components/utilities/container/Container";
-import Logo from "../components/utilities/image/Logo";
-import Input from "../components/utilities/form/Input";
-import Button from "../components/utilities/button/Button";
+import Container from "components/utilities/container/Container";
+import Logo from "components/utilities/image/Logo";
+import Input from "components/utilities/form/Input";
+import Button from "components/utilities/button/Button";
 
-import CONSTANT from "../constant/Constant";
+import CONSTANT from "constant/Constant";
 
 const RegisterPage = () => {
 	const formik = useFormik({

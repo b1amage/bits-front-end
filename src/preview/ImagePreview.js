@@ -1,6 +1,5 @@
-import React from "react";
-import Image from "../components/utilities/image/Image";
-import Logo from "../components/utilities/image/Logo";
+import Image from "components/utilities/image/Image";
+import Logo from "components/utilities/image/Logo";
 
 const ImagePreview = () => {
 	return (

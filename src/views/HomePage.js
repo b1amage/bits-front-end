@@ -1,14 +1,14 @@
 import { useState } from "react";
-import Container from "../components/utilities/container/Container";
-import SearchBox from "../components/search/SearchBox";
-import ScrollContainer from "../components/utilities/container/ScrollContainer";
-import Category from "../components/category/Category";
-import blogBg from "../assets/svg/blog-bg.svg";
-import Image from "../components/utilities/image/Image";
-import Title from "../components/utilities/text/Title";
-import FeatureBlog from "../components/blog/FeatureBlog";
-import Blog from "../components/blog/Blog";
-import topics from "../content/topics";
+import Container from "components/utilities/container/Container";
+import SearchBox from "components/search/SearchBox";
+import ScrollContainer from "components/utilities/container/ScrollContainer";
+import Category from "components/category/Category";
+import blogBg from "assets/svg/blog-bg.svg";
+import Image from "components/utilities/image/Image";
+import Title from "components/utilities/text/Title";
+import FeatureBlog from "components/blog/FeatureBlog";
+import Blog from "components/blog/Blog";
+import topics from "content/topics";
 
 const HomePage = () => {
 	// const [blogs, setBlogs] = useState([]);

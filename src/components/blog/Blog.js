@@ -1,8 +1,8 @@
-import Image from "../utilities/image/Image";
-import Title from "../utilities/text/Title";
-import Text from "../utilities/text/Text";
+import Image from "components/utilities/image/Image";
+import Title from "components/utilities/text/Title";
+import Text from "components/utilities/text/Text";
 import PropTypes from "prop-types";
-import defaultImg from "../../assets/img/default.png";
+import defaultImg from "assets/img/default.png";
 
 const Blog = ({
 	img,

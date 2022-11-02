@@ -1,7 +1,7 @@
-import Image from "../utilities/image/Image";
-import Title from "../utilities/text/Title";
+import Image from "components/utilities/image/Image";
+import Title from "components/utilities/text/Title";
 import PropTypes from "prop-types";
-import defaultAvatar from "../../assets/img/defaultAvatar.jpeg";
+import defaultAvatar from "assets/img/defaultAvatar.jpeg";
 
 const FeatureBlog = ({ className, userAvatar, name, readTime, title }) => {
 	return (

@@ -1,5 +1,5 @@
-import Text from "../utilities/text/Text";
-import Title from "../utilities/text/Title";
+import Text from "components/utilities/text/Text";
+import Title from "components/utilities/text/Title";
 
 const UserStat = ({
 	quantity,

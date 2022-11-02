@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Label from "./Label";
+import Label from "components/utilities/form/Label";
 import { AiOutlineCheck } from "react-icons/ai";
 import PropTypes from "prop-types";
 

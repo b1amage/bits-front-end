@@ -1,5 +1,5 @@
-import PostList from "../components/list/PostList";
-import UserInfo from "../components/profile/UserInfo";
+import PostList from "components/list/PostList";
+import UserInfo from "components/profile/UserInfo";
 
 const ProfilePage = () => {
 	return (

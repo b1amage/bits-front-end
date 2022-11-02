@@ -1,7 +1,7 @@
-import eye from "../../assets/svg/eye.svg";
-import comment from "../../assets/svg/comment.svg";
-import like from "../../assets/svg/like.svg";
-import IconStat from "../utilities/stat/IconStat";
+import eye from "assets/svg/eye.svg";
+import comment from "assets/svg/comment.svg";
+import like from "assets/svg/like.svg";
+import IconStat from "components/utilities/stat/IconStat";
 import PropTypes from "prop-types";
 
 const BlogStats = ({ viewCount, commentCount, likeCount }) => {

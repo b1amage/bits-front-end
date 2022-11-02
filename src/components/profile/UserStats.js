@@ -1,5 +1,5 @@
-import stats from "../../content/userStats";
-import UserStat from "../statistic/UserStat";
+import stats from "content/userStats";
+import UserStat from "components/statistic/UserStat";
 
 const UserStats = () => {
 	return (

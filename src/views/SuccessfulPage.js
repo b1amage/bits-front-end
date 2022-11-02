@@ -1,7 +1,7 @@
-import Container from "../components/utilities/container/Container";
-import Emoji from "../components/utilities/image/Emoji";
-import Text from "../components/utilities/text/Text";
-import Title from "../components/utilities/text/Title";
+import Container from "components/utilities/container/Container";
+import Emoji from "components/utilities/image/Emoji";
+import Text from "components/utilities/text/Text";
+import Title from "components/utilities/text/Title";
 
 const SuccessfulPage = () => {
 	return (

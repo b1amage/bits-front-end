@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import posts from "../../content/posts";
-import PostCard from "../post/PostCard";
-import PostListNavBar from "../post/PostListNavBar";
+import PostCard from "components/post/PostCard";
+import PostListNavBar from "components/post/PostListNavBar";
 
 const PostList = () => {
 	const [type, setType] = useState("post");
@@ -10,7 +10,7 @@ const PostList = () => {
 		<div
 			className={`2xl:max-w-full rounded-t-3xl bg-white flex flex-col justify-center px-8 sm:px-14 md:px-16 lg:px-40 xl:px-52 2xl:px-60`}
 		>
-			<PostListNavBar current={type} setType={setType}/>
+			<PostListNavBar current={type} setType={setType} />
 
 			{/* return the list of posts that user has posted on if the path contain /post or nothing */}
 			{type == null || type === "post"

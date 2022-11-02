@@ -1,6 +1,5 @@
-import React from "react";
-import Text from "../components/utilities/text/Text";
-import Title from "../components/utilities/text/Title";
+import Text from "components/utilities/text/Text";
+import Title from "components/utilities/text/Title";
 
 const TextPreview = () => {
 	return (

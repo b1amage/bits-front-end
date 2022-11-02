@@ -1,5 +1,5 @@
-import Image from "./Image";
-import emoji from "../../../assets/svg/emoji.svg";
+import Image from "components/utilities/image/Image";
+import emoji from "assets/svg/emoji.svg";
 
 const Emoji = ({ className, imageClassName }) => {
 	return (

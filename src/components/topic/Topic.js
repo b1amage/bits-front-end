@@ -1,7 +1,6 @@
-import React from "react";
-import Image from "../utilities/image/Image";
+import Image from "components/utilities/image/Image";
 import PropTypes from "prop-types";
-import Text from "../utilities/text/Text";
+import Text from "components/utilities/text/Text";
 
 const Topic = ({ id, icon, className, isActive, onClick, children }) => {
 	return (
