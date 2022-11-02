@@ -1,5 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import { Link } from "react-router-dom";
 
 import Container from "components/utilities/container/Container";
 import Logo from "components/utilities/image/Logo";
@@ -7,6 +8,7 @@ import Input from "components/utilities/form/Input";
 import Button from "components/utilities/button/Button";
 
 import CONSTANT from "constant/Constant";
+import Text from "../components/utilities/text/Text";
 
 const RegisterPage = () => {
 	const formik = useFormik({
@@ -92,6 +94,13 @@ const RegisterPage = () => {
 					Sign up
 				</Button>
 			</form>
+
+			<Text>
+				Already have account?{" "}
+				<Link to="/login" className="cursor-pointer text-primary-100">
+					Sign in
+				</Link>
+			</Text>
 		</Container>
 	);
 };

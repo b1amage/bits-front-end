@@ -1,6 +1,6 @@
 const navItems = [
 	{ text: "home", to: "/" },
-	{ text: "blogs", to: "/blogs" },
+	{ text: "about", to: "/about" },
 	{ text: "account", to: "/login" },
 ];
 

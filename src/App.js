@@ -3,9 +3,7 @@ import { Routes, Route } from "react-router-dom";
 
 const RegisterPage = React.lazy(() => import("views/RegisterPage"));
 const Preview = React.lazy(() => import("preview/Preview"));
-const ForgotPasswordPage = React.lazy(() =>
-	import("views/ForgotPasswordPage")
-);
+const ForgotPasswordPage = React.lazy(() => import("views/ForgotPasswordPage"));
 const ProfilePage = React.lazy(() => import("views/ProfilePage"));
 const HomePage = React.lazy(() => import("views/HomePage"));
 const LoginPage = React.lazy(() => import("views/LoginPage"));
