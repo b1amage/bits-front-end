@@ -3,6 +3,7 @@ import Title from "components/utilities/text/Title";
 import Text from "components/utilities/text/Text";
 import PropTypes from "prop-types";
 import defaultImg from "assets/img/default.png";
+import { useNavigate } from "react-router-dom";
 
 const Blog = ({
 	img,
@@ -13,8 +14,10 @@ const Blog = ({
 	date,
 	className,
 }) => {
+	const navigate = useNavigate();
 	return (
 		<div
+			onClick={() => navigate(`/blog/1`)}
 			className={`grid grid-cols-3 gap-4 px-5 py-3 rounded-xl bg-secondary-50 min-h-[120px] max-w-[380px] lg:min-h-[160px] md:py-5 md:px-7 cursor-pointer shadow-md lg:max-w-[420px] ${className}`}
 		>
 			<div className="flex items-center justify-start">

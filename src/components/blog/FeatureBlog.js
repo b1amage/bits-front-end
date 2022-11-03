@@ -2,10 +2,13 @@ import Image from "components/utilities/image/Image";
 import Title from "components/utilities/text/Title";
 import PropTypes from "prop-types";
 import defaultAvatar from "assets/img/defaultAvatar.jpeg";
+import { useNavigate } from "react-router-dom";
 
 const FeatureBlog = ({ className, userAvatar, name, readTime, title }) => {
+	const navigate = useNavigate();
 	return (
 		<div
+			onClick={() => navigate(`/blog/1`)}
 			className={`w-[90%] rounded-3xl bg-white shadow-lg px-6 py-3 flex flex-col gap-4 ${className}`}
 		>
 			<div className="flex items-center gap-3">
@@ -15,7 +18,7 @@ const FeatureBlog = ({ className, userAvatar, name, readTime, title }) => {
 					alt="user avatar"
 				/>
 
-				<div>
+				<div className="cursor-pointer">
 					<h3 className="text-lg font-semibold text-secondary-100">
 						{name}
 					</h3>
