@@ -1,33 +1,30 @@
-import { useFormik } from "formik";
+// import { useFormik } from "formik";
 import React from "react";
-import WritePostForm from "components/form/WritePostForm";
-import WRITEPOST_CONSTANT from "constant/WritePostConstant";
-import * as Yup from "yup";
+// import WritePostForm from "components/form/WritePostForm";
+// import WRITEPOST_CONSTANT from "constant/WritePostConstant";
+// import * as Yup from "yup";
+import Container from "components/utilities/container/Container";
+import Edt from "components/editor/Editor";
 
 const WritePostPage = () => {
-	const formik = useFormik({
-		initialValues: {
-			content: WRITEPOST_CONSTANT.INITIAL_VALUE.content,
-		},
-		validationSchema: Yup.object({
-			content: Yup.string()
-				.required(WRITEPOST_CONSTANT.ERROR.required)
-				.min(100, WRITEPOST_CONSTANT.ERROR.content),
-		}),
-		onSubmit: (values) => {
-			console.log(values);
-		},
-	});
+	// const formik = useFormik({
+	// 	initialValues: {
+	// 		content: WRITEPOST_CONSTANT.INITIAL_VALUE.content,
+	// 	},
+	// 	validationSchema: Yup.object({
+	// 		content: Yup.string()
+	// 			.required(WRITEPOST_CONSTANT.ERROR.required)
+	// 			.min(100, WRITEPOST_CONSTANT.ERROR.content),
+	// 	}),
+	// 	onSubmit: (values) => {
+	// 		console.log(values);
+	// 	},
+	// });
 
 	return (
-		<div className="relative h-screen bg-teriary-gray-20">
-			<WritePostForm
-				onSubmit={formik.handleSubmit}
-				onChange={formik.handleChange}
-				value={formik.values.content}
-				err={formik.errors.content}
-			/>
-		</div>
+		<Container className="relative h-screen bg-teriary-gray-20">
+			<Edt />
+		</Container>
 	);
 };
 
