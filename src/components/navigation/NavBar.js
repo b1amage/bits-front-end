@@ -28,7 +28,7 @@ const NavBar = () => {
 				</Link>
 
 				{/* CTA Button */}
-				<div className="flex items-center gap-2 md:order-2">
+				<div className="flex items-center gap-5 md:order-2">
 					<Button
 						primary
 						className="!rounded-lg transition-all !min-w-0 !text-lg"

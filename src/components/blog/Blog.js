@@ -21,13 +21,7 @@ const Blog = ({
 			className={`grid grid-cols-3 gap-4 px-5 py-3 rounded-xl bg-secondary-50 min-h-[120px] max-w-[380px] lg:min-h-[160px] md:py-5 md:px-7 cursor-pointer shadow-md lg:max-w-[420px] ${className}`}
 		>
 			<div className="flex items-center justify-start">
-				<Image
-					className="h-full max-h-[100px]"
-					src={
-						img ||
-						`https://images.unsplash.com/photo-1665686304129-a6e2d16923e8?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80`
-					}
-				/>
+				<Image className="h-full max-h-[100px]" src={img} />
 			</div>
 
 			<div className="flex flex-col col-span-2 gap-1">
