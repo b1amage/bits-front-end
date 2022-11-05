@@ -1,4 +1,4 @@
-# Bloggie Blog web-application
+# RBlog Blog web-application
 
 ### Course Information
 
@@ -7,7 +7,7 @@
 
 -   Course: Building IT System
 -   Course code: COSC2634
--   Lecturer: Dr. Quang
+-   Lecturer: Dr. Tran Nhat Quang
 
 ### Contributors
 
