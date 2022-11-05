@@ -33,7 +33,7 @@ const NavBar = () => {
 						primary
 						className="!rounded-lg transition-all !min-w-0 !text-lg"
 					>
-						My dashboard
+						<Link to="/dashboard">My dashboard</Link>
 					</Button>
 					<GiHamburgerMenu
 						className="text-2xl md:hidden"

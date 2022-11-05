@@ -15,6 +15,7 @@ const WritePostPage = React.lazy(() => import("views/WritePostPage"));
 const TopicPage = React.lazy(() => import("views/TopicPage"));
 const LoadingPage = React.lazy(() => import("views/LoadingPage"));
 const AboutPage = React.lazy(() => import("views/AboutPage"));
+const DashboardPage = React.lazy(() => import("views/DashboardPage"));
 
 const App = () => {
 	return (
@@ -36,6 +37,7 @@ const App = () => {
 				<Route path="/post/write" element={<WritePostPage />} />
 				<Route path="/topic" element={<TopicPage />} />
 				<Route path="/about" element={<AboutPage />} />
+				<Route path="/dashboard" element={<DashboardPage />} />
 			</Routes>
 		</Suspense>
 	);

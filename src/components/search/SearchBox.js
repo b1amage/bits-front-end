@@ -3,7 +3,7 @@ import Input from "components/utilities/form/Input";
 import search from "assets/svg/search.svg";
 import Image from "components/utilities/image/Image";
 
-const SearchBox = () => {
+const SearchBox = ({ className }) => {
 	const [query, setQuery] = useState("");
 
 	const handleSearch = (e) => {
@@ -14,7 +14,10 @@ const SearchBox = () => {
 	const handleChange = (e) => setQuery(e.target.value);
 
 	return (
-		<form onSubmit={handleSearch} className="relative h-full">
+		<form
+			onSubmit={handleSearch}
+			className={`relative h-full ${className}`}
+		>
 			<Image
 				onClick={handleSearch}
 				src={search}
