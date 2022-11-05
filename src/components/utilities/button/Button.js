@@ -50,7 +50,6 @@ const Button = ({
 
 Button.propTypes = {
 	type: PropTypes.string,
-	children: PropTypes.string,
 	className: PropTypes.string,
 	primary: PropTypes.bool,
 	fluid: PropTypes.bool,

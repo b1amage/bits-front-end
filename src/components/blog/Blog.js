@@ -4,6 +4,9 @@ import Text from "components/utilities/text/Text";
 import PropTypes from "prop-types";
 import defaultImg from "assets/img/default.png";
 import { useNavigate } from "react-router-dom";
+import BlogStats from "components/blog/BlogStats";
+import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
+import Button from "components/utilities/button/Button";
 
 const Blog = ({
 	img,
@@ -13,36 +16,50 @@ const Blog = ({
 	title,
 	date,
 	className,
+	editable,
 }) => {
 	const navigate = useNavigate();
 	return (
-		<div
-			onClick={() => navigate(`/blog/1`)}
-			className={`grid grid-cols-3 gap-4 px-5 py-3 rounded-xl bg-secondary-50 min-h-[120px] max-w-[380px] lg:min-h-[160px] md:py-5 md:px-7 cursor-pointer shadow-md lg:max-w-[420px] ${className}`}
-		>
-			<div className="flex items-center justify-start">
-				<Image className="h-full max-h-[100px]" src={img} />
-			</div>
-
-			<div className="flex flex-col col-span-2 gap-1">
-				<Title className="!text-base leading-5 lg:!text-lg">
-					{title}
-				</Title>
-
-				<div className="flex items-center justify-between">
-					<Text className="!text-sm font-light">
-						{readCount} views
-					</Text>
-					<Text className="!text-sm font-light">
-						{likeCount} likes
-					</Text>
+		<div>
+			<div
+				onClick={() => navigate(`/blog/1`)}
+				className={`grid grid-cols-3 gap-4 px-5 py-3 rounded-xl bg-secondary-50 min-h-[120px] max-w-[380px] lg:min-h-[160px] md:py-5 md:px-7 cursor-pointer shadow-md lg:max-w-[420px] ${className}`}
+			>
+				<div className="flex items-center justify-start">
+					<Image className="h-full max-h-[100px]" src={img} />
 				</div>
 
-				<div className="flex items-start justify-between">
-					<Text className="!text-sm">{author}</Text>
-					<Text className="!text-sm font-light">{date}</Text>
+				<div className="flex flex-col col-span-2 gap-1">
+					<Title className="!text-base leading-5 lg:!text-lg">
+						{title}
+					</Title>
+
+					<div className="flex items-start justify-between flex-1">
+						<Text className="!text-sm">{author}</Text>
+						<Text className="!text-sm font-light">{date}</Text>
+					</div>
+
+					<BlogStats />
 				</div>
 			</div>
+			{editable && (
+				<div className="flex justify-center items-center gap-5 p-4 mt-2 rounded-lg bg-primary-30 max-w-[380px] lg:max-w-[420px]">
+					<Button
+						primary
+						isRound
+						className="!w-[50px] !h-[50px] transition-all duration-300"
+					>
+						<BsFillPencilFill />
+					</Button>
+					<Button
+						primary
+						isRound
+						className="!w-[50px] !h-[50px] transition-all duration-300"
+					>
+						<BsFillTrashFill />
+					</Button>
+				</div>
+			)}
 		</div>
 	);
 };
