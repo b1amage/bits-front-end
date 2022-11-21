@@ -4,11 +4,12 @@ const loginApi = {
     async login(values, navigate){
         const url = "/auth/login";
         try{
-            const response = axiosClient.post(url, values);
-            console.log(response.data);
-            // navigate("/")
+            const response = await axiosClient.post(url, values);
+            console.log(response);
+            localStorage.setItem("user", JSON.stringify(response.data.user));
+            navigate("/")
         } catch(err){
-            console.log(err);
+            console.log(err.response.data);
         }
     }
 }
