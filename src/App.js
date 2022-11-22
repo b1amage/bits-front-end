@@ -17,6 +17,7 @@ const LoadingPage = React.lazy(() => import("views/LoadingPage"));
 const AboutPage = React.lazy(() => import("views/AboutPage"));
 const DashboardPage = React.lazy(() => import("views/DashboardPage"));
 const AvatarPickPage = React.lazy(() => import("views/AvatarPickPage"));
+const VerifyEmailPage = React.lazy(() => import("views/VerifyEmailPage"));
 
 const App = () => {
 	return (
@@ -40,6 +41,7 @@ const App = () => {
 				<Route path="/topic" element={<TopicPage />} />
 				<Route path="/about" element={<AboutPage />} />
 				<Route path="/dashboard" element={<DashboardPage />} />
+				<Route path="/verify-email" element={<VerifyEmailPage />} />
 			</Routes>
 		</Suspense>
 	);
