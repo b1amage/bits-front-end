@@ -23,7 +23,7 @@ const Blog = ({
 		<div>
 			<div
 				onClick={() => navigate(`/blog/1`)}
-				className={`grid grid-cols-3 gap-4 px-5 py-3 rounded-xl bg-secondary-50 min-h-[120px] max-w-[380px] lg:min-h-[160px] md:py-5 md:px-7 cursor-pointer shadow-md lg:max-w-[420px] ${className}`}
+				className={`grid grid-cols-3 gap-4 px-5 py-3 rounded-xl bg-secondary-50 min-h-[120px] min-w-[320px] md:min-w-[380px] lg:min-h-[160px] md:py-5 md:px-7 cursor-pointer shadow-md lg:max-w-[420px] ${className}`}
 			>
 				<div className="flex items-center justify-start">
 					<Image className="h-full max-h-[100px]" src={img} />

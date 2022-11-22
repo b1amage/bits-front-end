@@ -3,7 +3,7 @@ const AboutCard = ({ name, img, role, fb }) => {
 		<a href={fb} target="_blank" rel="noreferrer">
 			{/* IMAGE */}
 
-			<div className="cursor-pointer w-[300px] lg:max-w-[20vw] shadow-2xl h-[300px] lg:w-[400px] lg:h-[400px] rounded-[36px] overflow-hidden relative">
+			<div className="cursor-pointer w-[300px] lg:max-w-[20vw] shadow-2xl h-[300px] lg:w-[320px] lg:h-[320px] rounded-[36px] overflow-hidden relative">
 				<img
 					src={img}
 					alt="avatar"
