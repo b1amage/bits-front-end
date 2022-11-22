@@ -16,6 +16,7 @@ const TopicPage = React.lazy(() => import("views/TopicPage"));
 const LoadingPage = React.lazy(() => import("views/LoadingPage"));
 const AboutPage = React.lazy(() => import("views/AboutPage"));
 const DashboardPage = React.lazy(() => import("views/DashboardPage"));
+const AvatarPickPage = React.lazy(() => import("views/AvatarPickPage"));
 
 const App = () => {
 	return (
@@ -31,6 +32,7 @@ const App = () => {
 				<Route path="/profile" element={<ProfilePage />} />
 				<Route path="/preview" element={<Preview />} />
 				<Route path="/register" element={<RegisterPage />} />
+				<Route path="/register/img" element={<AvatarPickPage />} />
 				<Route path="/login" element={<LoginPage />} />
 				<Route path="/successful" element={<SuccessfulPage />} />
 				<Route path="/blog/:id" element={<BlogDetailPage />} />

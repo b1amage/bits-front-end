@@ -1,6 +1,6 @@
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import Container from "components/utilities/container/Container";
 import Logo from "components/utilities/image/Logo";
@@ -11,6 +11,7 @@ import CONSTANT from "constant/Constant";
 import Text from "../components/utilities/text/Text";
 
 const RegisterPage = () => {
+	const navigate = useNavigate();
 	const formik = useFormik({
 		initialValues: {
 			email: CONSTANT.INITIAL_VALUE.email,
@@ -37,7 +38,8 @@ const RegisterPage = () => {
 				.matches(CONSTANT.REGEX.password, CONSTANT.ERROR.password),
 		}),
 		onSubmit: (values) => {
-			console.log(values);
+			localStorage.setItem("registerInfo", JSON.stringify(values));
+			navigate("/register/img");
 		},
 	});
 
