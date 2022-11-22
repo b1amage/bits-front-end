@@ -3,36 +3,41 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import CONSTANT from "constant/Constant";
 import Button from "components/utilities/button/Button";
+import loginApi from "api/loginApi";
+import { useNavigate } from "react-router-dom";
 
 const LoginForm = () => {
+	const navigate = useNavigate();
+
 	const formik = useFormik({
 		initialValues: {
-			username: CONSTANT.INITIAL_VALUE.username,
+			email: CONSTANT.INITIAL_VALUE.email,
 			password: CONSTANT.INITIAL_VALUE.password,
 		},
 		validationSchema: Yup.object({
-			username: Yup.string()
+			email: Yup.string()
 				.required(CONSTANT.ERROR.required)
-				.matches(CONSTANT.REGEX.username, CONSTANT.ERROR.username),
+				.matches(CONSTANT.REGEX.email, CONSTANT.ERROR.email),
 			password: Yup.string()
 				.required(CONSTANT.ERROR.required)
 				.matches(CONSTANT.REGEX.password, CONSTANT.ERROR.password),
 		}),
 		onSubmit: (values) => {
 			console.log(values);
+			loginApi.login(values, navigate);
 		},
 	});
 	return (
 		<form onSubmit={formik.handleSubmit} className="my-10 form">
 			<Input
 				fluid
-				label="username"
+				label="email"
 				required
-				name="username"
+				name="email"
 				type="text"
-				value={formik.values.username}
+				value={formik.values.email}
 				onChange={formik.handleChange}
-				err={formik.errors.username}
+				err={formik.errors.email}
 			/>
 			<Input
 				fluid
@@ -45,7 +50,7 @@ const LoginForm = () => {
 				err={formik.errors.password}
 			/>
 
-			<Button primary fluid className="my-10">
+			<Button type="submit" primary fluid className="my-10">
 				Sign in
 			</Button>
 		</form>
