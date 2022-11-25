@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import authenticationApi from "../api/authenticationApi";
 
 const useQuery = () => {
 	return new URLSearchParams(useLocation().search);
@@ -10,12 +11,14 @@ const VerifyEmailPage = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		const saveToken = async () => {
-			localStorage.setItem("token", JSON.stringify(query.get("token")));
+		const verifyToken = async () => {
+			const loginInfo = await authenticationApi.verifyToken(query);
+
+			console.log(loginInfo);
+			navigate("/");
 		};
 
-		saveToken();
-		navigate("/");
+		verifyToken();
 	}, [query, navigate]);
 
 	return <div className="page-container"></div>;

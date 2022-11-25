@@ -5,18 +5,21 @@ import Image from "../components/utilities/image/Image";
 import axios from "axios";
 import Button from "components/utilities/button/Button";
 import authenticationApi from "../api/authenticationApi";
+import Text from "components/utilities/text/Text";
 
 const AvatarPickPage = () => {
 	// const [selectedFile, setSelectedFile] = useState();
 	// const [isFilePicked, setIsFilePicked] = useState(false);
 	const [ava, setAva] = useState();
 	const [loading, setLoading] = useState(false);
+	const [showMessage, setShowMessage] = useState(false);
 
 	const handleRegister = () => {
 		const values = JSON.parse(localStorage.getItem("registerInfo"));
 		values.avatar = ava;
 
 		authenticationApi.register(values);
+		setShowMessage(true);
 	};
 
 	const handleAvatarUpload = (e) => {
@@ -73,6 +76,12 @@ const AvatarPickPage = () => {
 					className="hidden"
 				/>
 			</form>
+
+			{showMessage && (
+				<Text className="my-10">
+					Please check your email for confirmation
+				</Text>
+			)}
 
 			<Button
 				className="md:w-full md:py-5"
