@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "components/utilities/container/Container";
 import CMSBanner from "../components/dashboard/CMSBanner";
 import SearchBox from "components/search/SearchBox";
@@ -7,10 +7,19 @@ import ScrollContainer from "components/utilities/container/ScrollContainer";
 import Category from "components/category/Category";
 import topics from "content/topics";
 import Button from "components/utilities/button/Button";
+import loginApi from "api/loginApi";
+import { useNavigate } from "react-router-dom";
 
 const DashboardPage = () => {
 	// const [blogs, setBlogs] = useState([]);
 	const [currentCategory, setCurrentCategory] = useState("");
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (loginApi.isLogin() === null){
+			navigate('/login')
+		}
+	}, [navigate])
 
 	const handleCategoryClick = (e) => {
 		// set current category (add css)
@@ -20,7 +29,7 @@ const DashboardPage = () => {
 	};
 	return (
 		<Container className="relative flex flex-col">
-			<CMSBanner />
+			<CMSBanner username={JSON.parse(localStorage.getItem('user')).name} />
 			<SearchBox className="mt-10 mb-2" />
 
 			<ScrollContainer className="mb-10">
