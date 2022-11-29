@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Container from "components/utilities/container/Container";
 import SearchBox from "components/search/SearchBox";
 import ScrollContainer from "components/utilities/container/ScrollContainer";
@@ -9,10 +9,32 @@ import Title from "components/utilities/text/Title";
 import FeatureBlog from "components/blog/FeatureBlog";
 import Blog from "components/blog/Blog";
 import topics from "content/topics";
+import blogApi from "../api/blogApi";
 
 const HomePage = () => {
-	// const [blogs, setBlogs] = useState([]);
+	const [blogs, setBlogs] = useState([]);
+	const [favBlogs, setFavBlogs] = useState([]);
 	const [currentCategory, setCurrentCategory] = useState("");
+
+	useEffect(() => {
+		const fetchBlog = async () => {
+			const response = await blogApi.getAll();
+			console.log(response.data.results);
+			setBlogs(response.data.results);
+		};
+
+		fetchBlog();
+	}, []);
+
+	useEffect(() => {
+		const fetchFavBlog = async () => {
+			const response = await blogApi.getAllFavorite();
+			console.log("fav: ", response.data.results);
+			setFavBlogs(response.data.results);
+		};
+
+		fetchFavBlog();
+	}, []);
 
 	const handleCategoryClick = (e) => {
 		// set current category (add css)
@@ -44,9 +66,8 @@ const HomePage = () => {
 				<Title>Feature</Title>
 
 				<ScrollContainer className="my-2 md:!gap-4 lg:!gap-5">
-					{Array(10)
-						.fill()
-						.map((_, index) => (
+					{favBlogs?.length > 0 &&
+						favBlogs.map((blog, index) => (
 							<div
 								key={index}
 								className="relative flex w-full md:w-[400px] md:h-[400px] scroll-item"
@@ -55,9 +76,10 @@ const HomePage = () => {
 
 								<FeatureBlog
 									className="absolute -translate-x-1/2 bottom-10 left-1/2"
-									name="Kyle Nguyen"
-									readTime={20}
-									title="How to cua gai 101? Bach tan bach trung"
+									name={blog.user.username}
+									readTime={blog.timeToRead}
+									title={blog.title}
+									userAvatar={blog.user.avatar}
 								/>
 							</div>
 						))}
@@ -68,17 +90,16 @@ const HomePage = () => {
 			<section>
 				<Title>Blogs</Title>
 				<ScrollContainer className="my-2 md:!gap-4 lg:!gap-5">
-					{Array(10)
-						.fill()
-						.map((item, index) => (
+					{blogs.length > 0 &&
+						blogs.map((blog, index) => (
 							<Blog
 								key={index}
-								author="Kyle Nguyen"
-								likeCount={810}
+								author={blog.user.username}
+								likeCount={blog.heartCount}
 								readCount={912}
-								date="09/12/2022"
+								date={blog.createdAt.slice(0, 10)}
 								className="scroll-item max-w-[90%]"
-								title="Kyle co mot ngui bo xinh dep ten Quynh"
+								title={blog.title}
 							/>
 						))}
 				</ScrollContainer>

@@ -38,6 +38,14 @@
 		@apply shrink-0 snap-start snap-always;
 	}
 
+	.text-overflow {
+		@apply overflow-hidden text-ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 2; /* number of lines to show */
+		line-clamp: 2;
+		-webkit-box-orient: vertical;
+	}
+
 	/* For Webkit-based browsers (Chrome, Safari and Opera) */
 	.scrollbar-hide::-webkit-scrollbar {
 		display: none;

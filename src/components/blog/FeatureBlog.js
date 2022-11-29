@@ -9,7 +9,7 @@ const FeatureBlog = ({ className, userAvatar, name, readTime, title }) => {
 	return (
 		<div
 			onClick={() => navigate(`/blog/1`)}
-			className={`w-[90%] rounded-3xl bg-white shadow-lg px-6 py-3 flex flex-col gap-4 ${className}`}
+			className={`w-[90%] min-h-[150px] rounded-3xl bg-white shadow-lg px-6 py-3 flex flex-col gap-4 ${className}`}
 		>
 			<div className="flex items-center gap-3">
 				<Image
@@ -28,7 +28,9 @@ const FeatureBlog = ({ className, userAvatar, name, readTime, title }) => {
 				</div>
 			</div>
 
-			<Title className="text-lg leading-tight md:!text-xl">{title}</Title>
+			<Title className="text-lg leading-tight md:!text-xl text-overflow">
+				{title}
+			</Title>
 		</div>
 	);
 };
