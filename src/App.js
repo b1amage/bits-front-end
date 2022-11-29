@@ -18,6 +18,7 @@ const AboutPage = React.lazy(() => import("views/AboutPage"));
 const DashboardPage = React.lazy(() => import("views/DashboardPage"));
 const AvatarPickPage = React.lazy(() => import("views/AvatarPickPage"));
 const VerifyEmailPage = React.lazy(() => import("views/VerifyEmailPage"));
+const BlogsPage = React.lazy(() => import("views/BlogsPage"));
 
 const App = () => {
 	return (
@@ -30,6 +31,7 @@ const App = () => {
 					element={<ForgotPasswordPage />}
 				/>
 				<Route path="/password/reset" element={<ResetPage />} />
+				<Route path="/blogs/:query" element={<BlogsPage />} />
 				<Route path="/profile" element={<ProfilePage />} />
 				<Route path="/preview" element={<Preview />} />
 				<Route path="/register" element={<RegisterPage />} />

@@ -16,12 +16,12 @@ import health from "assets/svg/health-icon.svg";
 import science from "assets/svg/science-icon.svg";
 
 const topics = [
-	{ value: "art", icon: art },
-	{ value: "education", icon: education },
-	{ value: "travel", icon: travel },
-	{ value: "business", icon: business },
-	{ value: "food", icon: food },
-	{ value: "sport", icon: sport },
+	{ value: "Cloud computing", icon: art },
+	{ value: "Blockchain", icon: education },
+	{ value: "DevOps", icon: travel },
+	{ value: "AI", icon: business },
+	{ value: "Security", icon: food },
+	{ value: "Big Data", icon: sport },
 	{ value: "gaming", icon: gaming },
 	{ value: "tv", icon: tv },
 	{ value: "tech", icon: tech },

@@ -7,7 +7,7 @@ import LoginForm from "components/form/LoginForm";
 
 const LoginPage = () => {
 	return (
-		<Container className="flex flex-col justify-center ">
+		<Container className="flex flex-col justify-center">
 			<Logo className="mx-auto" />
 
 			<LoginForm />

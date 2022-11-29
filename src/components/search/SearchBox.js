@@ -1,14 +1,16 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Input from "components/utilities/form/Input";
 import search from "assets/svg/search.svg";
 import Image from "components/utilities/image/Image";
 
 const SearchBox = ({ className }) => {
 	const [query, setQuery] = useState("");
+	const navigate = useNavigate();
 
 	const handleSearch = (e) => {
 		e.preventDefault();
-		console.log("query:", query);
+		navigate(`/blogs/${query}`);
 	};
 
 	const handleChange = (e) => setQuery(e.target.value);
