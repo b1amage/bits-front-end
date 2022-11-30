@@ -15,5 +15,3 @@ const authorApi = {
 };
 
 export default authorApi;
-
-export default userApi;
