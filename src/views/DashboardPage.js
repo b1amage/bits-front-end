@@ -9,24 +9,40 @@ import topics from "content/topics";
 import Button from "components/utilities/button/Button";
 import loginApi from "api/loginApi";
 import { useNavigate } from "react-router-dom";
+import blogApi from "api/blogApi";
 
 const DashboardPage = () => {
 	// const [blogs, setBlogs] = useState([]);
 	const [currentCategory, setCurrentCategory] = useState("");
 	const navigate = useNavigate();
-
+	const [userBlogs, setUserBlogs] = useState([])
+	
 	useEffect(() => {
 		if (loginApi.isLogin() === null){
 			navigate('/login')
 		}
 	}, [navigate])
 
+	useEffect(() => {
+		const allUserBlogs = async() => {
+			const response = await blogApi.getUserBlogs(currentCategory);
+			setUserBlogs(response.data.results)
+		}
+		allUserBlogs()
+	}, [currentCategory])
+	
 	const handleCategoryClick = (e) => {
 		// set current category (add css)
 		setCurrentCategory(e.target.id);
 		// call API get blog by category
 		// set blogs to data.results
 	};
+
+	const formatDate = (strDateTime) => {
+		var options = { day: 'numeric', month: 'long', year: 'numeric' };
+		return new Date(strDateTime).toLocaleDateString([],options);
+	}
+
 	return (
 		<Container className="relative flex flex-col">
 			<CMSBanner  username={localStorage.getItem("user") !== null && JSON.parse(localStorage.getItem("user")).name}/>
@@ -47,15 +63,17 @@ const DashboardPage = () => {
 			</ScrollContainer>
 
 			<div className="grid grid-cols-1 gap-10 lg:grid-cols-3 md:grid-cols-2 place-items-center md:place-items-start">
-				{Array(6)
-					.fill()
+				{userBlogs
 					.map((item, index) => (
 						<Blog
 							editable
+							readCount={item.timeToRead}
+							likeCount={item.heartCount}
 							key={index}
-							author="Kyle Nguyen"
-							date="09/12/2022"
-							title="Kyle Nguyen Dep Trai"
+							img={item.banner}
+							author={item.user.username}
+							date={formatDate(item.user.createdAt)}
+							title={item.title}
 						/>
 					))}
 			</div>
