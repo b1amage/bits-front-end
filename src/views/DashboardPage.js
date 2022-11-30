@@ -29,7 +29,7 @@ const DashboardPage = () => {
 	};
 	return (
 		<Container className="relative flex flex-col">
-			<CMSBanner username={JSON.parse(localStorage.getItem('user')).name} />
+			<CMSBanner  username={localStorage.getItem("user") !== null && JSON.parse(localStorage.getItem("user")).name}/>
 			<SearchBox className="mt-10 mb-2" />
 
 			<ScrollContainer className="mb-10">
