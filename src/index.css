@@ -61,6 +61,10 @@
 		@apply first-letter:float-left first-letter:leading-[48px] first-letter:md:!text-[80px] first-letter:md:!leading-[72px] first-letter:lg:!text-[140px] first-letter:lg:!leading-[140px] first-letter:px-1 first-letter:!font-extrabold first-letter:uppercase first-letter:!text-[60px];
 	} */
 
+	.blog-content p:first-child:first-letter {
+		@apply font-bold text-3xl;
+	}
+
 	.blog-content a {
 		@apply !underline text-primary-100;
 	}

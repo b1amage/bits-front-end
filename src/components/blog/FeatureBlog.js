@@ -16,7 +16,7 @@ const FeatureBlog = ({
 	return (
 		<div
 			onClick={() => navigate(`/blog/${blogId}`)}
-			className={`w-[90%] min-h-[150px] rounded-3xl bg-white shadow-lg px-6 py-3 flex flex-col gap-4 ${className}`}
+			className={`w-[90%] hover:-translate-y-2 hover:shadow-2xl transition-all cursor-pointer min-h-[150px] rounded-3xl bg-white shadow-lg px-6 py-3 flex flex-col gap-4 ${className}`}
 		>
 			<div className="flex items-center gap-3">
 				<Image
