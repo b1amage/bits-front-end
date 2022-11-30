@@ -27,6 +27,20 @@ const authenticationApi = {
 			setError(true);
 		}
 	},
+
+	async logout(navigate) {
+		const url = "/auth/logout";
+		try {
+			const response = await axiosClient.delete(url);
+			localStorage.removeItem("user");
+			navigate("/");
+			return response;
+		} catch (error) {
+			console.log(error);
+			// navigate to register fail
+			navigate(`/error/${error.response.data.msg}`);
+		}
+	},
 };
 
 export default authenticationApi;
