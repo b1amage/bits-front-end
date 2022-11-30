@@ -5,19 +5,13 @@ import Text from "components/utilities/text/Text";
 import NavLink from "components/navigation/NavLink";
 import LoginForm from "components/form/LoginForm";
 import loginApi from "api/loginApi";
-import Button from "components/utilities/button/Button";
-import { Link } from "react-router-dom";
+import AlreadyLogin from "../components/login/AlreadyLogin";
 
 const LoginPage = () => {
 	return (
 		<Container className="flex flex-col justify-center">
 			{loginApi.isLogin() ? (
-				<div className="flex flex-col items-center justify-center gap-5 min-h-[80vh]">
-					<Text>You have already login</Text>
-					<Button primary>
-						<Link to="/">Go to home</Link>
-					</Button>
-				</div>
+				<AlreadyLogin />
 			) : (
 				<>
 					<Logo className="mx-auto" />
