@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 const NotFoundPage = () => {
 	return (
 		<Container className="flex flex-col items-center justify-center min-h-screen">
-			<Image src={notFound} />
+			<Image src={notFound} alt="not found assets" />
 
 			<Text className="mb-5 !font-semibold lg:mb-10 lg:!text-2xl">
 				Sorry, we cannot find that page

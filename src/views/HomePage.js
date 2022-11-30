@@ -103,7 +103,11 @@ const HomePage = () => {
 								key={index}
 								className="relative flex w-full md:w-[400px] md:h-[400px] scroll-item"
 							>
-								<Image src={blogBg} className="w-full" />
+								<Image
+									src={blogBg}
+									alt="feature blog background"
+									className="w-full"
+								/>
 
 								<FeatureBlog
 									blogId={blog._id}

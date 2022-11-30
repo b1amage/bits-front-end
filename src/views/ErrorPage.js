@@ -9,7 +9,7 @@ const ErrorPage = () => {
 	const { error } = useParams();
 	return (
 		<Container className="flex flex-col items-center justify-center min-h-screen">
-			<Image src={errorImg} />
+			<Image src={errorImg} alt="error assets" />
 
 			<Title>{error}</Title>
 
