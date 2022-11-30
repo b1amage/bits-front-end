@@ -18,7 +18,6 @@ const loginApi = {
     },
 
     isLogin() {
-        console.log("user" + localStorage.getItem("user"))
 		return localStorage.getItem("user");
 	},
 }
