@@ -5,9 +5,12 @@ import CONSTANT from "constant/Constant";
 import Button from "components/utilities/button/Button";
 import loginApi from "api/loginApi";
 import { useNavigate } from "react-router-dom";
+import { useState } from "react";
+import Error from "components/utilities/form/Error";
 
 const LoginForm = () => {
 	const navigate = useNavigate();
+	const [error, setError] = useState(); 
 
 	const formik = useFormik({
 		initialValues: {
@@ -24,7 +27,7 @@ const LoginForm = () => {
 		}),
 		onSubmit: (values) => {
 			console.log(values);
-			loginApi.login(values, navigate);
+			loginApi.login(values, navigate, setError);
 		},
 	});
 	return (
@@ -49,6 +52,8 @@ const LoginForm = () => {
 				onChange={formik.handleChange}
 				err={formik.errors.password}
 			/>
+
+			{error && <Error children={error} className="!w-full"/>}
 
 			<Button type="submit" primary fluid className="my-10">
 				Sign in
