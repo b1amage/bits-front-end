@@ -1,18 +1,19 @@
-const { default: axiosClient } = require("./axiosClient")
+import axiosClient from "api/axiosClient";
 
-const userApi = {
-    async getUserProfile(userId){
-        const url = `user/view/${userId}`
-        try{
-            const response = await axiosClient.get(url, {
-                withCredentials: true
-            });
-            console.log(response);
-            return response;
-        } catch(err){
-            console.log(err.response)
-        }
-    }
-}
+const authorApi = {
+	async getById(id, navigate) {
+		const url = `/user/view/${id}`;
+		try {
+			const response = await axiosClient.get(url);
+			return response;
+		} catch (error) {
+			console.log(error);
+			// navigate to register fail
+			navigate(`/error/${error.response.data.msg}`);
+		}
+	},
+};
+
+export default authorApi;
 
 export default userApi;

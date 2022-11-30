@@ -1,7 +1,7 @@
 import axiosClient from "api/axiosClient";
 
 const authenticationApi = {
-	async register(account) {
+	async register(account, navigate) {
 		const url = "/auth/register";
 		try {
 			const response = await axiosClient.post(url, account);
@@ -10,7 +10,7 @@ const authenticationApi = {
 		} catch (error) {
 			console.log(error);
 			// navigate to register fail
-			// navigate(`/error/${error.response.data.msg}`);
+			navigate(`/error/${error.response.data.msg}`);
 		}
 	},
 
