@@ -9,8 +9,6 @@ import Text from "components/utilities/text/Text";
 import { useNavigate } from "react-router-dom";
 
 const AvatarPickPage = () => {
-	// const [selectedFile, setSelectedFile] = useState();
-	// const [isFilePicked, setIsFilePicked] = useState(false);
 	const [ava, setAva] = useState();
 	const [loading, setLoading] = useState(false);
 	const [showMessage, setShowMessage] = useState(false);
