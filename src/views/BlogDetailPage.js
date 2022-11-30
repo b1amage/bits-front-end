@@ -10,6 +10,7 @@ import BlogContent from "components/blog/BlogContent";
 import blogApi from "api/blogApi";
 import authorApi from "api/userApi";
 import Loading from "components/loading/Loading";
+import decode from "helper/decode";
 
 const BlogDetailPage = () => {
 	const [blog, setBlog] = useState();
@@ -18,21 +19,13 @@ const BlogDetailPage = () => {
 	const [author, setAuthor] = useState();
 	const navigate = useNavigate();
 	const { id } = useParams();
+
 	useEffect(() => {
 		const fetchBlogContent = async () => {
 			setLoading(true);
 			const response = await blogApi.getBlogDetail(id, navigate);
-			console.log(response);
 			setBlog(response.data.blog);
-
-			function decode(str) {
-				let txt = new DOMParser().parseFromString(str, "text/html");
-
-				return txt.documentElement.textContent;
-			}
-
 			const txt = decode(response.data.blog.content);
-
 			setContent(txt);
 
 			const fetchAuthor = async (res) => {
@@ -40,12 +33,10 @@ const BlogDetailPage = () => {
 					res.data.blog.user,
 					navigate
 				);
-				console.log(response);
 				setAuthor(response.data.user);
 			};
 
 			fetchAuthor(response);
-
 			setLoading(false);
 		};
 
