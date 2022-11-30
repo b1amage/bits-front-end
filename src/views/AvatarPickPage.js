@@ -6,6 +6,7 @@ import axios from "axios";
 import Button from "components/utilities/button/Button";
 import authenticationApi from "../api/authenticationApi";
 import Text from "components/utilities/text/Text";
+import { useNavigate } from "react-router-dom";
 
 const AvatarPickPage = () => {
 	// const [selectedFile, setSelectedFile] = useState();
@@ -13,12 +14,13 @@ const AvatarPickPage = () => {
 	const [ava, setAva] = useState();
 	const [loading, setLoading] = useState(false);
 	const [showMessage, setShowMessage] = useState(false);
+	const navigate = useNavigate();
 
 	const handleRegister = () => {
 		const values = JSON.parse(localStorage.getItem("registerInfo"));
 		values.avatar = ava;
 
-		authenticationApi.register(values);
+		authenticationApi.register(values, navigate);
 		setShowMessage(true);
 	};
 

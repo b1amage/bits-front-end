@@ -11,48 +11,52 @@ import Blog from "components/blog/Blog";
 import topics from "content/topics";
 import blogApi from "api/blogApi";
 import Loading from "components/loading/Loading";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
 	const [blogs, setBlogs] = useState([]);
 	const [favBlogs, setFavBlogs] = useState([]);
 	const [currentCategory, setCurrentCategory] = useState("");
 	const [loading, setLoading] = useState(false);
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const fetchBlog = async () => {
 			setLoading(true);
-			const response = await blogApi.getAll();
+			const response = await blogApi.getAll(navigate);
 			setBlogs(response.data.results);
 			setLoading(false);
 		};
 
 		fetchBlog();
-	}, []);
+	}, [navigate]);
 
 	useEffect(() => {
 		const fetchFavBlog = async () => {
 			setLoading(true);
-			const response = await blogApi.getAllFavorite();
+			const response = await blogApi.getAllFavorite(navigate);
 			setFavBlogs(response.data.results);
 			setLoading(false);
 		};
 
 		fetchFavBlog();
-	}, []);
+	}, [navigate]);
 
 	const handleCategoryClick = (e) => {
 		const fetchBlogByCategory = async () => {
 			setLoading(true);
 			const responseFavBlog = await blogApi.getBlogsByCategory(
 				e.target.id,
-				"favorite"
+				"favorite",
+				navigate
 			);
 
 			console.log(responseFavBlog);
 
 			const responseBlog = await blogApi.getBlogsByCategory(
 				e.target.id,
-				"latest"
+				"latest",
+				navigate
 			);
 
 			setFavBlogs(responseFavBlog.data.results);

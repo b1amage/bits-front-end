@@ -19,6 +19,8 @@ const DashboardPage = React.lazy(() => import("views/DashboardPage"));
 const AvatarPickPage = React.lazy(() => import("views/AvatarPickPage"));
 const VerifyEmailPage = React.lazy(() => import("views/VerifyEmailPage"));
 const BlogsPage = React.lazy(() => import("views/BlogsPage"));
+const ErrorPage = React.lazy(() => import("views/ErrorPage"));
+const NotFoundPage = React.lazy(() => import("views/NotFoundPage"));
 
 const App = () => {
 	return (
@@ -44,6 +46,8 @@ const App = () => {
 				<Route path="/about" element={<AboutPage />} />
 				<Route path="/dashboard" element={<DashboardPage />} />
 				<Route path="/verify-email" element={<VerifyEmailPage />} />
+				<Route path="/error/:error" element={<ErrorPage />} />
+				<Route path="*" element={<NotFoundPage />} />
 			</Routes>
 		</Suspense>
 	);
