@@ -56,6 +56,19 @@ const blogApi = {
 			navigate(`/error/${error.response.data.msg}`);
 		}
 	},
+
+	async getBlogDetail(id, navigate) {
+		const url = `/blog/content/${id}`;
+
+        try {
+			const response = await axiosClient.get(url);
+			return response;
+		} catch (error) {
+			console.log(error);
+			// navigate to register fail
+			navigate(`/error/${error.response.data.msg}`);
+		}
+	},
 };
 
 export default blogApi;

@@ -17,12 +17,15 @@ const Blog = ({
 	date,
 	className,
 	editable,
+	blogId,
 }) => {
 	const navigate = useNavigate();
 	return (
-		<div className="flex flex-col flex-1 mr-10">
+		<div
+			onClick={() => navigate(`/blog/${blogId}`)}
+			className="flex flex-col flex-1 mr-10"
+		>
 			<div
-				onClick={() => navigate(`/blog/1`)}
 				className={`grid grid-cols-3 gap-4 px-5 py-3 rounded-xl bg-secondary-50 min-w-[320px] md:min-w-[380px] lg:min-h-[160px] md:py-5 md:px-7 cursor-pointer shadow-md lg:max-w-[420px] ${className}`}
 			>
 				<div className="flex items-start justify-start">

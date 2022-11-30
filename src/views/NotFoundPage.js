@@ -1,4 +1,3 @@
-import React from "react";
 import Container from "components/utilities/container/Container";
 import Image from "components/utilities/image/Image";
 import notFound from "assets/svg/not-found.svg";

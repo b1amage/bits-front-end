@@ -106,6 +106,7 @@ const HomePage = () => {
 								<Image src={blogBg} className="w-full" />
 
 								<FeatureBlog
+									blogId={blog._id}
 									className="absolute -translate-x-1/2 bottom-10 left-1/2"
 									name={blog.user.username}
 									readTime={blog.timeToRead}
@@ -128,6 +129,7 @@ const HomePage = () => {
 						blogs.length > 0 &&
 						blogs.map((blog, index) => (
 							<Blog
+								blogId={blog._id}
 								key={index}
 								author={blog.user.username}
 								likeCount={blog.heartCount}

@@ -1,4 +1,3 @@
-import React from "react";
 import { useParams, Link } from "react-router-dom";
 import Container from "components/utilities/container/Container";
 import Image from "components/utilities/image/Image";

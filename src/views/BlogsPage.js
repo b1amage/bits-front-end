@@ -37,6 +37,7 @@ const BlogsPage = () => {
 					{blogs.length > 0 &&
 						blogs.map((blog, index) => (
 							<Blog
+								blogId={blog._id}
 								key={index}
 								author={blog.user.username}
 								likeCount={blog.heartCount}
