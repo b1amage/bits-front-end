@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosClient = axios.create({
-// 	baseURL: "https://bits-backend.vercel.app/api",
+	// 	baseURL: "https://bits-backend.vercel.app/api",
 	// baseURL: "http://localhost:8080/api",
 	baseURL: "/api",
 	headers: {
