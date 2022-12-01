@@ -76,6 +76,18 @@ const blogApi = {
 			navigate(`/error/${error.response.data.msg}`);
 		}
 	},
+
+	async getComments(id, navigate) {
+		const url = `/comment/view/${id}`;
+
+		try {
+			const response = await axiosClient.get(url);
+			return response;
+		} catch (error) {
+			console.log(error);
+			navigate(`/error/${error.response.data.msg}`);
+		}
+	},
 };
 
 export default blogApi;

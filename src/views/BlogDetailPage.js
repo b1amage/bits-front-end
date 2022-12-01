@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Container from "components/utilities/container/Container";
@@ -11,12 +12,14 @@ import blogApi from "api/blogApi";
 import authorApi from "api/userApi";
 import Loading from "components/loading/Loading";
 import decode from "helper/decode";
+import CommentCard from "components/comment/CommentCard";
 
 const BlogDetailPage = () => {
 	const [blog, setBlog] = useState();
 	const [loading, setLoading] = useState(false);
 	const [content, setContent] = useState();
 	const [author, setAuthor] = useState();
+	const [comments, setComments] = useState([]);
 	const navigate = useNavigate();
 	const { id } = useParams();
 
@@ -36,7 +39,17 @@ const BlogDetailPage = () => {
 				setAuthor(response.data.user);
 			};
 
+			const fetchComments = async (res) => {
+				const response = await blogApi.getComments(
+					res.data.blog._id,
+					navigate
+				);
+				console.log("comment: ", response);
+				setComments(response.data.results);
+			};
+
 			fetchAuthor(response);
+			fetchComments(response);
 			setLoading(false);
 		};
 
@@ -88,7 +101,6 @@ const BlogDetailPage = () => {
 						/>
 
 						{/* Stats */}
-						{/* viewCount, commentCount, likeCount */}
 						<BlogStats
 							likeCount={blog?.heartCount}
 							onLike={handleLikeClick}
@@ -97,6 +109,22 @@ const BlogDetailPage = () => {
 
 					{/* Content */}
 					<BlogContent content={content} />
+
+					{/* Comments */}
+					<div>
+						<Title className="my-5 md:my-8 lg:my-10">
+							Comments
+						</Title>
+						<div className="flex flex-col gap-5 md:gap-8 lg:gap-10">
+							{comments.length > 0 &&
+								comments.map((item, index) => (
+									<CommentCard
+										comment={item}
+										key={item._id}
+									/>
+								))}
+						</div>
+					</div>
 				</>
 			)}
 		</Container>
