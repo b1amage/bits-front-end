@@ -14,6 +14,7 @@ import Loading from "components/loading/Loading";
 import decode from "helper/decode";
 import CommentCard from "components/comment/CommentCard";
 import Button from "components/utilities/button/Button";
+import noComment from "assets/svg/no-comment.svg";
 
 const BlogDetailPage = () => {
 	const [blog, setBlog] = useState();
@@ -138,8 +139,17 @@ const BlogDetailPage = () => {
 						<div className="flex flex-col gap-5 md:gap-8 lg:gap-10">
 							{commentLoading ? (
 								<Loading />
+							) : comments.length === 0 ? (
+								<div className="mx-auto">
+									<Image
+										src={noComment}
+										className="mx-auto lg:w-1/2"
+									/>
+									<Title className="!my-10">
+										Be the first one to comment on this post
+									</Title>
+								</div>
 							) : (
-								comments.length > 0 &&
 								comments.map((item, index) => (
 									<CommentCard
 										comment={item}
