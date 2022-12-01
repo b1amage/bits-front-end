@@ -43,6 +43,16 @@ const BlogDetailPage = () => {
 		fetchBlogContent();
 	}, [id, navigate]);
 
+	const handleLikeClick = () => {
+		const likeBlog = async () => {
+			const response = await blogApi.likeBlog(blog._id, navigate);
+			console.log(response);
+			setBlog(response.data.blog);
+		};
+
+		likeBlog();
+	};
+
 	return (
 		<Container className="flex flex-col gap-8 lg:gap-12">
 			{loading ? (
@@ -76,7 +86,11 @@ const BlogDetailPage = () => {
 						/>
 
 						{/* Stats */}
-						<BlogStats />
+						{/* viewCount, commentCount, likeCount */}
+						<BlogStats
+							likeCount={blog?.heartCount}
+							onLike={handleLikeClick}
+						/>
 					</div>
 
 					{/* Content */}
