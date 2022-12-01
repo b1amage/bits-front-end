@@ -8,6 +8,7 @@ const blogApi = {
 			return response;
 		} catch (error) {
 			console.log(error);
+			// navigate to register fail
 			navigate(`/error/${error.response.data.msg}`);
 		}
 	},
@@ -19,22 +20,24 @@ const blogApi = {
 			return response;
 		} catch (error) {
 			console.log(error);
+			// navigate to register fail
 			navigate(`/error/${error.response.data.msg}`);
 		}
 	},
 
-	async getBlogsByCategory(category, type, navigate) {
-		// type lastest || favorite
-		let url =
-			category === "all"
-				? `/blog/view/${type}`
-				: `/blog/view/${type}?category=${category}`;
+  async getBlogsByCategory(category, type, navigate) {
+    // type lastest || favorite
+    let url =
+      category === "all"
+        ? `/blog/view/${type}`
+        : `/blog/view/${type}?category=${category}`;
 
 		try {
 			const response = await axiosClient.get(url);
 			return response;
 		} catch (error) {
 			console.log(error);
+			// navigate to register fail
 			navigate(`/error/${error.response.data.msg}`);
 		}
 	},
@@ -49,12 +52,13 @@ const blogApi = {
 			return response;
 		} catch (error) {
 			console.log(error);
+			// navigate to register fail
 			navigate(`/error/${error.response.data.msg}`);
 		}
 	},
 
-	async getBlogDetail(id, navigate) {
-		const url = `/blog/content/${id}`;
+  async getBlogDetail(id, navigate) {
+    const url = `/blog/content/${id}`;
 
 		try {
 			const response = await axiosClient.get(url);
@@ -90,6 +94,17 @@ const blogApi = {
 			navigate(`/error/${error.response.data.msg}`);
 		}
 	},
+
+  async getUserBlogs(category = "", title = "", nextCursor = "") {
+    try {
+      const url = `/blog/user?category=${category}&&title=${title}&&next_cursor=${nextCursor}`;
+      const response = await axiosClient.get(url);
+      console.log(response);
+      return response;
+    } catch (err) {
+      console.log(err);
+    }
+  },
 };
 
 export default blogApi;
