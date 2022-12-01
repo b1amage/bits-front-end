@@ -137,9 +137,7 @@ const BlogDetailPage = () => {
 							Comments
 						</Title>
 						<div className="flex flex-col gap-5 md:gap-8 lg:gap-10">
-							{commentLoading ? (
-								<Loading />
-							) : comments.length === 0 ? (
+							{comments.length === 0 ? (
 								<div className="mx-auto">
 									<Image
 										src={noComment}
@@ -158,6 +156,12 @@ const BlogDetailPage = () => {
 								))
 							)}
 						</div>
+
+						{commentLoading && (
+							<div className="my-10">
+								<Loading />
+							</div>
+						)}
 
 						{commentsNextCursor !== null && (
 							<Button
