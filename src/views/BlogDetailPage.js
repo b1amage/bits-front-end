@@ -53,6 +53,8 @@ const BlogDetailPage = () => {
 		likeBlog();
 	};
 
+	console.log(blog);
+
 	return (
 		<Container className="flex flex-col gap-8 lg:gap-12">
 			{loading ? (
