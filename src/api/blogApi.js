@@ -90,6 +90,20 @@ const blogApi = {
 			navigate(`/error/${error.response.data.msg}`);
 		}
 	},
+
+	async addComment(values, navigate) {
+		const url = `/comment/create`;
+
+		try {
+			const response = await axiosClient.post(url, values, {
+				withCredentials: true,
+			});
+			return response;
+		} catch (error) {
+			console.log(error);
+			navigate(`/error/${error.response.data.msg}`);
+		}
+	},
 };
 
 export default blogApi;

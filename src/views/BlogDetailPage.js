@@ -15,6 +15,8 @@ import decode from "helper/decode";
 import CommentCard from "components/comment/CommentCard";
 import Button from "components/utilities/button/Button";
 import noComment from "assets/svg/no-comment.svg";
+import CommentTextArea from "../components/comment/CommentTextArea";
+import sendIcon from "assets/svg/send.svg";
 
 const BlogDetailPage = () => {
 	const [blog, setBlog] = useState();
@@ -24,8 +26,11 @@ const BlogDetailPage = () => {
 	const [comments, setComments] = useState([]);
 	const [commentLoading, setCommentLoading] = useState(false);
 	const [commentsNextCursor, setCommentsNextCursor] = useState(undefined);
+	const [commentContent, setCommentContent] = useState("");
 	const navigate = useNavigate();
 	const { id } = useParams();
+
+	const handleCommentContentChange = (e) => setCommentContent(e.target.value);
 
 	const fetchMoreComments = async () => {
 		setCommentLoading(true);
@@ -85,6 +90,19 @@ const BlogDetailPage = () => {
 		};
 
 		likeBlog();
+	};
+
+	const handleSendIconClick = () => {
+		const sendComment = async () => {
+			const response = await blogApi.addComment(
+				{ blogId: blog._id, content: commentContent },
+				navigate
+			);
+
+			console.log(response);
+		};
+
+		sendComment();
 	};
 
 	console.log(blog);
@@ -173,6 +191,14 @@ const BlogDetailPage = () => {
 							</Button>
 						)}
 					</div>
+
+					{/* Comments textarea */}
+					<CommentTextArea
+						id="comment-textarea"
+						icon={sendIcon}
+						onIconClick={handleSendIconClick}
+						onChange={handleCommentContentChange}
+					/>
 				</>
 			)}
 		</Container>
