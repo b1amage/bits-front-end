@@ -8,6 +8,7 @@ const blogApi = {
 			return response;
 		} catch (error) {
 			console.log(error);
+			// navigate to register fail
 			navigate(`/error/${error.response.data.msg}`);
 		}
 	},
@@ -19,6 +20,7 @@ const blogApi = {
 			return response;
 		} catch (error) {
 			console.log(error);
+			// navigate to register fail
 			navigate(`/error/${error.response.data.msg}`);
 		}
 	},
@@ -35,6 +37,7 @@ const blogApi = {
 			return response;
 		} catch (error) {
 			console.log(error);
+			// navigate to register fail
 			navigate(`/error/${error.response.data.msg}`);
 		}
 	},
@@ -49,6 +52,7 @@ const blogApi = {
 			return response;
 		} catch (error) {
 			console.log(error);
+			// navigate to register fail
 			navigate(`/error/${error.response.data.msg}`);
 		}
 	},
@@ -102,6 +106,16 @@ const blogApi = {
 		} catch (error) {
 			console.log(error);
 			navigate(`/error/${error.response.data.msg}`);
+		}
+	},
+	async getUserBlogs(category = "", title = "", nextCursor = "") {
+		try {
+			const url = `/blog/user?category=${category}&&title=${title}&&next_cursor=${nextCursor}`;
+			const response = await axiosClient.get(url);
+			console.log(response);
+			return response;
+		} catch (err) {
+			console.log(err);
 		}
 	},
 };

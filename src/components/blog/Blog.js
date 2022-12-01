@@ -42,7 +42,7 @@ const Blog = ({
 						<Text className="!text-sm font-light">{date}</Text>
 					</div>
 
-					<BlogStats />
+					<BlogStats viewCount={readCount} likeCount={likeCount} />
 				</div>
 			</div>
 			{editable && (
