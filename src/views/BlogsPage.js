@@ -26,6 +26,8 @@ const BlogsPage = () => {
 		fetchBlog();
 	}, [query, navigate]);
 
+	console.log(blogs);
+
 	return (
 		<Container>
 			<Title className="my-5 lg:my-10 !text-secondary-20">
@@ -42,7 +44,7 @@ const BlogsPage = () => {
 				</div>
 			) : (
 				<div className="grid w-full grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-3 lg:gap-10">
-					{blogs.length === 0 &&
+					{blogs.length !== 0 &&
 						blogs.map((blog, index) => (
 							<Blog
 								blogId={blog._id}
