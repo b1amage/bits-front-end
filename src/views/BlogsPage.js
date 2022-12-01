@@ -5,6 +5,9 @@ import { useParams, useNavigate } from "react-router-dom";
 import Blog from "components/blog/Blog";
 import Title from "components/utilities/text/Title";
 import Loading from "components/loading/Loading";
+import notFound from "assets/svg/tv404.svg";
+import Image from "components/utilities/image/Image";
+import Text from "components/utilities/text/Text";
 
 const BlogsPage = () => {
 	const [blogs, setBlogs] = useState([]);
@@ -22,7 +25,9 @@ const BlogsPage = () => {
 
 		fetchBlog();
 	}, [query, navigate]);
+
 	console.log(blogs);
+
 	return (
 		<Container>
 			<Title className="my-5 lg:my-10 !text-secondary-20">
@@ -32,9 +37,14 @@ const BlogsPage = () => {
 
 			{loading ? (
 				<Loading />
+			) : blogs.length === 0 ? (
+				<div className="min-h-[60vh] flex flex-col gap-5 lg:gap-10 items-center justify-center">
+					<Image src={notFound} />
+					<Text>Sorry we cannot find blog with this title</Text>
+				</div>
 			) : (
 				<div className="grid w-full grid-cols-1 gap-5 lg:grid-cols-2 xl:grid-cols-3 lg:gap-10">
-					{blogs.length > 0 &&
+					{blogs.length !== 0 &&
 						blogs.map((blog, index) => (
 							<Blog
 								blogId={blog._id}
