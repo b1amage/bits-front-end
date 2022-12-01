@@ -13,6 +13,7 @@ import authorApi from "api/userApi";
 import Loading from "components/loading/Loading";
 import decode from "helper/decode";
 import CommentCard from "components/comment/CommentCard";
+import Button from "components/utilities/button/Button";
 
 const BlogDetailPage = () => {
 	const [blog, setBlog] = useState();
@@ -20,8 +21,23 @@ const BlogDetailPage = () => {
 	const [content, setContent] = useState();
 	const [author, setAuthor] = useState();
 	const [comments, setComments] = useState([]);
+	const [commentLoading, setCommentLoading] = useState(false);
+	const [commentsNextCursor, setCommentsNextCursor] = useState(undefined);
 	const navigate = useNavigate();
 	const { id } = useParams();
+
+	const fetchMoreComments = async () => {
+		setCommentLoading(true);
+		const response = await blogApi.getComments(
+			blog._id,
+			commentsNextCursor,
+			navigate
+		);
+		console.log("more comment: ", response);
+		setComments([...comments, ...response.data.results]);
+		setCommentsNextCursor(response.data.next_cursor);
+		setCommentLoading(false);
+	};
 
 	useEffect(() => {
 		const fetchBlogContent = async () => {
@@ -40,12 +56,16 @@ const BlogDetailPage = () => {
 			};
 
 			const fetchComments = async (res) => {
+				setCommentLoading(true);
 				const response = await blogApi.getComments(
 					res.data.blog._id,
+					commentsNextCursor,
 					navigate
 				);
 				console.log("comment: ", response);
 				setComments(response.data.results);
+				setCommentsNextCursor(response.data.next_cursor);
+				setCommentLoading(false);
 			};
 
 			fetchAuthor(response);
@@ -116,14 +136,28 @@ const BlogDetailPage = () => {
 							Comments
 						</Title>
 						<div className="flex flex-col gap-5 md:gap-8 lg:gap-10">
-							{comments.length > 0 &&
+							{commentLoading ? (
+								<Loading />
+							) : (
+								comments.length > 0 &&
 								comments.map((item, index) => (
 									<CommentCard
 										comment={item}
 										key={item._id}
 									/>
-								))}
+								))
+							)}
 						</div>
+
+						{commentsNextCursor !== null && (
+							<Button
+								onClick={fetchMoreComments}
+								className="my-10"
+								primary
+							>
+								More comment
+							</Button>
+						)}
 					</div>
 				</>
 			)}

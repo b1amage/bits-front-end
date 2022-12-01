@@ -77,8 +77,10 @@ const blogApi = {
 		}
 	},
 
-	async getComments(id, navigate) {
-		const url = `/comment/view/${id}`;
+	async getComments(id, nextCursor, navigate) {
+		const url = !nextCursor
+			? `/comment/view/${id}`
+			: `/comment/view/${id}?next_cursor=${nextCursor}`;
 
 		try {
 			const response = await axiosClient.get(url);
