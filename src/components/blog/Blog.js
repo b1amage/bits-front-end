@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import BlogStats from "components/blog/BlogStats";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import Button from "components/utilities/button/Button";
+import blogApi from "api/blogApi";
 
 const Blog = ({
 	img,
@@ -20,6 +21,10 @@ const Blog = ({
 	blogId,
 }) => {
 	const navigate = useNavigate();
+	const deleteBlog = async() => {
+		const response = await blogApi.deleteBlog(blogId);
+		console.log(response)
+	}
 	return (
 		<div
 			onClick={() => navigate(`/blog/${blogId}`)}
@@ -55,6 +60,7 @@ const Blog = ({
 						<BsFillPencilFill />
 					</Button>
 					<Button
+						onClick={() => deleteBlog()}
 						primary
 						isRound
 						className="!w-[50px] !h-[50px] transition-all duration-300"

@@ -118,6 +118,16 @@ const blogApi = {
 			console.log(err);
 		}
 	},
+	async deleteBlog(blogId){
+		try{
+			const url = `/blog/delete/${blogId}`
+			const response = await axiosClient.delete(url);
+			console.log(response.data.msg)
+			return response
+		} catch(err){
+			console.log(err)
+		}
+	}
 };
 
 export default blogApi;
