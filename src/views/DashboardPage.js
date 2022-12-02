@@ -101,6 +101,7 @@ const DashboardPage = () => {
           {userBlogs.map((item, index) => (
             <Blog
               editable
+              blogId={item._id}
               readCount={item.timeToRead}
               likeCount={item.heartCount}
               key={index}
