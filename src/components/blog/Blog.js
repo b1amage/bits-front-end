@@ -21,10 +21,10 @@ const Blog = ({
 	blogId,
 }) => {
 	const navigate = useNavigate();
-	const deleteBlog = async() => {
+	const deleteBlog = async () => {
 		const response = await blogApi.deleteBlog(blogId);
-		console.log(response)
-	}
+		console.log(response);
+	};
 	return (
 		<div
 			onClick={() => navigate(`/blog/${blogId}`)}

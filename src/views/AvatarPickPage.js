@@ -30,7 +30,7 @@ const AvatarPickPage = () => {
 			setLoading(true);
 			axios({
 				method: "post",
-				url: "http://localhost:8080/api/image/upload-image",
+				url: "/api/image/upload-image",
 				data: bodyFormData,
 				headers: { "Content-Type": "multipart/form-data" },
 			})

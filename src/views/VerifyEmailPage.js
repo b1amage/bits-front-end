@@ -15,7 +15,7 @@ const VerifyEmailPage = () => {
 			const loginInfo = await authenticationApi.verifyToken(query);
 
 			console.log(loginInfo);
-			navigate("/");
+			navigate("/successful");
 		};
 
 		verifyToken();
