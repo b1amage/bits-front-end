@@ -8,7 +8,7 @@ const PostList = () => {
 
 	return (
 		<div
-			className={`2xl:max-w-full rounded-t-3xl bg-white flex flex-col justify-center px-8 sm:px-14 md:px-16 lg:px-40 xl:px-52 2xl:px-60`}
+			className={`2xl:max-w-full rounded-t-3xl bg-white flex flex-col justify-center px-4 sm:px-8 md:px-12 lg:px-16 xl:px-48 2xl:px-60`}
 		>
 			<PostListNavBar current={type} setType={setType} />
 

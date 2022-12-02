@@ -5,13 +5,14 @@ import Text from "components/utilities/text/Text";
 import NavLink from "components/navigation/NavLink";
 import LoginForm from "components/form/LoginForm";
 import loginApi from "api/loginApi";
-import AlreadyLogin from "../components/login/AlreadyLogin";
+// import AlreadyLogin from "../components/login/AlreadyLogin";
+import ProfilePage from "./ProfilePage";
 
 const LoginPage = () => {
 	return (
 		<Container className="flex flex-col justify-center">
 			{loginApi.isLogin() ? (
-				<AlreadyLogin />
+				<ProfilePage />
 			) : (
 				<>
 					<Logo className="mx-auto" />

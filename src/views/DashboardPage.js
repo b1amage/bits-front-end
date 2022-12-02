@@ -18,11 +18,24 @@ const DashboardPage = () => {
   const [currentSearch, setCurrentSearch] = useState("");
   const [userBlogs, setUserBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  // const [blogList] = useDebounce(userBlogs, 2000);
+  const [values, setValues] = useState({
+    currentCategory: "",
+    currentSearch: "",
+  });
 
   const handleChange = (e) => {
     setCurrentSearch(e.target.value);
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    setValues({
+      currentCategory: currentCategory,
+      currentSearch: currentSearch,
+    });
+  };
+  
   const navigate = useNavigate();
 
   // check if user has logged in
@@ -43,19 +56,29 @@ const DashboardPage = () => {
   useEffect(() => {
     const allUserBlogs = async () => {
       setIsLoading(true);
-      const response = await blogApi.getUserBlogs(
-        currentCategory,
-        currentSearch
-      );
+      const response = await blogApi.getUserBlogs(values);
       setUserBlogs(response.data.results);
       setIsLoading(false);
     };
+
     allUserBlogs();
-  }, [currentCategory, currentSearch]);
+  }, [values]);
 
   const handleCategoryClick = (e) => {
     // set current category (add css)
-    setCurrentCategory(e.target.id);
+    const { id } = e.target;
+    setCurrentCategory(id);
+
+    id === "all"
+      ? setValues({
+          currentCategory: "",
+          currentSearch: currentSearch,
+        })
+      : setValues({
+          currentCategory: e.target.id,
+          currentSearch: currentSearch,
+        });
+
     // call API get blog by category
     // set blogs to data.results
   };
@@ -78,6 +101,7 @@ const DashboardPage = () => {
       <DashboardSearchBox
         className="mt-10 mb-2"
         handleChange={handleChange}
+        handleSearch={handleSearch}
       />
 
       <ScrollContainer className="mb-10">
@@ -115,7 +139,7 @@ const DashboardPage = () => {
       )}
 
       <Button
-	  	onClick={() => navigate("/post/write")}
+        onClick={() => navigate("/post/write")}
         isRound
         primary
         className="!w-[75px] !h-[75px] !text-5xl fixed bottom-4 left-1/2 -translate-x-1/2"
