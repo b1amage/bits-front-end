@@ -61,6 +61,10 @@
 		@apply font-bold text-3xl;
 	}
 
+	.blog-content p {
+		@apply text-justify;
+	}
+
 	.blog-content a {
 		@apply !underline text-primary-100;
 	}
