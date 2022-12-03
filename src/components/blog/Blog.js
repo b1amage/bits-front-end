@@ -32,6 +32,12 @@ const Blog = ({
 		window.location.reload(true);
 	};
 
+	const editBlog = async() => {
+		const response = await blogApi.getBlogDetail(blogId)
+		localStorage.setItem("blog", JSON.stringify(response.data.blog))
+		navigate("/post/write")
+	};
+
 	return (
 		<div className="flex flex-col flex-1 mr-10 transition-all hover:-translate-y-2 hover:shadow-xl">
 			<div
@@ -58,6 +64,7 @@ const Blog = ({
 			{editable && (
 				<div className="flex justify-center items-center gap-5 p-4 mt-2 rounded-lg bg-primary-30 max-w-[380px] lg:max-w-[420px]">
 					<Button
+						onClick={() => editBlog()}
 						primary
 						isRound
 						className="!w-[50px] !h-[50px] transition-all duration-300"
