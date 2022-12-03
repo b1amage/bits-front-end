@@ -35,7 +35,7 @@ const UserInfo = () => {
         </Button>
       </div>
 
-      <Avatar />
+      <Avatar avatar={JSON.parse(localStorage.getItem("user")).avatar} username={JSON.parse(localStorage.getItem("user")).name} />
       <UserStats />
     </Container>
   );

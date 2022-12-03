@@ -11,9 +11,10 @@ import {
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import draftToHtml from "draftjs-to-html";
 
-const WritePostForm = ({ onSubmit, formClassName }) => {
+const WritePostForm = ({ onSubmit, formClassName}) => {
+
   // setup initial content for edit
-  var overview = "";
+  var overview = localStorage.getItem("blog") !== null ? JSON.parse(localStorage.getItem("blog")).content : ""
 
   // convert HTML content to EditorState
   const contentDataState = ContentState.createFromBlockArray(

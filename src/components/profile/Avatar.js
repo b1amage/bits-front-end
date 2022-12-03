@@ -1,10 +1,10 @@
 import Image from "components/utilities/image/Image";
 import background from "assets/svg/parallelogram.svg";
 import camera from "assets/svg/camera.svg";
-import avatar from "assets/svg/avatar.svg";
+// import avatar from "assets/svg/avatar.svg";
 import Title from "components/utilities/text/Title";
 
-const Avatar = () => {
+const Avatar = ({avatar, username}) => {
 	return (
 		<div className={`relative`}>
 			<Image
@@ -28,7 +28,7 @@ const Avatar = () => {
 				/>
 			</div>
 			<Title
-				children={"Davis Gouse"}
+				children={username}
 				className={`text-center text-lg md:!text-2xl lg:!text-3xl 2xl:!text-4xl`}
 			/>
 		</div>
