@@ -14,7 +14,7 @@ import draftToHtml from "draftjs-to-html";
 const WritePostForm = ({ onSubmit, formClassName}) => {
 
   // setup initial content for edit
-  var overview = localStorage.getItem("blog") !== null ? JSON.parse(localStorage.getItem("blog")).content : ""
+  var overview = ""
 
   // convert HTML content to EditorState
   const contentDataState = ContentState.createFromBlockArray(

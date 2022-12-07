@@ -1,6 +1,6 @@
 // import Image from "components/utilities/image/Image";
 import Avatar from "components/profile/Avatar";
-import UserStats from "components/profile/UserStats";
+// import UserStats from "components/profile/UserStats";
 // import setting from "assets/svg/setting.svg";
 import Container from "components/utilities/container/Container";
 import Button from "components/utilities/button/Button";
@@ -19,13 +19,6 @@ const UserInfo = () => {
   };
   return (
     <Container className={"2xl:max-w-full px-8 2xl:px-60 !py-8"}>
-      {/* <Image
-				src={setting}
-				alt={"setting"}
-				imageClassName={`w-[3vw] h-[3vw]`}
-				className={`flex justify-end cursor-pointer`}
-			/> */}
-
       <div className="flex justify-end gap-5 md:gap-8 lg:gap-10">
         <Button secondary className="transition-all">
           Edit
@@ -36,7 +29,7 @@ const UserInfo = () => {
       </div>
 
       <Avatar avatar={JSON.parse(localStorage.getItem("user")).avatar} username={JSON.parse(localStorage.getItem("user")).name} />
-      <UserStats />
+      {/* <UserStats /> */}
     </Container>
   );
 };

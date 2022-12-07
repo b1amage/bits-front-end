@@ -22,8 +22,8 @@ const PostInfo = ({
 			<PostStats
 				title={title}
 				views={views}
-				comments={comments}
-				likes={likes}
+				// commentCount={comments}
+				heartCount={likes}
 				author={author}
 				time={time}
 				postType={postType}
