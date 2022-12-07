@@ -1,12 +1,13 @@
 import PostList from "components/list/PostList";
 import UserInfo from "components/profile/UserInfo";
+import Container from "components/utilities/container/Container";
 
 const ProfilePage = () => {
 	return (
-		<div className="inline-block w-full bg-teriary-gray-20">
+		<Container className="w-full !pb-0 bg-teriary-gray-20">
 			<UserInfo />
 			<PostList />
-		</div>
+		</Container>
 	);
 };
 
