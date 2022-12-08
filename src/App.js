@@ -57,7 +57,7 @@ const App = () => {
 							path="/forgot-password"
 							element={<ForgotPasswordPage />}
 						/>
-						<Route path="/password/reset" element={<ResetPage />} />
+						<Route path="/reset-password" element={<ResetPage />} />
 						<Route path="/blogs/:query" element={<BlogsPage />} />
 						<Route path="/profile" element={<ProfilePage />} />
 						<Route path="/preview" element={<Preview />} />

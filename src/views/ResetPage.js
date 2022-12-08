@@ -8,8 +8,29 @@ import Button from "components/utilities/button/Button";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import CONSTANT from "constant/Constant";
+import forgotPasswordApi from "api/forgotPasswordApi";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import Error from "components/utilities/form/Error";
 
+const useQuery = () => {
+	return new URLSearchParams(useLocation().search);
+};
 const ResetPage = () => {
+	const query = useQuery()
+	const navigate = useNavigate()
+	const [err, setErr] = useState()
+
+	useEffect(() => {
+		const saveToken = async () => {
+			localStorage.setItem(
+				"resetToken",
+				JSON.stringify(query.get("token"))
+			);
+		};
+		saveToken();
+	}, [query, navigate]);
+
 	const formik = useFormik({
 		initialValues: {
 			newPassword: CONSTANT.INITIAL_VALUE.password,
@@ -27,8 +48,10 @@ const ResetPage = () => {
 				)
 				.matches(CONSTANT.REGEX.password, CONSTANT.ERROR.password),
 		}),
-		onSubmit: (values) => {
+		onSubmit: async(values) => {
 			console.log(values);
+			const response = await forgotPasswordApi.resetPassword(values.newPassword, JSON.parse(localStorage.getItem("resetToken")), navigate)
+			setErr(response.data.msg)
 		},
 	});
 	return (
@@ -66,6 +89,7 @@ const ResetPage = () => {
 					err={formik.errors.confirmPassword}
 				/>
 
+				{err && <Error children={err} />}
 				<Button type="submit" primary fluid class="my-10 md:py-5">
 					Reset password
 				</Button>
