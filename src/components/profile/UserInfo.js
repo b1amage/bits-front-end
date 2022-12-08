@@ -28,7 +28,7 @@ const UserInfo = () => {
         </Button>
       </div>
 
-      <Avatar avatar={JSON.parse(localStorage.getItem("user")).avatar} username={JSON.parse(localStorage.getItem("user")).name} />
+      <Avatar avatar={localStorage.getItem("user") !== null && JSON.parse(localStorage.getItem("user")).avatar} username={localStorage.getItem("user") !== null && JSON.parse(localStorage.getItem("user")).name} />
       {/* <UserStats /> */}
     </Container>
   );

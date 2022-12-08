@@ -4,19 +4,11 @@ import Checkbox from "components/utilities/form/Checkbox";
 import Text from "components/utilities/text/Text";
 import NavLink from "components/navigation/NavLink";
 import LoginForm from "components/form/LoginForm";
-import loginApi from "api/loginApi";
 // import AlreadyLogin from "../components/login/AlreadyLogin";
 // import ProfilePage from "./ProfilePage";
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+
 
 const LoginPage = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    if (loginApi.isLogin() === null) {
-      navigate("/login");
-    }
-  }, [navigate]);
   return (
     <Container className="flex flex-col justify-center">
       <>
