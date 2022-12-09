@@ -10,7 +10,7 @@ import Error from "components/utilities/form/Error";
 
 const LoginForm = () => {
 	const navigate = useNavigate();
-	const [error, setError] = useState(); 
+	const [error, setError] = useState();
 
 	const formik = useFormik({
 		initialValues: {
@@ -53,7 +53,7 @@ const LoginForm = () => {
 				err={formik.errors.password}
 			/>
 
-			{error && <Error children={error} className="!w-full"/>}
+			{error && <Error children={error} className="!w-full" />}
 
 			<Button type="submit" primary fluid className="my-10">
 				Sign in
