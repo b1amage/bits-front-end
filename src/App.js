@@ -1,6 +1,7 @@
 import React, { Suspense, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import EditBlogPage from "views/EditBlogPage";
+import EditProfilePage from "views/EditProfilePage";
 
 const RegisterPage = React.lazy(() => import("views/RegisterPage"));
 const Preview = React.lazy(() => import("preview/Preview"));
@@ -60,7 +61,8 @@ const App = () => {
 						/>
 						<Route path="/reset-password" element={<ResetPage />} />
 						<Route path="/blogs/:query" element={<BlogsPage />} />
-						<Route path="/profile" element={<ProfilePage />} />
+						<Route path="/profile/:userId" element={<ProfilePage />} />
+						<Route path="/profile/edit/:userId" element={<EditProfilePage />} />
 						<Route path="/preview" element={<Preview />} />
 						<Route path="/register" element={<RegisterPage />} />
 						<Route
