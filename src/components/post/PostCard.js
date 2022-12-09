@@ -2,7 +2,7 @@
 import Image from "components/utilities/image/Image";
 import PostInfo from "components/post/PostInfo";
 import { useNavigate } from "react-router-dom";
-
+import defaultImg from "assets/img/default.png"
 const PostCard = ({
 	thumbnail,
 	title,
@@ -22,8 +22,8 @@ const PostCard = ({
 			onClick={() => navigate(`/blog/${blogId}`)}
 		>
 			<Image
-				src={thumbnail}
-				alt={"thumbnail"}
+				src={thumbnail === "default" && defaultImg}
+				alt={"banner"}
 				imageClassName={`sm:w-[30vw] sm:h-[20vw] xl:w-[15vw] xl:h-[11vw] lg:w-[16vw] lg:h-[12vw]`}
 				className={``}
 			/>

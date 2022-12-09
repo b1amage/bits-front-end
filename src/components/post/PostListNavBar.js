@@ -1,11 +1,12 @@
 import navPostTypes from "content/navPostTypes";
 import NavLink from "components/navigation/NavLink";
 import Container from "components/utilities/container/Container";
+import Text from "components/utilities/text/Text";
 
-const PostListNavBar = ({ current, setType }) => {
+const PostListNavBar = ({ quantity }) => {
 	return (
-		<Container className="inline-flex flex-wrap !py-10 text-secondary-20">
-			{navPostTypes.map((navType, index) => {
+		<div className="inline-flex flex-wrap !py-10 text-secondary-20 px-4">
+			{/* {navPostTypes.map((navType, index) => {
 				return (
 					<NavLink
 						to={navType.to}
@@ -18,8 +19,9 @@ const PostListNavBar = ({ current, setType }) => {
 						key={index}
 					/>
 				);
-			})}
-		</Container>
+			})} */}
+			<Text children={`All blogs (${quantity})`} />
+		</div>
 	);
 };
 

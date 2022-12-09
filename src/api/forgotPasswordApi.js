@@ -21,7 +21,7 @@ const forgotPasswordApi = {
         { withCredentials: true }
       );
       console.log(response);
-      navigate('/')
+      navigate('/successful')
       return response;
     } catch (err) {
       console.log(err);

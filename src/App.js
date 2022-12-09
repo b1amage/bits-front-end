@@ -1,5 +1,6 @@
 import React, { Suspense, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import EditBlogPage from "views/EditBlogPage";
 
 const RegisterPage = React.lazy(() => import("views/RegisterPage"));
 const Preview = React.lazy(() => import("preview/Preview"));
@@ -73,6 +74,7 @@ const App = () => {
 						/>
 						<Route path="/blog/:id" element={<BlogDetailPage />} />
 						<Route path="/post/write" element={<WritePostPage />} />
+						<Route path="/blog/edit/:blogId" element={<EditBlogPage />} />
 						<Route path="/topic" element={<TopicPage />} />
 						<Route path="/about" element={<AboutPage />} />
 						<Route path="/dashboard" element={<DashboardPage />} />
