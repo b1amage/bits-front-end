@@ -4,11 +4,16 @@ import Avatar from "components/profile/Avatar";
 // import setting from "assets/svg/setting.svg";
 // import Container from "components/utilities/container/Container";
 import Button from "components/utilities/button/Button";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import authenticationApi from "api/authenticationApi";
+import { useEffect, useState } from "react";
+import authorApi from "api/userApi";
 
 const UserInfo = () => {
   const navigate = useNavigate();
+  const {userId} = useParams();
+  const [user, setUser] = useState()
+
   const handleLogout = () => {
     const logout = async () => {
       const response = await authenticationApi.logout(navigate);
@@ -17,10 +22,20 @@ const UserInfo = () => {
 
     logout();
   };
+
+  useEffect(() => {
+    const getUser = async() => {
+      const response = await authorApi.getById(userId)
+      console.log(response)
+      setUser(response.data.user)
+    }
+    getUser()
+  }, [userId])
+
   return (
     <div className={"2xl:max-w-full px-8 2xl:px-60 !py-8"}>
-      <div className="flex justify-end gap-5 md:gap-8 lg:gap-10">
-        <Button secondary className="transition-all">
+      <div className={`${userId === JSON.parse(localStorage.getItem("user")).userId ? "flex" : "hidden"} flex justify-end gap-5 md:gap-8 lg:gap-10`}>
+        <Button onClick={() => navigate(`/profile/edit/${userId}`)} secondary className="transition-all">
           Edit
         </Button>
         <Button onClick={handleLogout} primary className="transition-all">
@@ -28,7 +43,7 @@ const UserInfo = () => {
         </Button>
       </div>
 
-      <Avatar avatar={localStorage.getItem("user") !== null && JSON.parse(localStorage.getItem("user")).avatar} username={localStorage.getItem("user") !== null && JSON.parse(localStorage.getItem("user")).name} />
+      <Avatar avatar={user && user.avatar} username={user && user.username} biography={user && user.biography} />
       {/* <UserStats /> */}
     </div>
   );

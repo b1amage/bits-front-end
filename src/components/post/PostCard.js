@@ -24,7 +24,7 @@ const PostCard = ({
 			<Image
 				src={thumbnail === "default" && defaultImg}
 				alt={"banner"}
-				imageClassName={`sm:w-[30vw] sm:h-[20vw] xl:w-[15vw] xl:h-[11vw] lg:w-[16vw] lg:h-[12vw]`}
+				imageClassName={`sm:w-[30vw] xl:w-[15vw] lg:w-[16vw]`}
 				className={``}
 			/>
 			<PostInfo
