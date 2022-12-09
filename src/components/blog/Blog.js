@@ -35,7 +35,7 @@ const Blog = ({
 	const editBlog = async() => {
 		const response = await blogApi.getBlogDetail(blogId)
 		localStorage.setItem("blog", JSON.stringify(response.data.blog))
-		navigate("/post/write")
+		navigate(`/blog/edit/${blogId}`)
 	};
 
 	return (

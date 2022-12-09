@@ -2,7 +2,7 @@
 import Avatar from "components/profile/Avatar";
 // import UserStats from "components/profile/UserStats";
 // import setting from "assets/svg/setting.svg";
-import Container from "components/utilities/container/Container";
+// import Container from "components/utilities/container/Container";
 import Button from "components/utilities/button/Button";
 import { useNavigate } from "react-router-dom";
 import authenticationApi from "api/authenticationApi";
@@ -18,7 +18,7 @@ const UserInfo = () => {
     logout();
   };
   return (
-    <Container className={"2xl:max-w-full px-8 2xl:px-60 !py-8"}>
+    <div className={"2xl:max-w-full px-8 2xl:px-60 !py-8"}>
       <div className="flex justify-end gap-5 md:gap-8 lg:gap-10">
         <Button secondary className="transition-all">
           Edit
@@ -30,7 +30,7 @@ const UserInfo = () => {
 
       <Avatar avatar={localStorage.getItem("user") !== null && JSON.parse(localStorage.getItem("user")).avatar} username={localStorage.getItem("user") !== null && JSON.parse(localStorage.getItem("user")).name} />
       {/* <UserStats /> */}
-    </Container>
+    </div>
   );
 };
 
