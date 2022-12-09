@@ -1,6 +1,6 @@
-import navPostTypes from "content/navPostTypes";
-import NavLink from "components/navigation/NavLink";
-import Container from "components/utilities/container/Container";
+// import navPostTypes from "content/navPostTypes";
+// import NavLink from "components/navigation/NavLink";
+// import Container from "components/utilities/container/Container";
 import Text from "components/utilities/text/Text";
 
 const PostListNavBar = ({ quantity }) => {

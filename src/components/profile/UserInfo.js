@@ -2,7 +2,7 @@
 import Avatar from "components/profile/Avatar";
 // import UserStats from "components/profile/UserStats";
 // import setting from "assets/svg/setting.svg";
-import Container from "components/utilities/container/Container";
+// import Container from "components/utilities/container/Container";
 import Button from "components/utilities/button/Button";
 import { useNavigate } from "react-router-dom";
 import authenticationApi from "api/authenticationApi";
