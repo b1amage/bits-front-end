@@ -138,6 +138,7 @@ const BlogDetailPage = () => {
 				<>
 					{/* Blog author's info */}
 					<AuthorInfo
+						authorId={blog?.user}
 						readTime={blog?.timeToRead}
 						name={author?.username}
 						userImg={author?.avatar}

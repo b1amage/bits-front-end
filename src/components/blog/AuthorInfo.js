@@ -2,8 +2,9 @@ import Image from "components/utilities/image/Image";
 import Text from "components/utilities/text/Text";
 import PropTypes from "prop-types";
 import defaultAvatar from "assets/img/defaultAvatar.jpeg";
+import { Link } from "react-router-dom";
 
-const AuthorInfo = ({ name, readTime, userImg }) => {
+const AuthorInfo = ({ name, readTime, userImg, authorId }) => {
 	return (
 		<div className="flex items-center gap-5">
 			<Image
@@ -12,9 +13,12 @@ const AuthorInfo = ({ name, readTime, userImg }) => {
 			/>
 
 			<div>
-				<Text className="text-lg md:text-xl lg:text-2xl !font-bold !text-secondary-100">
-					{name}
-				</Text>
+				<Link to={`/profile/${authorId}`}>
+					<Text className="text-lg md:text-xl lg:text-2xl !font-bold !text-secondary-100">
+						{name}
+					</Text>
+				</Link>
+
 				<Text className="text-sm font-thin md:text-lg lg:text-xl text-secondary-20">
 					{readTime} min reads
 				</Text>
