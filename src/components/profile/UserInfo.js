@@ -10,43 +10,61 @@ import { useEffect, useState } from "react";
 import authorApi from "api/userApi";
 
 const UserInfo = () => {
-  const navigate = useNavigate();
-  const {userId} = useParams();
-  const [user, setUser] = useState()
+	const navigate = useNavigate();
+	const { userId } = useParams();
+	const [user, setUser] = useState();
 
-  const handleLogout = () => {
-    const logout = async () => {
-      const response = await authenticationApi.logout(navigate);
-      console.log(response);
-    };
+	const handleLogout = () => {
+		const logout = async () => {
+			const response = await authenticationApi.logout(navigate);
+			console.log(response);
+		};
 
-    logout();
-  };
+		logout();
+	};
 
-  useEffect(() => {
-    const getUser = async() => {
-      const response = await authorApi.getById(userId)
-      console.log(response)
-      setUser(response.data.user)
-    }
-    getUser()
-  }, [userId])
+	useEffect(() => {
+		const getUser = async () => {
+			const response = await authorApi.getById(userId);
+			console.log(response);
+			setUser(response.data.user);
+		};
+		getUser();
+	}, [userId]);
 
-  return (
-    <div className={"2xl:max-w-full px-8 2xl:px-60 !py-8"}>
-      <div className={`${userId === JSON.parse(localStorage.getItem("user")).userId ? "flex" : "hidden"} flex justify-end gap-5 md:gap-8 lg:gap-10`}>
-        <Button onClick={() => navigate(`/profile/edit/${userId}`)} secondary className="transition-all">
-          Edit
-        </Button>
-        <Button onClick={handleLogout} primary className="transition-all">
-          Logout
-        </Button>
-      </div>
+	return (
+		<div className={"2xl:max-w-full px-8 2xl:px-60 !py-8"}>
+			<div
+				className={`${
+					userId === JSON.parse(localStorage.getItem("user"))?.userId
+						? "flex"
+						: "hidden"
+				} flex justify-end gap-5 md:gap-8 lg:gap-10`}
+			>
+				<Button
+					onClick={() => navigate(`/profile/edit/${userId}`)}
+					secondary
+					className="transition-all"
+				>
+					Edit
+				</Button>
+				<Button
+					onClick={handleLogout}
+					primary
+					className="transition-all"
+				>
+					Logout
+				</Button>
+			</div>
 
-      <Avatar avatar={user && user.avatar} username={user && user.username} biography={user && user.biography} />
-      {/* <UserStats /> */}
-    </div>
-  );
+			<Avatar
+				avatar={user && user.avatar}
+				username={user && user.username}
+				biography={user && user.biography}
+			/>
+			{/* <UserStats /> */}
+		</div>
+	);
 };
 
 export default UserInfo;

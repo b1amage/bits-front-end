@@ -29,6 +29,7 @@ const BlogDetailPage = () => {
 	const [commentContent, setCommentContent] = useState("");
 	const navigate = useNavigate();
 	const { id } = useParams();
+	const user = JSON.parse(localStorage.getItem("user"));
 
 	const handleCommentContentChange = (e) => setCommentContent(e.target.value);
 
@@ -108,12 +109,26 @@ const BlogDetailPage = () => {
 			blog.likes.filter((item, index) => item._id !== id).length !== 0
 		) {
 			unlikeBlog();
+			console.log("unlike");
 		} else {
+			console.log("like");
 			likeBlog();
 		}
 	};
 
 	const handleSendIconClick = () => {
+		if (!user) return;
+
+		setComments([
+			...comments,
+			{
+				blogId: blog._id,
+				content: commentContent,
+				createdAt: null,
+				user,
+			},
+		]);
+
 		const sendComment = async () => {
 			const response = await blogApi.addComment(
 				{ blogId: blog._id, content: commentContent },
