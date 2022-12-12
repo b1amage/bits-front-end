@@ -4,7 +4,7 @@ import React from 'react'
 
 const EditProfilePage = () => {
   return (
-    <Container>
+    <Container className='!pb-4'>
       <EditProfileForm />
     </Container>
   )

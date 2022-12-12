@@ -12,6 +12,18 @@ const authorApi = {
 			navigate(`/error/${error.response.data.msg}`);
 		}
 	},
+	async updateProfile(values, navigate){
+		const url = `/user/edit`
+		try{
+			const response = await axiosClient.put(url, values, {
+				withCredentials:true
+			});
+			navigate(-1)
+			console.log(response);
+		} catch(err){
+			console.log(err.response)
+		}
+	}
 };
 
 export default authorApi;
