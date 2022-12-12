@@ -1,8 +1,8 @@
 import Image from "components/utilities/image/Image";
-import { AiOutlineHeart } from "react-icons/ai";
+import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
 import daysDifference from "helper/dateDiff";
 
-const CommentCard = ({ comment }) => {
+const CommentCard = ({ comment, onLike }) => {
 	const { heartCount, content, user, createdAt } = comment;
 	const { avatar, username } = user;
 
@@ -10,6 +10,10 @@ const CommentCard = ({ comment }) => {
 	var createdDate = !createdAt ? new Date() : new Date(createdAt);
 
 	const dateDiff = daysDifference(currentDate, createdDate);
+	const currentUser = JSON.parse(localStorage.getItem("user"));
+
+	const likes = comment.likes;
+	const idLikes = likes.length > 0 && likes.map((item) => item._id);
 
 	return (
 		<div className="flex flex-col gap-5 px-5 py-8 border rounded-lg shadow-md border-secondary-50 md:gap-6">
@@ -27,9 +31,21 @@ const CommentCard = ({ comment }) => {
 					</div>
 				</div>
 
-				<div className="flex items-center gap-2 cursor-pointer">
+				<div
+					className="flex items-center gap-2 cursor-pointer"
+					onClick={() => {
+						console.log(comment);
+						onLike(comment._id);
+					}}
+				>
 					<p>{heartCount}</p>
-					<AiOutlineHeart />
+					{currentUser &&
+					idLikes.length > 0 &&
+					idLikes.filter((item) => item === currentUser._id) ? (
+						<AiFillHeart className="text-red-500" />
+					) : (
+						<AiOutlineHeart />
+					)}
 				</div>
 			</div>
 

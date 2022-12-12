@@ -141,6 +141,41 @@ const BlogDetailPage = () => {
 		sendComment();
 	};
 
+	const handleIconCommentClick = (id) => {
+		const likeComment = async () => {
+			const response = await blogApi.likeComment(id, navigate);
+			console.log(response);
+			// setBlog(response.data.blog);
+			// console.log(blog);
+		};
+
+		// const unlikeBlog = async () => {
+		// 	const response = await blogApi.unlikeBlog(blog._id, navigate);
+		// 	console.log(response);
+		// 	setBlog(response.data.blog);
+
+		// 	console.log(blog);
+		// };
+
+		likeComment();
+
+		// const user = JSON.parse(localStorage.getItem("user"));
+		// const id = user ? user._id : null;
+
+		// console.log(blog.likes);
+
+		// if (
+		// 	blog?.likes?.length !== 0 &&
+		// 	blog.likes.filter((item, index) => item._id !== id).length !== 0
+		// ) {
+		// 	unlikeBlog();
+		// 	console.log("unlike");
+		// } else {
+		// 	console.log("like");
+		// 	likeBlog();
+		// }
+	};
+
 	console.log(blog);
 
 	return (
@@ -205,6 +240,7 @@ const BlogDetailPage = () => {
 									<CommentCard
 										comment={item}
 										key={item._id}
+										onLike={handleIconCommentClick}
 									/>
 								))
 							)}

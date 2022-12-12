@@ -140,6 +140,30 @@ const blogApi = {
 			console.log(err);
 		}
 	},
+
+	async likeComment(id, navigate) {
+		const url = `/comment/like/${id}`;
+
+		try {
+			const response = await axiosClient.put(url);
+			return response;
+		} catch (error) {
+			console.log(error);
+			navigate(`/error/${error.response.data.msg}`);
+		}
+	},
+
+	async unLikeComment(id, navigate) {
+		const url = `/comment/unlike/${id}`;
+
+		try {
+			const response = await axiosClient.put(url);
+			return response;
+		} catch (error) {
+			console.log(error);
+			navigate(`/error/${error.response.data.msg}`);
+		}
+	},
 };
 
 export default blogApi;
