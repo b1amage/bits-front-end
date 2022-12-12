@@ -7,7 +7,7 @@ const CommentCard = ({ comment }) => {
 	const { avatar, username } = user;
 
 	var currentDate = new Date();
-	var createdDate = new Date(createdAt);
+	var createdDate = !createdAt ? new Date() : new Date(createdAt);
 
 	const dateDiff = daysDifference(currentDate, createdDate);
 
@@ -20,7 +20,9 @@ const CommentCard = ({ comment }) => {
 						className="w-[50px] h-[50px] !rounded-full"
 					/>
 					<div>
-						<p className="font-bold text-primary-100">{username}</p>
+						<p className="font-bold text-primary-100">
+							{username || user.name}
+						</p>
 						<p className="text-secondary-100">{dateDiff}</p>
 					</div>
 				</div>

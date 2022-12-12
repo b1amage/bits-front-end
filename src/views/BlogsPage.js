@@ -31,8 +31,8 @@ const BlogsPage = () => {
 	return (
 		<Container>
 			<Title className="my-5 lg:my-10 !text-secondary-20">
-				All results for{" "}
-				<span className="capitalize text-secondary-100">{query}</span>
+				Results for "
+				<span className="capitalize text-secondary-100">{query}</span>"
 			</Title>
 
 			{loading ? (
