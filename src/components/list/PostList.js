@@ -1,38 +1,17 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 // import posts from "../../content/posts";
 import PostCard from "components/post/PostCard";
 import PostListNavBar from "components/post/PostListNavBar";
-import blogApi from "api/blogApi";
+// import blogApi from "api/blogApi";
 import Loading from "components/loading/Loading";
 import Container from "components/utilities/container/Container";
 
-const PostList = () => {
-  // const [type, setType] = useState("post");
-  const [userBlogs, setUserBlogs] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-  const [count, setCount] = useState(0)
-
+const PostList = ({count, isLoading, userBlogs}) => {
   // format datetime in month day, year
   const formatDate = (strDateTime) => {
     var options = { day: "numeric", month: "long", year: "numeric" };
     return new Date(strDateTime).toLocaleDateString([], options);
   };
-
-  useEffect(() => {
-    const allUserBlogs = async () => {
-      setIsLoading(true);
-      const response = await blogApi.getUserBlogs({
-        currentCategory: "",
-        currentSearch: "",
-      });
-      // console.log(response.data);
-      setUserBlogs(response.data.results);
-      setCount(response.data.results.length)
-      setIsLoading(false);
-    };
-
-    allUserBlogs();
-  }, []);
 
   return (
     <Container
