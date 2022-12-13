@@ -141,39 +141,47 @@ const BlogDetailPage = () => {
 		sendComment();
 	};
 
-	const handleIconCommentClick = (id) => {
+	const handleIconCommentClick = (id, liked) => {
 		const likeComment = async () => {
 			const response = await blogApi.likeComment(id, navigate);
 			console.log(response);
-			// setBlog(response.data.blog);
-			// console.log(blog);
+			const newComments = comments.map((cmt) => {
+				if (cmt._id === id) {
+					cmt.heartCount = response.data.comment.heartCount;
+					cmt.likes = response.data.comment.likes;
+				}
+
+				return cmt;
+			});
+
+			console.log(newComments);
+
+			setComments(newComments);
 		};
 
-		// const unlikeBlog = async () => {
-		// 	const response = await blogApi.unlikeBlog(blog._id, navigate);
-		// 	console.log(response);
-		// 	setBlog(response.data.blog);
+		const unlikeComment = async () => {
+			const response = await blogApi.unLikeComment(id, navigate);
+			console.log(response);
 
-		// 	console.log(blog);
-		// };
+			const newComments = comments.map((cmt) => {
+				if (cmt._id === id) {
+					cmt.heartCount = response.data.comment.heartCount;
+					cmt.likes = response.data.comment.likes;
+				}
 
-		likeComment();
+				return cmt;
+			});
 
-		// const user = JSON.parse(localStorage.getItem("user"));
-		// const id = user ? user._id : null;
+			console.log(newComments);
 
-		// console.log(blog.likes);
+			setComments(newComments);
+		};
 
-		// if (
-		// 	blog?.likes?.length !== 0 &&
-		// 	blog.likes.filter((item, index) => item._id !== id).length !== 0
-		// ) {
-		// 	unlikeBlog();
-		// 	console.log("unlike");
-		// } else {
-		// 	console.log("like");
-		// 	likeBlog();
-		// }
+		if (liked) {
+			unlikeComment();
+		} else {
+			likeComment();
+		}
 	};
 
 	console.log(blog);
