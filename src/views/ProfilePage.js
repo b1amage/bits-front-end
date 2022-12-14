@@ -19,24 +19,25 @@ const ProfilePage = () => {
   useEffect(() => {
     if (loginApi.isLogin() === null) {
       navigate("/login");
+    } else{
+      const getUser = async () => {
+        const response = await authorApi.getById(userId, navigate);
+        console.log(response);
+        setUser(response.data.user);
+      };
+      getUser();
+  
+      const getAllUserBlogs = async () => {
+        const response = await blogApi.getUserBlogs({
+          currentCategory: "",
+          currentSearch: "",
+        });
+        // console.log(response.data);
+        setUserBlogs(response.data.results);
+        setCount(response.data.results.length);
+      };
+      getAllUserBlogs();
     }
-    const getUser = async () => {
-      const response = await authorApi.getById(userId, navigate);
-      console.log(response);
-      setUser(response.data.user);
-    };
-    getUser();
-
-    const getAllUserBlogs = async () => {
-      const response = await blogApi.getUserBlogs({
-        currentCategory: "",
-        currentSearch: "",
-      });
-      // console.log(response.data);
-      setUserBlogs(response.data.results);
-      setCount(response.data.results.length);
-    };
-    getAllUserBlogs();
   }, [navigate, userId]);
 
   return (
