@@ -13,14 +13,9 @@ const EditProfileForm = () => {
   const [name, setName] = useState();
   const [biography, setBiography] = useState();
   const [ava, setAva] = useState(defaultImg)
-  // const [values, setValues] = useState({
-  //   name: "",
-  //   biography: "",
-  //   ava: ""
-  // })
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
-
+  const [err, setErr] = useState()
   useEffect(() => {
     const getUser = async () => {
       const response = await authorApi.getById(userId);
@@ -58,22 +53,17 @@ const EditProfileForm = () => {
 		postImg();
 	};
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault()
-    // console.log(name)
-    // console.log(biography)
-    // console.log(ava)
-
-    // setValues({
-    //   name: name,
-    //   biography: biography,
-    //   ava: ava
-    // })
+    if (name === ""){
+      setErr("Please enter your username!")
+    }
     authorApi.updateProfile({
       username: name,
       avatar: ava,
       biography: biography, 
-    }, navigate)
+    }, navigate, setErr)
+
   }
 
   return (
@@ -84,6 +74,7 @@ const EditProfileForm = () => {
         type="text"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        err={err}
       />
 
       <div className="my-8">

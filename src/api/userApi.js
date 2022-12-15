@@ -12,7 +12,7 @@ const authorApi = {
 			navigate(`/error/${error.response.data.msg}`);
 		}
 	},
-	async updateProfile(values, navigate){
+	async updateProfile(values, navigate, setErr){
 		const url = `/user/edit`
 		try{
 			const response = await axiosClient.put(url, values, {
@@ -20,8 +20,10 @@ const authorApi = {
 			});
 			navigate(-1)
 			console.log(response);
+			return response
 		} catch(err){
 			console.log(err.response)
+			setErr(err.response.data.msg)
 		}
 	}
 };

@@ -22,8 +22,9 @@ const EditPostForm = () => {
   const [banner, setBanner] = useState();
   const [category, setCategory] = useState();
   const [loading, setLoading] = useState(false);
-
+  const [err, setErr] = useState()
   const navigate = useNavigate();
+
   useEffect(() => {
     const getBlogDetail = async () => {
       setLoading(true);
@@ -43,7 +44,6 @@ const EditPostForm = () => {
       var bodyFormData = new FormData();
       bodyFormData.append("image", e.target.files[0]);
 
-      setLoading(true);
       axios({
         method: "post",
         url: "/api/image/upload-image",
@@ -54,7 +54,6 @@ const EditPostForm = () => {
           //handle success
           console.log(response);
           setBanner(response.data.image.src);
-          setLoading(false);
         })
         .catch(function (response) {
           //handle error
@@ -67,11 +66,21 @@ const EditPostForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log({
+      blogId: blogId,
       title: title,
       banner: banner,
       category: category,
       content: encode(content)
     });
+
+    blogApi.updateBlog({
+      blogId: blogId,
+      title: title,
+      banner: banner,
+      category: category,
+      content: encode(content)
+    }, setErr, navigate)
+
   };
   return (
     <>
@@ -85,6 +94,7 @@ const EditPostForm = () => {
             onChange={(e) => setTitle(e.target.value)}
             label="Title"
             fluid
+            err={err}
           />
           <div className="py-8">
             <label htmlFor="avatar">
