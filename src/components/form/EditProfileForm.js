@@ -5,66 +5,70 @@ import Input from "components/utilities/form/Input";
 import Image from "components/utilities/image/Image";
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import defaultImg from "assets/img/default.png"
+import defaultImg from "assets/img/default.png";
 import Label from "components/utilities/form/Label";
 
 const EditProfileForm = () => {
   const { userId } = useParams();
   const [name, setName] = useState();
   const [biography, setBiography] = useState();
-  const [ava, setAva] = useState(defaultImg)
-  const navigate = useNavigate()
-  const [loading, setLoading] = useState(false)
-  const [err, setErr] = useState()
+  const [ava, setAva] = useState(defaultImg);
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
+  const [err, setErr] = useState();
   useEffect(() => {
     const getUser = async () => {
       const response = await authorApi.getById(userId);
       console.log(response);
       setName(response.data.user.username);
-        setAva(response.data.user.avatar);
+      setAva(response.data.user.avatar);
       setBiography(response.data.user.biography);
     };
     getUser();
   }, [userId]);
 
   const handleAvatarUpload = (e) => {
-		const postImg = async () => {
-			var bodyFormData = new FormData();
-			bodyFormData.append("image", e.target.files[0]);
+    const postImg = async () => {
+      var bodyFormData = new FormData();
+      bodyFormData.append("image", e.target.files[0]);
 
-			setLoading(true);
-			axios({
-				method: "post",
-				url: "/api/image/upload-image",
-				data: bodyFormData,
-				headers: { "Content-Type": "multipart/form-data" },
-			})
-				.then(function (response) {
-					//handle success
-					console.log(response);
-					setAva(response.data.image.src);
-					setLoading(false);
-				})
-				.catch(function (response) {
-					//handle error
-					console.log(response);
-				});
-		};
-		postImg();
-	};
+      setLoading(true);
+      axios({
+        method: "post",
+        url: "/api/image/upload-image",
+        data: bodyFormData,
+        headers: { "Content-Type": "multipart/form-data" },
+      })
+        .then(function (response) {
+          //handle success
+          console.log(response);
+          setAva(response.data.image.src);
+          setLoading(false);
+        })
+        .catch(function (response) {
+          //handle error
+          console.log(response);
+        });
+    };
+    postImg();
+  };
 
-  const handleSubmit = async(e) => {
-    e.preventDefault()
-    if (name === ""){
-      setErr("Please enter your username!")
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (name === "") {
+      setErr("Please enter your username!");
     }
-    authorApi.updateProfile({
-      username: name,
-      avatar: ava,
-      biography: biography, 
-    }, navigate, setErr)
-
-  }
+    
+    authorApi.updateProfile(
+      {
+        username: name,
+        avatar: ava,
+        biography: biography,
+      },
+      navigate,
+      setErr
+    );
+  };
 
   return (
     <form onSubmit={handleSubmit}>

@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import NavLink from "components/navigation/NavLink";
 import Button from "components/utilities/button/Button";
 import EditorForm from "components/editor/Editor";
+import { useNavigate } from "react-router-dom";
 const WritePostForm = ({ onSubmit, formClassName}) => {
   var content = ""
   const [convertedContent, setConvertedContent] = useState("");
-
+  const navigate = useNavigate()
   return (
     <form
       onSubmit={onSubmit}
@@ -22,6 +23,7 @@ const WritePostForm = ({ onSubmit, formClassName}) => {
           onClick={(e) => {
             e.preventDefault();
             console.log(convertedContent);
+            navigate("/post/setup")
           }}
           primary
         />

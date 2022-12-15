@@ -169,6 +169,7 @@ const blogApi = {
 		const url = `blog/update`
 		try{
 			const response = await axiosClient.put(url, values, navigate);
+			localStorage.setItem("message", "Congratulations! Your blog has been updated!")
 			navigate("/successful")
 			console.log(response)
 		} catch(err){

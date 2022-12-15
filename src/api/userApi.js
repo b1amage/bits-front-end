@@ -18,7 +18,8 @@ const authorApi = {
 			const response = await axiosClient.put(url, values, {
 				withCredentials:true
 			});
-			navigate(-1)
+			localStorage.setItem("message", "Congratulations! Your profile has been updated!")
+			navigate("/successful")
 			console.log(response);
 			return response
 		} catch(err){

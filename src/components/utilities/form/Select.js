@@ -12,6 +12,7 @@ const Select = ({
   value,
   setItems,
   id,
+  className
 }) => {
     const [showItems, setShowItems] = useState(false)
     const handleOnDropdown = () => {
@@ -25,7 +26,7 @@ const Select = ({
     <div
       className={`flex lg:space-y-4 flex-col space-y-2 ${
         fluid ? "w-full" : "w-1/2"
-      }`}
+      } ${className}`}
     >
       <Label id={id} children={label} required={required} />
 
