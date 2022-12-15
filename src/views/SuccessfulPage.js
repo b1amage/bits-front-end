@@ -9,8 +9,7 @@ const SuccessfulPage = () => {
 			<Title className="text-center text-secondary-10">Successful</Title>
 			<Emoji />
 			<Text className="text-justify md:text-center">
-				Congratulations! Your blog has been published and can be seen by
-				many people. Continue to develop your talents!
+				{localStorage.getItem("message") !== null && localStorage.getItem("message")}
 			</Text>
 		</Container>
 	);

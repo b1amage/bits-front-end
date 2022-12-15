@@ -1,5 +1,6 @@
 import React, { Suspense, useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import BlogSetupPage from "views/BlogSetupPage";
 import EditBlogPage from "views/EditBlogPage";
 import EditProfilePage from "views/EditProfilePage";
 
@@ -76,6 +77,7 @@ const App = () => {
 						/>
 						<Route path="/blog/:id" element={<BlogDetailPage />} />
 						<Route path="/post/write" element={<WritePostPage />} />
+						<Route path="/post/setup" element={<BlogSetupPage />} />
 						<Route path="/blog/edit/:blogId" element={<EditBlogPage />} />
 						<Route path="/topic" element={<TopicPage />} />
 						<Route path="/about" element={<AboutPage />} />
