@@ -11,6 +11,8 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Label from "components/utilities/form/Label";
 import topics from "content/topics";
+import Select from "components/utilities/form/Select";
+import {encode} from 'html-entities';
 
 const EditPostForm = () => {
   // const navigate = useNavigate()
@@ -59,13 +61,17 @@ const EditPostForm = () => {
           console.log(response);
         });
     };
-
     postImg();
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(content);
+    console.log({
+      title: title,
+      banner: banner,
+      category: category,
+      content: encode(content)
+    });
   };
   return (
     <>
@@ -100,19 +106,8 @@ const EditPostForm = () => {
             />
           </div>
 
-          <select
-            value={category}
-            className="w-full px-4 py-3 text-sm transition-all duration-300 outline-none rounded-2xl bg-secondary-50 md:text-base md:px-6 md:py-4 focus:border-primary-100 placeholder:text-secondary-100"
-          >
-            {topics.length > 0 &&
-              topics.map((topic, index) => {
-                return (
-                  <option key={index} value={topic.value}>
-                    {topic.value}
-                  </option>
-                );
-              })}
-          </select>
+          <Select id="category" label={"Category"} options={topics.filter(topic => topic.value !== "all")} fluid value={category} setItems={setCategory} />
+
           <div className="py-8">
             <Label children="Content" />
             <EditorForm content={content} setConvertedContent={setContent} />
