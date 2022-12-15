@@ -164,6 +164,17 @@ const blogApi = {
 			navigate(`/error/${error.response.data.msg}`);
 		}
 	},
+
+	async updateBlog(values, setErr, navigate){
+		const url = `blog/update`
+		try{
+			const response = await axiosClient.put(url, values, navigate);
+			navigate("/successful")
+			console.log(response)
+		} catch(err){
+			setErr(err.response.data.msg)
+		}
+	},
 };
 
 export default blogApi;

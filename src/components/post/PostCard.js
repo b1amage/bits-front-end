@@ -22,7 +22,7 @@ const PostCard = ({
 			onClick={() => navigate(`/blog/${blogId}`)}
 		>
 			<Image
-				src={thumbnail === "default" && defaultImg}
+				src={thumbnail === "default" ? defaultImg : thumbnail}
 				alt={"banner"}
 				imageClassName={`sm:w-[30vw] xl:w-[15vw] lg:w-[16vw]`}
 				className={``}

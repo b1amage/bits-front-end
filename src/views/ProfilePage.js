@@ -7,9 +7,10 @@ import loginApi from "api/loginApi";
 // import Loading from "components/loading/Loading";
 import blogApi from "api/blogApi";
 import authorApi from "api/userApi";
+import Loading from "components/loading/Loading";
 
 const ProfilePage = () => {
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [user, setUser] = useState();
   const { userId } = useParams();
@@ -19,15 +20,18 @@ const ProfilePage = () => {
   useEffect(() => {
     if (loginApi.isLogin() === null) {
       navigate("/login");
-    } else{
+    } else {
       const getUser = async () => {
+        setLoading(true);
         const response = await authorApi.getById(userId, navigate);
         console.log(response);
         setUser(response.data.user);
+        setLoading(false);
       };
       getUser();
-  
+
       const getAllUserBlogs = async () => {
+        setLoading(true);
         const response = await blogApi.getUserBlogs({
           currentCategory: "",
           currentSearch: "",
@@ -35,6 +39,7 @@ const ProfilePage = () => {
         // console.log(response.data);
         setUserBlogs(response.data.results);
         setCount(response.data.results.length);
+        setLoading(false);
       };
       getAllUserBlogs();
     }
@@ -42,8 +47,14 @@ const ProfilePage = () => {
 
   return (
     <Container className="w-full !pb-0 bg-teriary-gray-20">
-      <UserInfo user={user} navigate={navigate} userId={userId} />
-      <PostList userBlogs={userBlogs} count={count} />
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <UserInfo user={user} navigate={navigate} userId={userId} />
+          <PostList userBlogs={userBlogs} count={count} />
+        </>
+      )}
     </Container>
   );
 };
