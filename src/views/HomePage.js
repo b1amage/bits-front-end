@@ -75,7 +75,7 @@ const HomePage = () => {
 
 			{/* Category list */}
 
-			<ScrollContainer className="my-4">
+			<ScrollContainer className="my-4 scrollbar-hidden">
 				{topics.length > 0 &&
 					topics.map((item, index) => (
 						<Category

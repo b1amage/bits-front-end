@@ -47,16 +47,16 @@
 	}
 
 	/* For Webkit-based browsers (Chrome, Safari and Opera) */
-	/*
-	.scrollbar-hide::-webkit-scrollbar {
+
+	.scrollbar-hidden::-webkit-scrollbar {
 		display: none;
-	} */
+	}
 
 	/* For IE, Edge and Firefox */
-	/* .scrollbar-hide {
+	.scrollbar-hidden {
 		-ms-overflow-style: none;
 		scrollbar-width: none;
-	} */
+	}
 
 	.blog-content p:first-child:first-letter {
 		@apply font-bold text-3xl;
