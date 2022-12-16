@@ -4,7 +4,7 @@ import React from 'react'
 
 const BlogSetupPage = () => {
   return (
-    <Container>
+    <Container className='pb-0'>
         <SetupBlogForm />
     </Container>
   )

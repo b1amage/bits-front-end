@@ -1,12 +1,12 @@
-const WRITEPOST_CONSTANT = {
+const CREATEPOST_CONSTANT = {
 	ERROR: {
 		required: "Please fill in this field!",
-		content: "Please write at least 100 words!"
 	},
 
 	INITIAL_VALUE: {
-		content: ""
+		title: "",
+		category: ""
 	},
 };
 
-export default WRITEPOST_CONSTANT;
+export default CREATEPOST_CONSTANT;

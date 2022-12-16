@@ -176,6 +176,18 @@ const blogApi = {
 			setErr(err.response.data.msg)
 		}
 	},
+	async createBlog(values, navigate, setErr){
+		const url = `blog/create`
+		try{
+			const response = await axiosClient.post(url, values, {withCredentials: true});
+			localStorage.setItem("message", "Congratulations! your blog has been published. Now your blog can be seen by many people. Continue to develop your talents!")
+			navigate("/successful")
+			return response
+		} catch (err){
+			console.log(err.response)
+			setErr(err.response.data.msg)
+		}
+	}
 };
 
 export default blogApi;

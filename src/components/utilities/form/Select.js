@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import dropdown from "assets/svg/dropdown.svg";
 import Label from "./Label";
 import Text from "../text/Text";
+import Error from "./Error";
 // import error from "../assets/svg/error.svg";
 
 const Select = ({
@@ -12,7 +13,8 @@ const Select = ({
   value,
   setItems,
   id,
-  className
+  className,
+  err
 }) => {
     const [showItems, setShowItems] = useState(false)
     const handleOnDropdown = () => {
@@ -24,21 +26,22 @@ const Select = ({
     }
   return (
     <div
-      className={`flex lg:space-y-4 flex-col space-y-2 ${
+      className={`flex flex-col gap-1 md:gap-2 lg:gap-3 ${
         fluid ? "w-full" : "w-1/2"
       } ${className}`}
     >
       <Label id={id} children={label} required={required} />
 
       <div className="">
-        <div className={`block relative w-full px-4 py-2 transition-all duration-300 bg-transparent border-2 rounded-full outline-none appearance-none focus:border-secondary bg-trasparent md:text-base md:px-6 md:py-4 border-primary-100`} onClick={handleOnDropdown}>
-            <Text children={value} />
+        <div className={`block relative w-full px-4 py-2 transition-all duration-300 bg-transparent border-2 rounded-2xl outline-none appearance-none focus:border-secondary bg-trasparent md:text-base md:px-6 md:py-4 border-primary-100`} onClick={handleOnDropdown}>
+            <Text children={value === "" ? "Please select the category" : value} />
+            {/* <Input placeholder={value} fluid className="bg-transparent !p-0" /> */}
             <div className="absolute top-1/3 right-4">
                 <img src={dropdown} alt="" />
             </div>
         </div>
         
-        <div className={`${showItems ? "block" : "hidden"} w-full my-2 transition-all duration-300 bg-transparent border-2 rounded-xl outline-none appearance-none focus:border-secondary bg-trasparent md:text-base  border-primary-100`}>
+        <div className={`${showItems ? "block" : "hidden"} w-full my-2 transition-all duration-300 border-2 rounded-2xl outline-none appearance-none focus:border-secondary md:text-base  border-primary-100`}>
             {options?.length > 0 &&
             options.map((item, index) => (
                 <div onClick={() => handleSelectItem(item)} key={index}>
@@ -47,6 +50,7 @@ const Select = ({
             ))}
         </div>
       </div>
+      {err && <Error fluid>{err}</Error>}
     </div>
   );
 };

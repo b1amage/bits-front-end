@@ -52,7 +52,7 @@ const Input = ({
 					</button>
 				)}
 
-				{err && <Error fluid={fluid}>{err}</Error>}
+				{err && <Error fluid>{err}</Error>}
 			</div>
 		</div>
 	);
