@@ -120,7 +120,7 @@ const EditPostForm = () => {
 
           <div className="py-8">
             <Label children="Content" />
-            <EditorForm content={content} setConvertedContent={setContent} />
+            <EditorForm content={content} setConvertedContent={setContent} className='max-h-[50vh]'/>
           </div>
           <Button type="submit" primary fluid>
             Update

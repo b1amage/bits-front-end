@@ -8,7 +8,7 @@ import {
   ContentState,
 } from "draft-js";
 import draftToHtml from "draftjs-to-html";
-const EditorForm = ({content, setConvertedContent, toolbarOnFocus}) => {
+const EditorForm = ({content, setConvertedContent, toolbarOnFocus, className}) => {
   var overview = content
   // convert HTML content to EditorState
   const contentDataState = ContentState.createFromBlockArray(
@@ -64,7 +64,7 @@ const EditorForm = ({content, setConvertedContent, toolbarOnFocus}) => {
       placeholder="Write your story"
       editorState={editorState}
       onEditorStateChange={handleEditorChange}
-      wrapperClassName="max-h-[70vh] h-full flex flex-col justify-end w-full py-4 w-full"
+      wrapperClassName={`max-h-[70vh] h-full flex flex-col justify-end w-full py-4 w-full ${className}`}
       editorClassName="editor w-full !h-fit shadow-md outline-none resize-none box-border rounded-2xl px-6"
       toolbarClassName="!h-fit !rounded-2xl w-full"
       toolbarOnFocus={toolbarOnFocus}
