@@ -23,6 +23,7 @@ const WritePostForm = ({ onSubmit, formClassName}) => {
           onClick={(e) => {
             e.preventDefault();
             console.log(convertedContent);
+            localStorage.setItem("content", convertedContent)
             navigate("/post/setup")
           }}
           primary
