@@ -17,16 +17,17 @@
 	}
 
 	/* Scroll bar */
+
 	body::-webkit-scrollbar {
 		@apply w-2 h-10 transition-all;
 	}
 
-	body::-webkit-scrollbar-thumb {
-		@apply bg-primary-100 outline-none;
+	body::-webkit-scrollbar-track {
+		@apply shadow-sm bg-primary-50;
 	}
 
-	.scroll-ctn::-webkit-scrollbar {
-		@apply hidden !important;
+	body::-webkit-scrollbar-thumb {
+		@apply bg-primary-100 outline-none;
 	}
 
 	/* apply to all container of view */
@@ -78,5 +79,9 @@
 	}
 	.form {
 		@apply flex flex-col w-full gap-10;
+	}
+
+	.rdw-editor-toolbar {
+		display: none !important;
 	}
 }
