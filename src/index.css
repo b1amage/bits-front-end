@@ -23,7 +23,7 @@
 	}
 
 	body::-webkit-scrollbar-track {
-		@apply shadow-sm bg-primary-50;
+		@apply shadow-sm bg-primary-30;
 	}
 
 	body::-webkit-scrollbar-thumb {
