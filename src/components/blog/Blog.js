@@ -16,6 +16,7 @@ const Blog = ({
 	readCount,
 	title,
 	date,
+	topic,
 	className,
 	editable,
 	blogId,
@@ -49,6 +50,8 @@ const Blog = ({
 					<Title className="!text-base leading-5 lg:!text-lg text-overflow">
 						{title}
 					</Title>
+
+					<Title className="!text-sm leading-5 text-overflow">{topic}</Title>
 
 					<div className="flex items-start justify-between flex-1">
 						<Text className="!text-sm">{author}</Text>

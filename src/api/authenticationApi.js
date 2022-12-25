@@ -33,6 +33,8 @@ const authenticationApi = {
 		try {
 			const response = await axiosClient.delete(url);
 			localStorage.removeItem("user");
+			localStorage.removeItem("blog");
+			localStorage.removeItem("message");
 			navigate("/");
 			return response;
 		} catch (error) {
