@@ -8,9 +8,11 @@ import React, { useState } from "react";
 import defaultImg from "assets/img/default.png";
 import axios from "axios";
 import Error from "components/utilities/form/Error";
-import {encode} from 'html-entities';
+import { encode } from "html-entities";
 import blogApi from "api/blogApi";
 import { useNavigate } from "react-router-dom";
+import EditorForm from "components/editor/Editor";
+import DOMPurify from "dompurify";
 
 const SetupBlogForm = () => {
   const [title, setTitle] = useState("");
@@ -18,8 +20,16 @@ const SetupBlogForm = () => {
   const [err, setErr] = useState();
   const [loading, setLoading] = useState(false);
   const [ava, setAva] = useState(defaultImg);
-  const navigate = useNavigate()
+  const [convertedContent, setConvertedContent] = useState("");
+  const [preview, setPreview] = useState(false);
+  const navigate = useNavigate();
 
+  const createMarkup = (html) => {
+    console.log(html);
+    return {
+      __html: DOMPurify.sanitize(html),
+    };
+  };
   const handleAvatarUpload = (e) => {
     const postImg = async () => {
       var bodyFormData = new FormData();
@@ -49,20 +59,24 @@ const SetupBlogForm = () => {
     e.preventDefault();
     if (title === "" || category === "") {
       setErr("Please fill in title or category!");
-    } else{
+    } else {
       console.log({
-        title: title,
-        category: category,
-        content: encode(localStorage.getItem("content")) 
-      });
-      blogApi.createBlog({
         title: title,
         banner: ava,
         category: category,
-        content: encode(localStorage.getItem("content")) 
-      }, navigate, setErr)
+        content: encode(convertedContent),
+      });
+      blogApi.createBlog(
+        {
+          title: title,
+          banner: ava,
+          category: category,
+          content: encode(convertedContent),
+        },
+        navigate,
+        setErr
+      );
     }
-    
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -96,6 +110,33 @@ const SetupBlogForm = () => {
         className="my-8"
       />
       {err && <Error children={err} fluid />}
+
+      <div>
+        <div className="flex justify-between items-center pb-4">
+          <Label>Content</Label>
+
+          <Button
+            className="!min-w-[100px]"
+            onClick={() => setPreview((state) => !state)}
+            primary={preview ? true : false}
+          >
+            Preview
+          </Button>
+        </div>
+
+        {preview ? (
+          <div
+            className="max-h-[50vh] h-full flex flex-col w-full py-4 overflow-y-scroll"
+            dangerouslySetInnerHTML={createMarkup(convertedContent)}
+          ></div>
+        ) : (
+          <EditorForm
+            content={convertedContent}
+            setConvertedContent={setConvertedContent}
+            className={"!max-h-[50vh]"}
+          />
+        )}
+      </div>
       <Button type="submit" fluid primary className="my-8">
         Create
       </Button>
