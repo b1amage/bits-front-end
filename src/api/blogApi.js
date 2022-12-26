@@ -122,7 +122,7 @@ const blogApi = {
 	},
 	async getUserBlogs(values, nextCursor = "") {
 		try {
-			const url = `/blog/user?category=${values.currentCategory}&&title=${values.currentSearch}&&next_cursor=${nextCursor}`;
+			const url = `/blog/user?userId=${values.userId}&&category=${values.currentCategory}&&title=${values.currentSearch}&&next_cursor=${nextCursor}`;
 			const response = await axiosClient.get(url);
 			console.log(response);
 			return response;

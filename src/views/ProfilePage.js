@@ -38,6 +38,7 @@ const ProfilePage = () => {
       const getAllUserBlogs = async () => {
         setLoading(true);
         const response = await blogApi.getUserBlogs({
+          userId: userId,
           currentCategory: "",
           currentSearch: "",
         });

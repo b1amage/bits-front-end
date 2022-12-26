@@ -21,16 +21,19 @@ const DashboardPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate()
   // const [blogList] = useDebounce(userBlogs, 2000);
-  const [values, setValues] = useState({
-    currentCategory: "",
-    currentSearch: "",
-  });
   
   useEffect(() => {
-    if (loginApi.isLogin() === null){
+    if (loginApi.isLogin() === null || !JSON.parse(localStorage.getItem("user")).userId){
       navigate("/login", {replace: true})
     }
   }, [navigate])
+
+  const [values, setValues] = useState({
+    userId: localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).userId,
+    currentCategory: "",
+    currentSearch: "",
+  });
+
   const handleChange = (e) => {
     setCurrentSearch(e.target.value);
   };
