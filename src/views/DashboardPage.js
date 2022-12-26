@@ -19,17 +19,25 @@ const DashboardPage = () => {
   const [currentSearch, setCurrentSearch] = useState("");
   const [userBlogs, setUserBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate()
+  const [nextCursor, setNextCursor] = useState();
+
+  const navigate = useNavigate();
   // const [blogList] = useDebounce(userBlogs, 2000);
-  
+
+  // check if user has logged in
   useEffect(() => {
-    if (loginApi.isLogin() === null || !JSON.parse(localStorage.getItem("user")).userId){
-      navigate("/login", {replace: true})
+    if (
+      loginApi.isLogin() === null ||
+      !JSON.parse(localStorage.getItem("user")).userId
+    ) {
+      navigate("/login", { replace: true });
     }
-  }, [navigate])
+  }, [navigate]);
 
   const [values, setValues] = useState({
-    userId: localStorage.getItem("user") && JSON.parse(localStorage.getItem("user")).userId,
+    userId:
+      localStorage.getItem("user") &&
+      JSON.parse(localStorage.getItem("user")).userId,
     currentCategory: "",
     currentSearch: "",
   });
@@ -41,17 +49,13 @@ const DashboardPage = () => {
   const handleSearch = (e) => {
     e.preventDefault();
     setValues({
+      userId:
+      localStorage.getItem("user") &&
+      JSON.parse(localStorage.getItem("user")).userId,
       currentCategory: currentCategory,
       currentSearch: currentSearch,
     });
   };
-
-  // // check if user has logged in
-  // useEffect(() => {
-  //   if (loginApi.isLogin() === null) {
-  //     navigate("/login");
-  //   }
-  // }, [navigate]);
 
   // check if current category value is "All"
   useEffect(() => {
@@ -66,11 +70,20 @@ const DashboardPage = () => {
       setIsLoading(true);
       const response = await blogApi.getUserBlogs(values);
       setUserBlogs(response.data.results);
+      setNextCursor(response.data.next_cursor);
       setIsLoading(false);
     };
 
     allUserBlogs();
   }, [values]);
+
+  const handleViewMoreBlogs = async () => {
+    setIsLoading(true);
+    const response = await blogApi.getUserBlogs(values, nextCursor);
+    setUserBlogs([...userBlogs, ...response.data.results]);
+    setNextCursor(response.data.next_cursor);
+    setIsLoading(false);
+  };
 
   const handleCategoryClick = (e) => {
     // set current category (add css)
@@ -79,10 +92,16 @@ const DashboardPage = () => {
 
     id === "all"
       ? setValues({
+          userId:
+            localStorage.getItem("user") &&
+            JSON.parse(localStorage.getItem("user")).userId,
           currentCategory: "",
           currentSearch: currentSearch,
         })
       : setValues({
+          userId:
+            localStorage.getItem("user") &&
+            JSON.parse(localStorage.getItem("user")).userId,
           currentCategory: e.target.id,
           currentSearch: currentSearch,
         });
@@ -129,25 +148,35 @@ const DashboardPage = () => {
       {isLoading ? (
         <Loading />
       ) : (
-        <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 md:grid-cols-2 place-items-center md:place-items-start">
-          {userBlogs.length > 0 ? (
-            userBlogs.map((item, index) => (
-              <Blog
-                editable
-                blogId={item._id}
-                readCount={item.timeToRead}
-                likeCount={item.heartCount}
-                key={index}
-                img={item.banner !== "default" && item.banner}
-                author={item.user.username}
-                date={formatDate(item.user.createdAt)}
-                title={item.title}
-                topic={item.category}
-              />
-            ))
-          ) : (
-            <Title className="col-start-2 col-end-2 w-full text-center">No blogs found!</Title>
-          )}
+        <div>
+          <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 md:grid-cols-2 place-items-center md:place-items-start">
+            {userBlogs.length > 0 ? (
+              userBlogs.map((item, index) => (
+                <Blog
+                  editable
+                  blogId={item._id}
+                  likeCount={item.heartCount}
+                  key={index}
+                  img={item.banner !== "default" && item.banner}
+                  author={item.user.username}
+                  date={formatDate(item.user.createdAt)}
+                  title={item.title}
+                  topic={item.category}
+                />
+              ))
+            ) : (
+              <Title className="col-start-2 col-end-2 w-full text-center">
+                No blogs found!
+              </Title>
+            )}
+          </div>
+          <Button
+            primary
+            className={`my-8 !w-full ${nextCursor === null ? "hidden" : ""}`}
+            onClick={handleViewMoreBlogs}
+          >
+            More
+          </Button>
         </div>
       )}
 
