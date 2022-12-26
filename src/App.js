@@ -62,7 +62,7 @@ const App = () => {
 						/>
 						<Route path="/reset-password" element={<ResetPage />} />
 						<Route path="/blogs/:query" element={<BlogsPage />} />
-						<Route path="/profile/:userId" element={localStorage.getItem("user") !== null || userId !== null ? <ProfilePage /> : <Navigate to="/login" />} />
+						<Route path="/profile/:userId" element={localStorage.getItem("user") !== null || userId ? <ProfilePage /> : <Navigate to="/login" />} />
 						<Route path="/profile/edit/:userId" element={<EditProfilePage />} />
 						<Route path="/preview" element={<Preview />} />
 						<Route path="/register" element={<RegisterPage />} />
