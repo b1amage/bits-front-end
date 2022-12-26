@@ -18,12 +18,9 @@ const ProfilePage = () => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
-    // if (loginApi.isLogin() === null) {
-    //   navigate(`/profile/${JSON.parse(localStorage.getItem("user")).userId}`);
-    // } else{
-    //   navigate("/login", {replace: true})
-    // }
-    if (loginApi.isLogin() === null || userId === null) {
+    if (loginApi.isLogin() === null || !userId) {
+        console.log(userId)
+        console.log(loginApi.isLogin())
         navigate(`/login`, {replace: true});
       }
   }, [navigate, userId])
@@ -41,6 +38,7 @@ const ProfilePage = () => {
       const getAllUserBlogs = async () => {
         setLoading(true);
         const response = await blogApi.getUserBlogs({
+          userId: userId,
           currentCategory: "",
           currentSearch: "",
         });
