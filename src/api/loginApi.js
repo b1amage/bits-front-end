@@ -9,7 +9,7 @@ const loginApi = {
             });
             console.log(response);
             localStorage.setItem("user", JSON.stringify(response.data.user));
-            navigate("/")
+            navigate("/", {replace: true})
             return response
         } catch(err){
             console.log(err.response.data);

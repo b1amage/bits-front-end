@@ -7,7 +7,7 @@ import Category from "components/category/Category";
 import topics from "content/topics";
 import Button from "components/utilities/button/Button";
 import loginApi from "api/loginApi";
-import { redirect, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import blogApi from "api/blogApi";
 import DashboardSearchBox from "components/search/DashboardSearchBox";
 import Loading from "components/loading/Loading";
@@ -19,6 +19,7 @@ const DashboardPage = () => {
   const [currentSearch, setCurrentSearch] = useState("");
   const [userBlogs, setUserBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate()
   // const [blogList] = useDebounce(userBlogs, 2000);
   const [values, setValues] = useState({
     currentCategory: "",
@@ -26,10 +27,10 @@ const DashboardPage = () => {
   });
   
   useEffect(() => {
-    if (loginApi.isLogin()){
-      return redirect("/")
+    if (loginApi.isLogin() === null){
+      navigate("/login", {replace: true})
     }
-  }, [])
+  }, [navigate])
   const handleChange = (e) => {
     setCurrentSearch(e.target.value);
   };
@@ -41,8 +42,6 @@ const DashboardPage = () => {
       currentSearch: currentSearch,
     });
   };
-
-  const navigate = useNavigate();
 
   // // check if user has logged in
   // useEffect(() => {
