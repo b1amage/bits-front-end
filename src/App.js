@@ -1,5 +1,5 @@
 import React, { Suspense, useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate, useParams } from "react-router-dom";
 import BlogSetupPage from "views/BlogSetupPage";
 import EditBlogPage from "views/EditBlogPage";
 import EditProfilePage from "views/EditProfilePage";
@@ -29,7 +29,7 @@ const NoIntetnet = React.lazy(() => import("views/NoInternetPage"));
 const App = () => {
 	// Online state
 	const [isOnline, setIsOnline] = useState(navigator.onLine);
-
+	const {userId} = useParams()
 	useEffect(() => {
 		// Update network status
 		const handleStatusChange = () => {
@@ -62,7 +62,7 @@ const App = () => {
 						/>
 						<Route path="/reset-password" element={<ResetPage />} />
 						<Route path="/blogs/:query" element={<BlogsPage />} />
-						<Route path="/profile/:userId" element={<ProfilePage />} />
+						<Route path="/profile/:userId" element={localStorage.getItem("user") !== null || userId !== null ? <ProfilePage /> : <Navigate to="/login" />} />
 						<Route path="/profile/edit/:userId" element={<EditProfilePage />} />
 						<Route path="/preview" element={<Preview />} />
 						<Route path="/register" element={<RegisterPage />} />
