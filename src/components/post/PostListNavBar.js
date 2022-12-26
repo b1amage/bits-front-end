@@ -3,7 +3,7 @@
 // import Container from "components/utilities/container/Container";
 import Text from "components/utilities/text/Text";
 
-const PostListNavBar = ({ quantity }) => {
+const PostListNavBar = () => {
 	return (
 		<div className="inline-flex flex-wrap !py-10 text-secondary-20 px-4">
 			{/* {navPostTypes.map((navType, index) => {
@@ -20,7 +20,7 @@ const PostListNavBar = ({ quantity }) => {
 					/>
 				);
 			})} */}
-			<Text children={`All blogs (${quantity})`} />
+			<Text children={`All blogs`} />
 		</div>
 	);
 };
