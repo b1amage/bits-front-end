@@ -19,269 +19,262 @@ import CommentTextArea from "../components/comment/CommentTextArea";
 import sendIcon from "assets/svg/send.svg";
 
 const BlogDetailPage = () => {
-	const [blog, setBlog] = useState();
-	const [loading, setLoading] = useState(false);
-	const [content, setContent] = useState();
-	const [author, setAuthor] = useState();
-	const [comments, setComments] = useState([]);
-	const [commentLoading, setCommentLoading] = useState(false);
-	const [commentsNextCursor, setCommentsNextCursor] = useState(undefined);
-	const [commentContent, setCommentContent] = useState("");
-	const navigate = useNavigate();
-	const { id } = useParams();
-	const user = JSON.parse(localStorage.getItem("user"));
+  const [blog, setBlog] = useState();
+  const [loading, setLoading] = useState(false);
+  const [content, setContent] = useState();
+  const [author, setAuthor] = useState();
+  const [comments, setComments] = useState([]);
+  const [commentLoading, setCommentLoading] = useState(false);
+  const [commentsNextCursor, setCommentsNextCursor] = useState(undefined);
+  const [commentContent, setCommentContent] = useState("");
+  const navigate = useNavigate();
+  const { id } = useParams();
+  const user = JSON.parse(localStorage.getItem("user"));
 
-	const handleCommentContentChange = (e) => setCommentContent(e.target.value);
+  const handleCommentContentChange = (e) => setCommentContent(e.target.value);
 
-	const fetchMoreComments = async () => {
-		setCommentLoading(true);
-		const response = await blogApi.getComments(
-			blog._id,
-			commentsNextCursor,
-			navigate
-		);
-		console.log("more comment: ", response);
-		setComments([...comments, ...response.data.results]);
-		setCommentsNextCursor(response.data.next_cursor);
-		setCommentLoading(false);
-	};
+  const fetchMoreComments = async () => {
+    setCommentLoading(true);
+    const response = await blogApi.getComments(
+      blog._id,
+      commentsNextCursor,
+      navigate
+    );
+    console.log("more comment: ", response);
+    setComments([...comments, ...response.data.results]);
+    setCommentsNextCursor(response.data.next_cursor);
+    setCommentLoading(false);
+  };
 
-	useEffect(() => {
-		const fetchBlogContent = async () => {
-			setLoading(true);
-			const response = await blogApi.getBlogDetail(id, navigate);
-			setBlog(response.data.blog);
-			const txt = decode(response.data.blog.content);
-			setContent(txt);
+  useEffect(() => {
+    const fetchBlogContent = async () => {
+      setLoading(true);
+      const response = await blogApi.getBlogDetail(id, navigate);
+      setBlog(response.data.blog);
+      const txt = decode(response.data.blog.content);
+      setContent(txt);
 
-			const fetchAuthor = async (res) => {
-				const response = await authorApi.getById(
-					res.data.blog.user,
-					navigate
-				);
-				setAuthor(response.data.user);
-			};
+      const fetchAuthor = async (res) => {
+        const response = await authorApi.getById(res.data.blog.user, navigate);
+        setAuthor(response.data.user);
+      };
 
-			const fetchComments = async (res) => {
-				setCommentLoading(true);
-				const response = await blogApi.getComments(
-					res.data.blog._id,
-					commentsNextCursor,
-					navigate
-				);
-				console.log("comment: ", response);
-				setComments(response.data.results);
-				setCommentsNextCursor(response.data.next_cursor);
-				setCommentLoading(false);
-			};
+      const fetchComments = async (res) => {
+        setCommentLoading(true);
+        const response = await blogApi.getComments(
+          res.data.blog._id,
+          commentsNextCursor,
+          navigate
+        );
+        console.log("comment: ", response);
+        setComments(response.data.results);
+        setCommentsNextCursor(response.data.next_cursor);
+        setCommentLoading(false);
+      };
 
-			fetchAuthor(response);
-			fetchComments(response);
-			setLoading(false);
-		};
+      fetchAuthor(response);
+      fetchComments(response);
+      setLoading(false);
+    };
 
-		fetchBlogContent();
-	}, [id, navigate]);
+    fetchBlogContent();
+  }, [id, navigate]);
 
-	const handleLikeClick = () => {
-		const likeBlog = async () => {
-			const response = await blogApi.likeBlog(blog._id, navigate);
-			console.log(response);
-			setBlog(response.data.blog);
-			console.log(blog);
-		};
+  const handleLikeClick = () => {
+    const likeBlog = async () => {
+      const response = await blogApi.likeBlog(blog._id, navigate);
+      console.log(response);
+      setBlog(response.data.blog);
+      console.log(blog);
+    };
 
-		const unlikeBlog = async () => {
-			const response = await blogApi.unlikeBlog(blog._id, navigate);
-			console.log(response);
-			setBlog(response.data.blog);
+    const unlikeBlog = async () => {
+      const response = await blogApi.unlikeBlog(blog._id, navigate);
+      console.log(response);
+      setBlog(response.data.blog);
 
-			console.log(blog);
-		};
+      console.log(blog);
+    };
 
-		const user = JSON.parse(localStorage.getItem("user"));
-		const id = user ? user._id : null;
+    const user = JSON.parse(localStorage.getItem("user"));
 
-		console.log(blog.likes);
+    if (!user) {
+      navigate("/error/please login");
+      return;
+    }
 
-		if (
-			blog?.likes?.length !== 0 &&
-			blog.likes.filter((item, index) => item._id !== id).length !== 0
-		) {
-			unlikeBlog();
-			console.log("unlike");
-		} else {
-			console.log("like");
-			likeBlog();
-		}
-	};
+    const id = user.userId;
 
-	const handleSendIconClick = () => {
-		if (!user) return;
+    console.log("likes", blog.likes);
 
-		setComments([
-			...comments,
-			{
-				blogId: blog._id,
-				content: commentContent,
-				createdAt: null,
-				user,
-			},
-		]);
+    if (blog.likes.length === 0) {
+      likeBlog();
+      return;
+    }
 
-		const sendComment = async () => {
-			const response = await blogApi.addComment(
-				{ blogId: blog._id, content: commentContent },
-				navigate
-			);
+    const idLikes = blog.likes.map((item) => item.user._id);
 
-			console.log(response);
-		};
+    if (idLikes.includes(id)) {
+      unlikeBlog();
+    } else {
+      likeBlog();
+    }
+  };
 
-		sendComment();
-	};
+  const handleSendIconClick = () => {
+    if (!user) return;
 
-	const handleIconCommentClick = (id, liked) => {
-		const likeComment = async () => {
-			const response = await blogApi.likeComment(id, navigate);
-			console.log(response);
-			const newComments = comments.map((cmt) => {
-				if (cmt._id === id) {
-					cmt.heartCount = response.data.comment.heartCount;
-					cmt.likes = response.data.comment.likes;
-				}
+    setComments([
+      ...comments,
+      {
+        blogId: blog._id,
+        content: commentContent,
+        createdAt: null,
+        user,
+      },
+    ]);
 
-				return cmt;
-			});
+    const sendComment = async () => {
+      const response = await blogApi.addComment(
+        { blogId: blog._id, content: commentContent },
+        navigate
+      );
 
-			console.log(newComments);
+      console.log(response);
+    };
 
-			setComments(newComments);
-		};
+    sendComment();
+  };
 
-		const unlikeComment = async () => {
-			const response = await blogApi.unLikeComment(id, navigate);
-			console.log(response);
+  const handleIconCommentClick = (id, liked) => {
+    const likeComment = async () => {
+      const response = await blogApi.likeComment(id, navigate);
+      console.log(response);
+      const newComments = comments.map((cmt) => {
+        if (cmt._id === id) {
+          cmt.heartCount = response.data.comment.heartCount;
+          cmt.likes = response.data.comment.likes;
+        }
 
-			const newComments = comments.map((cmt) => {
-				if (cmt._id === id) {
-					cmt.heartCount = response.data.comment.heartCount;
-					cmt.likes = response.data.comment.likes;
-				}
+        return cmt;
+      });
 
-				return cmt;
-			});
+      console.log(newComments);
 
-			console.log(newComments);
+      setComments(newComments);
+    };
 
-			setComments(newComments);
-		};
+    const unlikeComment = async () => {
+      const response = await blogApi.unLikeComment(id, navigate);
+      console.log(response);
 
-		if (liked) {
-			unlikeComment();
-		} else {
-			likeComment();
-		}
-	};
+      const newComments = comments.map((cmt) => {
+        if (cmt._id === id) {
+          cmt.heartCount = response.data.comment.heartCount;
+          cmt.likes = response.data.comment.likes;
+        }
 
-	console.log(blog);
+        return cmt;
+      });
 
-	return (
-		<Container className="flex flex-col gap-8 lg:gap-12">
-			{loading ? (
-				<div className="flex items-center justify-center min-h-[80vh]">
-					<Loading />
-				</div>
-			) : (
-				<>
-					{/* Blog author's info */}
-					<AuthorInfo
-						authorId={blog?.user}
-						readTime={blog?.timeToRead}
-						name={author?.username}
-						userImg={author?.avatar}
-					/>
+      console.log(newComments);
 
-					{/* Title */}
-					<Title className="!text-3xl md:!text-4xl lg:!text-6xl">
-						{blog?.title}
-					</Title>
+      setComments(newComments);
+    };
 
-					<div className="flex flex-col gap-4 md:w-4/5 lg:w-full md:mx-auto md:gap-6">
-						{/* Banner */}
-						{blog?.banner !== "default" && (
-							<Image
-								src={blog?.banner}
-								alt="blog banner"
-								className="overflow-hidden rounded-lg lg:w-[800px]"
-							/>
-						)}
+    if (liked) {
+      unlikeComment();
+    } else {
+      likeComment();
+    }
+  };
 
-						{/* Stats */}
-						<BlogStats
-							likeCount={blog?.heartCount}
-							onLike={handleLikeClick}
-						/>
-					</div>
+  console.log(blog);
 
-					{/* Content */}
-					<BlogContent content={content} />
+  return (
+    <Container className="flex flex-col gap-8 lg:gap-12">
+      {loading ? (
+        <div className="flex items-center justify-center min-h-[80vh]">
+          <Loading />
+        </div>
+      ) : (
+        <>
+          {/* Blog author's info */}
+          <AuthorInfo
+            authorId={blog?.user}
+            readTime={blog?.timeToRead}
+            name={author?.username}
+            userImg={author?.avatar}
+          />
 
-					{/* Comments */}
-					<div>
-						<Title className="my-5 md:my-8 lg:my-10">
-							Comments
-						</Title>
-						<div className="flex flex-col gap-5 md:gap-8 lg:gap-10">
-							{comments.length === 0 ? (
-								<div className="mx-auto">
-									<Image
-										src={noComment}
-										className="mx-auto lg:w-1/2"
-									/>
-									<Title className="!my-10">
-										Be the first one to comment on this post
-									</Title>
-								</div>
-							) : (
-								comments.map((item, index) => (
-									<CommentCard
-										comment={item}
-										key={item._id}
-										onLike={handleIconCommentClick}
-									/>
-								))
-							)}
-						</div>
+          {/* Title */}
+          <Title className="!text-3xl md:!text-4xl lg:!text-6xl">
+            {blog?.title}
+          </Title>
 
-						{commentLoading && (
-							<div className="my-10">
-								<Loading />
-							</div>
-						)}
+          <div className="flex flex-col gap-4 md:w-4/5 lg:w-full md:mx-auto md:gap-6">
+            {/* Banner */}
+            {blog?.banner !== "default" && (
+              <Image
+                src={blog?.banner}
+                alt="blog banner"
+                className="overflow-hidden rounded-lg lg:w-[800px]"
+              />
+            )}
 
-						{commentsNextCursor !== null && (
-							<Button
-								onClick={fetchMoreComments}
-								className="my-10"
-								primary
-							>
-								More comment
-							</Button>
-						)}
-					</div>
+            {/* Stats */}
+            <BlogStats likeCount={blog?.heartCount} onLike={handleLikeClick} />
+          </div>
 
-					{/* Comments textarea */}
-					<CommentTextArea
-						id="comment-textarea"
-						icon={sendIcon}
-						onIconClick={handleSendIconClick}
-						onChange={handleCommentContentChange}
-					/>
-				</>
-			)}
-		</Container>
-	);
+          {/* Content */}
+          <BlogContent content={content} />
+
+          {/* Comments */}
+          <div>
+            <Title className="my-5 md:my-8 lg:my-10">Comments</Title>
+            <div className="flex flex-col gap-5 md:gap-8 lg:gap-10">
+              {comments.length === 0 ? (
+                <div className="mx-auto">
+                  <Image src={noComment} className="mx-auto lg:w-1/2" />
+                  <Title className="!my-10">
+                    Be the first one to comment on this post
+                  </Title>
+                </div>
+              ) : (
+                comments.map((item, index) => (
+                  <CommentCard
+                    comment={item}
+                    key={item._id}
+                    onLike={handleIconCommentClick}
+                  />
+                ))
+              )}
+            </div>
+
+            {commentLoading && (
+              <div className="my-10">
+                <Loading />
+              </div>
+            )}
+
+            {commentsNextCursor !== null && (
+              <Button onClick={fetchMoreComments} className="my-10" primary>
+                More comment
+              </Button>
+            )}
+          </div>
+
+          {/* Comments textarea */}
+          <CommentTextArea
+            id="comment-textarea"
+            icon={sendIcon}
+            onIconClick={handleSendIconClick}
+            onChange={handleCommentContentChange}
+          />
+        </>
+      )}
+    </Container>
+  );
 };
 
 export default BlogDetailPage;
