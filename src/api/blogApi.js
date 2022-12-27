@@ -177,6 +177,17 @@ const blogApi = {
     }
   },
 
+  async updateComment(values, navigate) {
+    const url = `/comment/update`;
+    try {
+      const response = await axiosClient.put(url, values);
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      navigate(`/error/${error.response.data.msg}`);
+    }
+  },
+
   async updateBlog(values, setErr, navigate) {
     const url = `blog/update`;
     try {

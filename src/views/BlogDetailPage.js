@@ -204,6 +204,15 @@ const BlogDetailPage = () => {
     del();
   };
 
+  const updateComment = (values) => {
+    const update = async () => {
+      const response = await blogApi.updateComment(values, navigate);
+      console.log(response);
+    };
+
+    update();
+  };
+
   console.log(blog);
 
   return (
@@ -258,6 +267,7 @@ const BlogDetailPage = () => {
               ) : (
                 comments.map((item) => (
                   <CommentCard
+                    onUpdate={updateComment}
                     onDelete={handleDeleteComment}
                     comment={item}
                     key={item._id}
