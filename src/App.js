@@ -27,74 +27,71 @@ const NotFoundPage = React.lazy(() => import("views/NotFoundPage"));
 const NoIntetnet = React.lazy(() => import("views/NoInternetPage"));
 
 const App = () => {
-	// Online state
-	const [isOnline, setIsOnline] = useState(navigator.onLine);
-	const {userId} = useParams()
-	useEffect(() => {
-		// Update network status
-		const handleStatusChange = () => {
-			setIsOnline(navigator.onLine);
-		};
+  // Online state
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+  const { userId } = useParams();
+  useEffect(() => {
+    // Update network status
+    const handleStatusChange = () => {
+      setIsOnline(navigator.onLine);
+    };
 
-		// Listen to the online status
-		window.addEventListener("online", handleStatusChange);
+    // Listen to the online status
+    window.addEventListener("online", handleStatusChange);
 
-		// Listen to the offline status
-		window.addEventListener("offline", handleStatusChange);
+    // Listen to the offline status
+    window.addEventListener("offline", handleStatusChange);
 
-		// Specify how to clean up after this effect for performance improvment
-		return () => {
-			window.removeEventListener("online", handleStatusChange);
-			window.removeEventListener("offline", handleStatusChange);
-		};
-	}, [isOnline]);
+    // Specify how to clean up after this effect for performance improvment
+    return () => {
+      window.removeEventListener("online", handleStatusChange);
+      window.removeEventListener("offline", handleStatusChange);
+    };
+  }, [isOnline]);
 
-	return (
-		<>
-			{isOnline ? (
-				<Suspense fallback={<LoadingPage />}>
-					<NavBar />
-					<Routes>
-						<Route path="/" element={<HomePage />} />
-						<Route
-							path="/forgot-password"
-							element={<ForgotPasswordPage />}
-						/>
-						<Route path="/reset-password" element={<ResetPage />} />
-						<Route path="/blogs/:query" element={<BlogsPage />} />
-						<Route path="/profile/:userId" element={localStorage.getItem("user") !== null || userId ? <ProfilePage /> : <Navigate to="/login" />} />
-						<Route path="/profile/edit/:userId" element={<EditProfilePage />} />
-						<Route path="/preview" element={<Preview />} />
-						<Route path="/register" element={<RegisterPage />} />
-						<Route
-							path="/register/img"
-							element={<AvatarPickPage />}
-						/>
-						<Route path="/login" element={<LoginPage />} />
-						<Route
-							path="/successful"
-							element={<SuccessfulPage />}
-						/>
-						<Route path="/blog/:id" element={<BlogDetailPage />} />
-						<Route path="/post/write" element={<WritePostPage />} />
-						<Route path="/post/setup" element={<BlogSetupPage />} />
-						<Route path="/blog/edit/:blogId" element={<EditBlogPage />} />
-						<Route path="/topic" element={<TopicPage />} />
-						<Route path="/about" element={<AboutPage />} />
-						<Route path="/dashboard" element={<DashboardPage />} />
-						<Route
-							path="/verify-email"
-							element={<VerifyEmailPage />}
-						/>
-						<Route path="/error/:error" element={<ErrorPage />} />
-						<Route path="*" element={<NotFoundPage />} />
-					</Routes>
-				</Suspense>
-			) : (
-				<NoIntetnet />
-			)}
-		</>
-	);
+  return (
+    <>
+      {isOnline ? (
+        <Suspense fallback={<LoadingPage />}>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/forgot-password" element={<ForgotPasswordPage />} />
+            <Route path="/reset-password" element={<ResetPage />} />
+            <Route path="/blogs/:query" element={<BlogsPage />} />
+            <Route
+              path="/profile/:userId"
+              element={
+                localStorage.getItem("user") !== null || userId ? (
+                  <ProfilePage />
+                ) : (
+                  <Navigate to="/login" />
+                )
+              }
+            />
+            <Route path="/profile/edit/:userId" element={<EditProfilePage />} />
+            <Route path="/preview" element={<Preview />} />
+            <Route path="/register" element={<RegisterPage />} />
+            <Route path="/register/img" element={<AvatarPickPage />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="/successful" element={<SuccessfulPage />} />
+            <Route path="/blog/:id" element={<BlogDetailPage />} />
+            <Route path="/post/write" element={<WritePostPage />} />
+            <Route path="/post/setup" element={<BlogSetupPage />} />
+            <Route path="/blog/edit/:blogId" element={<EditBlogPage />} />
+            <Route path="/topic" element={<TopicPage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/dashboard" element={<DashboardPage />} />
+            <Route path="/verify-email" element={<VerifyEmailPage />} />
+            <Route path="/error/:error" element={<ErrorPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+      ) : (
+        <NoIntetnet />
+      )}
+    </>
+  );
 };
 
 export default App;

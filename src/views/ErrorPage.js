@@ -12,10 +12,11 @@ const ErrorPage = () => {
 			<Image src={errorImg} alt="error assets" />
 
 			<Title>{error}</Title>
-
-			<Button primary className="my-5 lg:my-10">
-				<Link>Go to home</Link>
-			</Button>
+			<Link to="/">
+				<Button primary className="my-5 lg:my-10">
+					Go to home
+				</Button>
+			</Link>
 		</Container>
 	);
 };
