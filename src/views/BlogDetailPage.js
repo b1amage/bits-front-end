@@ -140,7 +140,11 @@ const BlogDetailPage = () => {
         navigate
       );
 
-      console.log(response);
+      console.log("send comment", response);
+      const newComment = response.data.comment;
+      newComment.likes = [];
+
+      setComments([...comments, newComment]);
     };
 
     sendComment();
@@ -241,7 +245,7 @@ const BlogDetailPage = () => {
                   </Title>
                 </div>
               ) : (
-                comments.map((item, index) => (
+                comments.map((item) => (
                   <CommentCard
                     comment={item}
                     key={item._id}
