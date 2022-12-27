@@ -16,6 +16,7 @@ const ProfilePage = () => {
   const { userId } = useParams();
   const [userBlogs, setUserBlogs] = useState([]);
   const [count, setCount] = useState(0);
+  const [nextCursor, setNextCursor] = useState()
 
   useEffect(() => {
     if (loginApi.isLogin() === null || !userId) {
@@ -43,6 +44,7 @@ const ProfilePage = () => {
           currentSearch: "",
         });
         // console.log(response.data);
+        setNextCursor(response.data.next_cursor)
         setUserBlogs(response.data.results);
         setCount(response.data.results.length);
         setLoading(false);
@@ -52,14 +54,14 @@ const ProfilePage = () => {
   }, [navigate, userId]);
 
   return (
-    <Container className="w-full !pb-0 bg-teriary-gray-20">
+    <Container className="w-full !pb-0">
       {loading ? (
         <Loading />
       ) : (
-        <>
+        <div className="bg-teriary-gray-20">
           <UserInfo user={user} navigate={navigate} userId={userId} />
-          <PostList userBlogs={userBlogs} count={count} />
-        </>
+          <PostList userBlogs={userBlogs} count={count} userId={userId} setUserBlogs={setUserBlogs} nextCursor={nextCursor} setNextCursor={setNextCursor} />
+        </div>
       )}
     </Container>
   );

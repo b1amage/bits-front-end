@@ -1,11 +1,11 @@
-import comment from "assets/svg/comment.svg";
 import like from "assets/svg/like.svg";
 import IconStat from "components/utilities/stat/IconStat";
 import PropTypes from "prop-types";
 
-const BlogStats = ({ commentCount, likeCount, onLike, large }) => {
+const BlogStats = ({ viewCount, commentCount, likeCount, onLike }) => {
   const stats = [
-    { icon: comment, stat: commentCount },
+    // { icon: eye, stat: viewCount },
+    // { icon: comment, stat: commentCount },
     { icon: like, stat: likeCount, onClick: onLike },
   ];
 
