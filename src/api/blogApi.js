@@ -1,8 +1,10 @@
 import axiosClient from "api/axiosClient";
 
 const blogApi = {
-  async getAll(navigate) {
-    const url = "/blog/view/latest";
+  async getAll(nextCursor, navigate) {
+    const url = nextCursor
+      ? `/blog/view/latest?next_cursor=${nextCursor}`
+      : "/blog/view/latest";
     try {
       const response = await axiosClient.get(url);
       return response;
@@ -13,8 +15,10 @@ const blogApi = {
     }
   },
 
-  async getAllFavorite(navigate) {
-    const url = "/blog/view/favorite";
+  async getAllFavorite(nextCursor, navigate) {
+    const url = nextCursor
+      ? `/blog/view/favorite?next_cursor=${nextCursor}`
+      : "/blog/view/favorite";
     try {
       const response = await axiosClient.get(url);
       return response;

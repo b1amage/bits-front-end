@@ -12,37 +12,69 @@ import topics from "content/topics";
 import blogApi from "api/blogApi";
 import Loading from "components/loading/Loading";
 import { useNavigate } from "react-router-dom";
+import Button from "components/utilities/button/Button";
 
 const HomePage = () => {
   const [blogs, setBlogs] = useState([]);
   const [favBlogs, setFavBlogs] = useState([]);
   const [currentCategory, setCurrentCategory] = useState("");
   const [loading, setLoading] = useState(false);
+  const [nextCursor, setNextCursor] = useState(undefined);
+  const [nextCursorFav, setNextCursorFav] = useState(undefined);
+
   const navigate = useNavigate();
 
-  console.log(blogs);
+  console.log("blogs", blogs);
+
+  const handleViewMoreBlog = () => {
+    const viewMore = async () => {
+      setLoading(true);
+      const response = await blogApi.getAll(nextCursor, navigate);
+      console.log("response more", response);
+      setBlogs([...blogs, ...response.data.results]);
+      setNextCursor(response.data.next_cursor);
+      setLoading(false);
+    };
+
+    viewMore();
+  };
+
+  const handleViewMoreFavBlog = () => {
+    const viewMore = async () => {
+      setLoading(true);
+      const response = await blogApi.getAllFavorite(nextCursorFav, navigate);
+      console.log("response more", response);
+      setFavBlogs([...favBlogs, ...response.data.results]);
+      setNextCursorFav(response.data.next_cursor);
+      setLoading(false);
+    };
+
+    viewMore();
+  };
 
   useEffect(() => {
     const fetchBlog = async () => {
       setLoading(true);
-      const response = await blogApi.getAll(navigate);
+      const response = await blogApi.getAll(nextCursor, navigate);
+      console.log("response", response);
       setBlogs(response.data.results);
+      // setBlogs([...blogs, ...response.data.results]);
       setLoading(false);
     };
 
     fetchBlog();
-  }, [navigate]);
+  }, [navigate, nextCursor]);
 
   useEffect(() => {
     const fetchFavBlog = async () => {
       setLoading(true);
-      const response = await blogApi.getAllFavorite(navigate);
+      const response = await blogApi.getAllFavorite(nextCursorFav, navigate);
       setFavBlogs(response.data.results);
       setLoading(false);
     };
 
     fetchFavBlog();
-  }, [navigate]);
+  }, [navigate, nextCursorFav]);
 
   const handleCategoryClick = (e) => {
     const fetchBlogByCategory = async () => {
@@ -99,28 +131,39 @@ const HomePage = () => {
           {loading ? (
             <Loading />
           ) : (
-            favBlogs?.length > 0 &&
-            favBlogs.map((blog, index) => (
-              <div
-                key={index}
-                className="relative flex w-full md:w-[400px] md:h-[400px] scroll-item"
-              >
-                <Image
-                  src={blogBg}
-                  alt="feature blog background"
-                  className="w-full"
-                />
+            <>
+              {favBlogs?.length > 0 &&
+                favBlogs.map((blog, index) => (
+                  <div
+                    key={index}
+                    className="relative flex w-full md:w-[400px] md:h-[400px] scroll-item"
+                  >
+                    <Image
+                      src={blogBg}
+                      alt="feature blog background"
+                      className="w-full"
+                    />
 
-                <FeatureBlog
-                  blogId={blog._id}
-                  className="absolute -translate-x-1/2 bottom-10 left-1/2"
-                  name={blog.user.username}
-                  readTime={blog.timeToRead}
-                  title={blog.title}
-                  userAvatar={blog.user.avatar}
-                />
-              </div>
-            ))
+                    <FeatureBlog
+                      blogId={blog._id}
+                      className="absolute -translate-x-1/2 bottom-10 left-1/2"
+                      name={blog.user.username}
+                      readTime={blog.timeToRead}
+                      title={blog.title}
+                      userAvatar={blog.user.avatar}
+                    />
+                  </div>
+                ))}
+
+              {nextCursorFav !== null && (
+                <Button
+                  onClick={handleViewMoreFavBlog}
+                  className="md:w-[400px] md:h-[400px] scroll-item !text-3xl"
+                >
+                  Load more
+                </Button>
+              )}
+            </>
           )}
         </ScrollContainer>
       </section>
@@ -132,20 +175,31 @@ const HomePage = () => {
           {loading ? (
             <Loading />
           ) : (
-            blogs.length > 0 &&
-            blogs.map((blog, index) => (
-              <Blog
-                blogId={blog._id}
-                key={index}
-                author={blog.user.username}
-                likeCount={blog.heartCount}
-                readCount={912}
-                date={blog.createdAt.slice(0, 10)}
-                className="scroll-item max-w-[90%]"
-                title={blog.title}
-                img={blog.banner}
-              />
-            ))
+            <>
+              {blogs.length > 0 &&
+                blogs.map((blog, index) => (
+                  <Blog
+                    blogId={blog._id}
+                    key={index}
+                    author={blog.user.username}
+                    likeCount={blog.heartCount}
+                    readCount={912}
+                    date={blog.createdAt.slice(0, 10)}
+                    className="scroll-item max-w-[90%]"
+                    title={blog.title}
+                    img={blog.banner}
+                  />
+                ))}
+
+              {nextCursor !== null && (
+                <Button
+                  onClick={handleViewMoreBlog}
+                  className="scroll-item min-w-[320px] md:min-w-[380px]"
+                >
+                  Load more
+                </Button>
+              )}
+            </>
           )}
         </ScrollContainer>
       </section>
