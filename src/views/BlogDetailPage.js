@@ -193,6 +193,17 @@ const BlogDetailPage = () => {
     }
   };
 
+  const handleDeleteComment = (id) => {
+    const del = async () => {
+      const response = await blogApi.deleteComment(id, navigate);
+      console.log(response);
+      const newComments = comments.filter((item) => item._id !== id);
+      setComments(newComments);
+    };
+
+    del();
+  };
+
   console.log(blog);
 
   return (
@@ -247,6 +258,7 @@ const BlogDetailPage = () => {
               ) : (
                 comments.map((item) => (
                   <CommentCard
+                    onDelete={handleDeleteComment}
                     comment={item}
                     key={item._id}
                     onLike={handleIconCommentClick}

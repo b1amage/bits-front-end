@@ -1,11 +1,12 @@
 import Image from "components/utilities/image/Image";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
+import { BsFillTrashFill, BsPenFill } from "react-icons/bs";
 import daysDifference from "helper/dateDiff";
 
-const CommentCard = ({ comment, onLike }) => {
+const CommentCard = ({ comment, onLike, onDelete, onUpdate }) => {
   console.log(comment);
   let { heartCount = 0, content, user, createdAt } = comment;
-  const { avatar, username } = user;
+  const { avatar, username, _id } = user;
 
   var currentDate = new Date();
   var createdDate = !createdAt ? new Date() : new Date(createdAt);
@@ -14,9 +15,7 @@ const CommentCard = ({ comment, onLike }) => {
   const currentUser = JSON.parse(localStorage.getItem("user"));
 
   const likes = comment.likes;
-  console.log("likes", likes);
   const idLikes = likes?.length > 0 ? likes.map((item) => item.user._id) : [];
-  console.log("idLikes", idLikes);
 
   const liked = idLikes.includes(currentUser.userId);
 
@@ -35,20 +34,37 @@ const CommentCard = ({ comment, onLike }) => {
             <p className="text-secondary-100">{dateDiff}</p>
           </div>
         </div>
-
-        <div
-          className="flex items-center gap-2 cursor-pointer"
-          onClick={() => {
-            console.log(comment);
-            onLike(comment._id, liked);
-          }}
-        >
-          <p>{heartCount}</p>
-          {liked ? (
-            <AiFillHeart className="text-red-500" />
-          ) : (
-            <AiOutlineHeart />
+        <div className="flex items-center gap-5">
+          {currentUser.userId === _id && (
+            <>
+              <div className="cursor-pointer">
+                <BsPenFill />
+              </div>
+              <div
+                className="cursor-pointer"
+                onClick={() => {
+                  onDelete(comment._id);
+                }}
+              >
+                <BsFillTrashFill />
+              </div>
+            </>
           )}
+
+          <div
+            className="flex items-center gap-2 cursor-pointer"
+            onClick={() => {
+              console.log(comment);
+              onLike(comment._id, liked);
+            }}
+          >
+            <p>{heartCount}</p>
+            {liked ? (
+              <AiFillHeart className="text-red-500" />
+            ) : (
+              <AiOutlineHeart />
+            )}
+          </div>
         </div>
       </div>
 
