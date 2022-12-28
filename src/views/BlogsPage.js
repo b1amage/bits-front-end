@@ -55,6 +55,7 @@ const BlogsPage = () => {
                 date={blog.createdAt.slice(0, 10)}
                 className="w-full cursor-pointer"
                 title={blog.title}
+                img={blog.banner}
               />
             ))}
         </div>
