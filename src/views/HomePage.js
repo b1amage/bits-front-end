@@ -41,12 +41,18 @@ const HomePage = () => {
 
   const handleViewMoreFavBlog = () => {
     const viewMore = async () => {
-      setLoading(true);
+      // setLoading(true);
+
+      console.log("before get more: ", favBlogs);
       const response = await blogApi.getAllFavorite(nextCursorFav, navigate);
       console.log("response more", response);
-      setFavBlogs([...favBlogs, ...response.data.results]);
+      console.log("fav blog", favBlogs);
+      const newFavBlog = [...favBlogs, ...response.data.results];
+      console.log("After get more:", newFavBlog);
+      setFavBlogs(newFavBlog);
       setNextCursorFav(response.data.next_cursor);
-      setLoading(false);
+
+      // setLoading(false);
     };
 
     viewMore();
@@ -58,23 +64,26 @@ const HomePage = () => {
       const response = await blogApi.getAll(nextCursor, navigate);
       console.log("response", response);
       setBlogs(response.data.results);
-      // setBlogs([...blogs, ...response.data.results]);
+      setNextCursor(response.data.next_cursor);
       setLoading(false);
     };
 
     fetchBlog();
-  }, [navigate, nextCursor]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigate]);
 
   useEffect(() => {
     const fetchFavBlog = async () => {
       setLoading(true);
       const response = await blogApi.getAllFavorite(nextCursorFav, navigate);
       setFavBlogs(response.data.results);
+      setNextCursor(response.data.next_cursor);
       setLoading(false);
     };
 
     fetchFavBlog();
-  }, [navigate, nextCursorFav]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [navigate]);
 
   const handleCategoryClick = (e) => {
     const fetchBlogByCategory = async () => {
