@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 // import posts from "../../content/posts";
 import PostCard from "components/post/PostCard";
 import PostListNavBar from "components/post/PostListNavBar";
@@ -8,19 +8,47 @@ import Container from "components/utilities/container/Container";
 import Button from "components/utilities/button/Button";
 import blogApi from "api/blogApi";
 
-const PostList = ({ count, userId , userBlogs, setUserBlogs, nextCursor, setNextCursor }) => {
+const PostList = ({
+  count,
+  userId,
+  userBlogs,
+  setUserBlogs,
+  nextCursor,
+  setNextCursor,
+}) => {
   const [isLoading, setIsLoading] = useState(false);
+  const [loadMore, setLoadMore] = useState(false);
+
+  useEffect(() => {
+    const getAllUserBlogs = async () => {
+      setIsLoading(true);
+      const response = await blogApi.getUserBlogs({
+        userId: userId,
+        currentCategory: "",
+        currentSearch: "",
+      });
+      // console.log(response.data);
+      setNextCursor(response.data.next_cursor)
+      setUserBlogs(response.data.results);
+      setIsLoading(false);
+    };
+    getAllUserBlogs();
+  
+  }, [setNextCursor, setUserBlogs, userId])
 
   const handleViewMoreBlogs = async () => {
-    setIsLoading(true);
-    const response = await blogApi.getUserBlogs({
-      userId: userId,
-      currentCategory: "",
-      currentSearch: "",
-    }, nextCursor);
+    setLoadMore(true);
+    const response = await blogApi.getUserBlogs(
+      {
+        userId: userId,
+        currentCategory: "",
+        currentSearch: "",
+      },
+      nextCursor
+    );
     setUserBlogs([...userBlogs, ...response.data.results]);
     setNextCursor(response.data.next_cursor);
-    setIsLoading(false);
+    setLoadMore(false);
   };
 
   // format datetime in month day, year
@@ -55,16 +83,40 @@ const PostList = ({ count, userId , userBlogs, setUserBlogs, nextCursor, setNext
           );
         })
       )}
+
+      {loadMore ? (
+        <Loading />
+      ) : (
+        userBlogs
+          .filter((blog) => !userBlogs.includes(blog))
+          .map((post, index) => {
+            return (
+              <PostCard
+                blogId={post._id}
+                thumbnail={post.banner}
+                title={post.title}
+                // views={post.timeToRead}
+                // comments={post.comments}
+                likes={post.heartCount}
+                time={formatDate(post.createdAt)}
+                author={post.author}
+                key={index}
+              />
+            );
+          })
+      )}
+
       <div className="w-full flex justify-center">
         <Button
           primary
-          className={`!min-w-0 !w-[50px] !h-[50px] !text-5xl !rounded-full -translate-x-1/2 ${nextCursor === null || isLoading ? "hidden" : ""}`}
+          className={` !w-[60px] !h-[60px] !min-w-0 p-20 !rounded-full !text-5xl  ${
+            nextCursor === null || isLoading ? "hidden" : ""
+          }`}
           onClick={handleViewMoreBlogs}
         >
           +
         </Button>
       </div>
-      
     </Container>
   );
 };
