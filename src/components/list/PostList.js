@@ -28,13 +28,12 @@ const PostList = ({
         currentSearch: "",
       });
       // console.log(response.data);
-      setNextCursor(response.data.next_cursor)
+      setNextCursor(response.data.next_cursor);
       setUserBlogs(response.data.results);
       setIsLoading(false);
     };
     getAllUserBlogs();
-  
-  }, [setNextCursor, setUserBlogs, userId])
+  }, [setNextCursor, setUserBlogs, userId]);
 
   const handleViewMoreBlogs = async () => {
     setLoadMore(true);
@@ -106,17 +105,21 @@ const PostList = ({
           })
       )}
 
-      <div className="w-full flex justify-center">
-        <Button
-          primary
-          className={` !w-[60px] !h-[60px] !min-w-0 p-20 !rounded-full !text-5xl  ${
-            nextCursor === null || isLoading ? "hidden" : ""
-          }`}
-          onClick={handleViewMoreBlogs}
-        >
-          +
-        </Button>
-      </div>
+      {!isLoading
+        ? !loadMore && (
+            <div className="w-full flex justify-center">
+              <Button
+                primary
+                className={` !w-[60px] !h-[60px] !min-w-0 p-20 !rounded-full !text-5xl  ${
+                  nextCursor === null || isLoading ? "hidden" : ""
+                }`}
+                onClick={handleViewMoreBlogs}
+              >
+                +
+              </Button>
+            </div>
+          )
+        : null}
     </Container>
   );
 };

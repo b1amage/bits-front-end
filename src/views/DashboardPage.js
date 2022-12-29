@@ -215,15 +215,17 @@ const DashboardPage = () => {
         {loadMore && <Loading />}
       </div>
 
-      {!isLoading && (
-        <Button
-          primary
-          className={`my-8 !w-full ${nextCursor === null ? "hidden" : ""}`}
-          onClick={handleViewMoreBlogs}
-        >
-          More
-        </Button>
-      )}
+      {!isLoading
+        ? !loadMore && (
+            <Button
+              primary
+              className={`my-8 !w-full ${nextCursor === null ? "hidden" : ""}`}
+              onClick={handleViewMoreBlogs}
+            >
+              More
+            </Button>
+          )
+        : null}
       <Button
         onClick={() => navigate("/post/setup")}
         isRound
