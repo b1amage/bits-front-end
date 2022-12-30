@@ -8,25 +8,57 @@ import Loading from "components/loading/Loading";
 import notFound from "assets/svg/tv404.svg";
 import Image from "components/utilities/image/Image";
 import Text from "components/utilities/text/Text";
+import Button from "components/utilities/button/Button";
 
 const BlogsPage = () => {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [loadingMore, setLoadingMore] = useState(false);
+  const [nextCursor, setNextCursor] = useState(undefined);
   const { query } = useParams();
   const navigate = useNavigate();
+
+  const handleViewMore = () => {
+    const loadMore = async () => {
+      setLoadingMore(true);
+      const response = await blogApi.getBlogsByTitle(
+        query,
+        nextCursor,
+        navigate
+      );
+
+      console.log("Get more response", response.data);
+
+      setBlogs([...blogs, ...response.data.results]);
+      setNextCursor(response.data.next_cursor);
+
+      console.log(" next cursor", nextCursor);
+      console.log(" blogs", blogs);
+      setLoadingMore(false);
+    };
+
+    loadMore();
+  };
 
   useEffect(() => {
     const fetchBlog = async () => {
       setLoading(true);
-      const response = await blogApi.getBlogsByTitle(query, navigate);
+      const response = await blogApi.getBlogsByTitle(
+        query,
+        nextCursor,
+        navigate
+      );
+      console.log(response.data);
       setBlogs(response.data.results);
+      setNextCursor(response.data.next_cursor);
+      console.log("first next cursor", nextCursor);
+      console.log("first blogs", blogs);
       setLoading(false);
     };
 
     fetchBlog();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, navigate]);
-
-  console.log(blogs);
 
   return (
     <Container>
@@ -34,7 +66,6 @@ const BlogsPage = () => {
         Results for "
         <span className="capitalize text-secondary-100">{query}</span>"
       </Title>
-
       {loading ? (
         <Loading />
       ) : blogs.length === 0 ? (
@@ -58,6 +89,14 @@ const BlogsPage = () => {
                 img={blog.banner}
               />
             ))}
+        </div>
+      )}
+      {loadingMore && <Loading />}
+      {nextCursor !== null && (
+        <div className="flex items-center justify-center my-10">
+          <Button onClick={handleViewMore} primary>
+            Load more
+          </Button>
         </div>
       )}
     </Container>

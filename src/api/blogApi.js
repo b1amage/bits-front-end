@@ -46,11 +46,22 @@ const blogApi = {
     }
   },
 
-  async getBlogsByTitle(title, navigate) {
-    const url =
-      title === "all"
-        ? "/blog/view/latest"
-        : `/blog/view/latest?title=${title}`;
+  async getBlogsByTitle(title, nextCursor, navigate) {
+    let url;
+    if (!nextCursor) {
+      url =
+        title === "all"
+          ? "/blog/view/latest"
+          : `/blog/view/latest?title=${title}`;
+    } else {
+      url =
+        title === "all"
+          ? `/blog/view/latest?next_cursor=${nextCursor}`
+          : `/blog/view/latest?title=${title}&next_cursor=${nextCursor}`;
+    }
+
+    console.log("url used: ", url);
+
     try {
       const response = await axiosClient.get(url);
       return response;
