@@ -57,7 +57,7 @@ const CommentCard = ({ comment, onLike, onDelete, onUpdate }) => {
   const likes = comment.likes;
   const idLikes = likes?.length > 0 ? likes.map((item) => item.user._id) : [];
 
-  const liked = idLikes.includes(currentUser.userId);
+  const liked = idLikes.includes(currentUser?.userId);
   const closeModal = () => {
     setShowModal(false);
   };
@@ -79,7 +79,7 @@ const CommentCard = ({ comment, onLike, onDelete, onUpdate }) => {
           </div>
         </div>
         <div className="flex items-center gap-5">
-          {currentUser.userId === _id && (
+          {currentUser?.userId === _id && (
             <>
               <div
                 className="cursor-pointer"
