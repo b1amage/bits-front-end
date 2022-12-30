@@ -99,7 +99,9 @@ const BlogDetailPage = () => {
     const user = JSON.parse(localStorage.getItem("user"));
 
     if (!user) {
-      navigate("/error/please login");
+      navigate(
+        "/error/Please sign in or sign up to continue to use this feature"
+      );
       return;
     }
 
