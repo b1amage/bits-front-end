@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import loginApi from "api/loginApi";
 // import Loading from "components/loading/Loading";
-import blogApi from "api/blogApi";
+// import blogApi from "api/blogApi";
 import authorApi from "api/userApi";
 import Loading from "components/loading/Loading";
 
@@ -15,7 +15,6 @@ const ProfilePage = () => {
   const [user, setUser] = useState();
   const { userId } = useParams();
   const [userBlogs, setUserBlogs] = useState([]);
-  const [count, setCount] = useState(0);
   const [nextCursor, setNextCursor] = useState()
 
   useEffect(() => {
@@ -36,21 +35,6 @@ const ProfilePage = () => {
       };
       getUser();
 
-      const getAllUserBlogs = async () => {
-        setLoading(true);
-        const response = await blogApi.getUserBlogs({
-          userId: userId,
-          currentCategory: "",
-          currentSearch: "",
-        });
-        // console.log(response.data);
-        setNextCursor(response.data.next_cursor)
-        setUserBlogs(response.data.results);
-        setCount(response.data.results.length);
-        setLoading(false);
-      };
-      getAllUserBlogs();
-    
   }, [navigate, userId]);
 
   return (
@@ -60,7 +44,7 @@ const ProfilePage = () => {
       ) : (
         <div className="bg-teriary-gray-20">
           <UserInfo user={user} navigate={navigate} userId={userId} />
-          <PostList userBlogs={userBlogs} count={count} userId={userId} setUserBlogs={setUserBlogs} nextCursor={nextCursor} setNextCursor={setNextCursor} />
+          <PostList userBlogs={userBlogs} userId={userId} setUserBlogs={setUserBlogs} nextCursor={nextCursor} setNextCursor={setNextCursor} />
         </div>
       )}
     </Container>

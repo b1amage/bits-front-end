@@ -20,6 +20,7 @@ const DashboardPage = () => {
   const [userBlogs, setUserBlogs] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [nextCursor, setNextCursor] = useState();
+  const [loadMore, setLoadMore] = useState(false);
 
   const navigate = useNavigate();
   // const [blogList] = useDebounce(userBlogs, 2000);
@@ -50,8 +51,8 @@ const DashboardPage = () => {
     e.preventDefault();
     setValues({
       userId:
-      localStorage.getItem("user") &&
-      JSON.parse(localStorage.getItem("user")).userId,
+        localStorage.getItem("user") &&
+        JSON.parse(localStorage.getItem("user")).userId,
       currentCategory: currentCategory,
       currentSearch: currentSearch,
     });
@@ -78,11 +79,11 @@ const DashboardPage = () => {
   }, [values]);
 
   const handleViewMoreBlogs = async () => {
-    setIsLoading(true);
+    setLoadMore(true);
     const response = await blogApi.getUserBlogs(values, nextCursor);
     setUserBlogs([...userBlogs, ...response.data.results]);
     setNextCursor(response.data.next_cursor);
-    setIsLoading(false);
+    setLoadMore(false);
   };
 
   const handleCategoryClick = (e) => {
@@ -145,13 +146,36 @@ const DashboardPage = () => {
           ))}
       </ScrollContainer>
 
-      {isLoading ? (
-        <Loading />
-      ) : (
-        <div>
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 md:grid-cols-2 place-items-center md:place-items-start">
-            {userBlogs.length > 0 ? (
-              userBlogs.map((item, index) => (
+      <div>
+        <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 md:grid-cols-2 place-items-center md:place-items-start">
+          {isLoading ? (
+            <div className="col-start-2 col-end-2 w-full text-center">
+              <Loading />
+            </div>
+          ) : userBlogs.length > 0 ? (
+            userBlogs.map((item, index) => (
+              <Blog
+                editable
+                blogId={item._id}
+                likeCount={item.heartCount}
+                key={index}
+                img={item.banner !== "default" && item.banner}
+                author={item.user.username}
+                date={formatDate(item.user.createdAt)}
+                title={item.title}
+                topic={item.category}
+              />
+            ))
+          ) : (
+            <Title className="col-start-2 col-end-2 w-full text-center">
+              No blogs found!
+            </Title>
+          )}
+
+          {userBlogs
+            .filter((blog) => !userBlogs.includes(blog))
+            .map((item, index) => {
+              return (
                 <Blog
                   editable
                   blogId={item._id}
@@ -163,23 +187,45 @@ const DashboardPage = () => {
                   title={item.title}
                   topic={item.category}
                 />
-              ))
-            ) : (
-              <Title className="col-start-2 col-end-2 w-full text-center">
-                No blogs found!
-              </Title>
-            )}
-          </div>
-          <Button
-            primary
-            className={`my-8 !w-full ${nextCursor === null ? "hidden" : ""}`}
-            onClick={handleViewMoreBlogs}
-          >
-            More
-          </Button>
+              );
+            })}
+          {/* {loadMore ? (
+            <Loading />
+          ) : (
+            userBlogs
+              .filter((blog) => !userBlogs.includes(blog))
+              .map((item, index) => {
+                return (
+                  <Blog
+                    editable
+                    blogId={item._id}
+                    likeCount={item.heartCount}
+                    key={index}
+                    img={item.banner !== "default" && item.banner}
+                    author={item.user.username}
+                    date={formatDate(item.user.createdAt)}
+                    title={item.title}
+                    topic={item.category}
+                  />
+                );
+              })
+          )} */}
         </div>
-      )}
 
+        {loadMore && <Loading />}
+      </div>
+
+      {!isLoading
+        ? !loadMore && (
+            <Button
+              primary
+              className={`my-8 !w-full ${nextCursor === null ? "hidden" : ""}`}
+              onClick={handleViewMoreBlogs}
+            >
+              More
+            </Button>
+          )
+        : null}
       <Button
         onClick={() => navigate("/post/setup")}
         isRound
