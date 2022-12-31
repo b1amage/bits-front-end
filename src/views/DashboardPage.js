@@ -161,7 +161,7 @@ const DashboardPage = () => {
                 key={index}
                 img={item.banner !== "default" && item.banner}
                 author={item.user.username}
-                date={formatDate(item.user.createdAt)}
+                date={formatDate(item.createdAt)}
                 title={item.title}
                 topic={item.category}
               />
