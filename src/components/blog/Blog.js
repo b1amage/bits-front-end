@@ -8,6 +8,8 @@ import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
 import Button from "components/utilities/button/Button";
 import blogApi from "api/blogApi";
 
+import defaultImg from "assets/img/default.png";
+
 const Blog = ({
   img,
   author,
@@ -20,11 +22,6 @@ const Blog = ({
   blogId,
 }) => {
   const navigate = useNavigate();
-
-  // const deleteBlog = async () => {
-  // 	const response = await blogApi.deleteBlog(blogId);
-  // 	console.log(response);
-  // };
 
   const deleteBlog = () => {
     blogApi.deleteBlog(blogId);
@@ -40,7 +37,7 @@ const Blog = ({
         <div className="flex items-start justify-start">
           <Image
             className="h-full max-h-[100px]"
-            src={img}
+            src={img === "default" ? defaultImg : img}
           />
         </div>
 

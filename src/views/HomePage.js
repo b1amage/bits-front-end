@@ -24,13 +24,10 @@ const HomePage = () => {
 
   const navigate = useNavigate();
 
-  console.log("blogs", blogs);
-
   const handleViewMoreBlog = () => {
     const viewMore = async () => {
       setLoading(true);
       const response = await blogApi.getAll(nextCursor, navigate);
-      console.log("response more", response);
       setBlogs([...blogs, ...response.data.results]);
       setNextCursor(response.data.next_cursor);
       setLoading(false);
@@ -41,18 +38,11 @@ const HomePage = () => {
 
   const handleViewMoreFavBlog = () => {
     const viewMore = async () => {
-      // setLoading(true);
-
-      console.log("before get more: ", favBlogs);
       const response = await blogApi.getAllFavorite(nextCursorFav, navigate);
-      console.log("response more", response);
-      console.log("fav blog", favBlogs);
       const newFavBlog = [...favBlogs, ...response.data.results];
-      console.log("After get more:", newFavBlog);
+
       setFavBlogs(newFavBlog);
       setNextCursorFav(response.data.next_cursor);
-
-      // setLoading(false);
     };
 
     viewMore();
@@ -62,7 +52,6 @@ const HomePage = () => {
     const fetchBlog = async () => {
       setLoading(true);
       const response = await blogApi.getAll(nextCursor, navigate);
-      console.log("response", response);
       setBlogs(response.data.results);
       setNextCursor(response.data.next_cursor);
       setLoading(false);
@@ -93,8 +82,6 @@ const HomePage = () => {
         "favorite",
         navigate
       );
-
-      console.log(responseFavBlog);
 
       const responseBlog = await blogApi.getBlogsByCategory(
         e.target.id,
