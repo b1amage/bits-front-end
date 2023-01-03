@@ -12,6 +12,7 @@ import blogApi from "api/blogApi";
 import DashboardSearchBox from "components/search/DashboardSearchBox";
 import Loading from "components/loading/Loading";
 import Title from "components/utilities/text/Title";
+import defaultImg from "assets/img/default.png";
 
 const DashboardPage = () => {
   // const [blogs, setBlogs] = useState([]);
@@ -159,7 +160,7 @@ const DashboardPage = () => {
                 blogId={item._id}
                 likeCount={item.heartCount}
                 key={index}
-                img={item.banner !== "default" && item.banner}
+                img={item.banner === "default" ? defaultImg : item.banner}
                 author={item.user.username}
                 date={formatDate(item.createdAt)}
                 title={item.title}
@@ -181,7 +182,7 @@ const DashboardPage = () => {
                   blogId={item._id}
                   likeCount={item.heartCount}
                   key={index}
-                  img={item.banner !== "default" && item.banner}
+                  img={item.banner}
                   author={item.user.username}
                   date={formatDate(item.user.createdAt)}
                   title={item.title}
