@@ -38,7 +38,7 @@ const ProfilePage = () => {
   }, [navigate, userId]);
 
   return (
-    <Container className="w-full !pb-0">
+    <Container className="w-full !pb-0 2xl:!px-20">
       {loading ? (
         <Loading />
       ) : (

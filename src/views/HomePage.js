@@ -13,7 +13,7 @@ import blogApi from "api/blogApi";
 import Loading from "components/loading/Loading";
 import { useNavigate } from "react-router-dom";
 import Button from "components/utilities/button/Button";
-
+import defaultImg from "assets/img/default.png"
 const HomePage = () => {
   const [blogs, setBlogs] = useState([]);
   const [favBlogs, setFavBlogs] = useState([]);
@@ -196,7 +196,7 @@ const HomePage = () => {
                     date={blog.createdAt.slice(0, 10)}
                     className="scroll-item max-w-[90%]"
                     title={blog.title}
-                    img={blog.banner}
+                    img={blog.banner === "default" ? defaultImg : blog.banner}
                   />
                 ))}
 

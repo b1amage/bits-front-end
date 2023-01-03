@@ -15,7 +15,7 @@ const Avatar = ({ avatar, username, biography }) => {
           imageClassName={``}
           className={``}
         />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/3 w-[24vw] h-[24vw] flex p-4">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/3 w-[32vw] h-[32vw] 2xl:!w-[14vw] 2xl:!h-[14vw] sm:!w-[28vw] sm:!h-[28vw] flex p-4">
           <Image
             src={avatar}
             alt={"avatar"}
