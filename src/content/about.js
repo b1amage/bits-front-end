@@ -1,5 +1,5 @@
 import bao from "assets/img/bao.jpeg";
-import an from "assets/img/an.jpeg";
+import an from "assets/img/an.JPG";
 import tuan from "assets/img/tuan.jpeg";
 import and from "assets/img/and.jpeg";
 
