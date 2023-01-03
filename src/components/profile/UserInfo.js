@@ -35,7 +35,7 @@ const UserInfo = ({ loading, user, navigate, userId }) => {
   //   }, [userId, navigate]);
 
   return (
-    <div className={"2xl:max-w-full px-8 2xl:px-60 !py-8"}>
+    <div className={"2xl:max-w-full px-8 2xl:px-24 !py-8"}>
       {loading ? (
         <Loading />
       ) : (
