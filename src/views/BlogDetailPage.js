@@ -267,12 +267,12 @@ const BlogDetailPage = () => {
                   </Title>
                 </div>
               ) : (
-                comments.map((item) => (
+                comments.map((item, idx) => (
                   <CommentCard
                     onUpdate={updateComment}
                     onDelete={handleDeleteComment}
                     comment={item}
-                    key={item._id}
+                    key={idx}
                     onLike={handleIconCommentClick}
                   />
                 ))
