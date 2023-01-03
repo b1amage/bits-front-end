@@ -2,7 +2,6 @@ import Image from "components/utilities/image/Image";
 import Title from "components/utilities/text/Title";
 import Text from "components/utilities/text/Text";
 import PropTypes from "prop-types";
-import defaultImg from "assets/img/default.png";
 import { useNavigate } from "react-router-dom";
 import BlogStats from "components/blog/BlogStats";
 import { BsFillTrashFill, BsFillPencilFill } from "react-icons/bs";
@@ -41,7 +40,7 @@ const Blog = ({
         <div className="flex items-start justify-start">
           <Image
             className="h-full max-h-[100px]"
-            src={img === "default" ? defaultImg : img}
+            src={img}
           />
         </div>
 
@@ -94,7 +93,6 @@ Blog.propTypes = {
 };
 
 Blog.defaultProps = {
-  img: defaultImg,
   author: "Anonymous Author",
   likeCount: 0,
   readCount: 0,
