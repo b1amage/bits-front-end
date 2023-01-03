@@ -44,7 +44,6 @@ const Modal = ({ closeModal, onUpdate, id, oldContent, quickSet }) => {
 const CommentCard = ({ comment, onLike, onDelete, onUpdate }) => {
   const [showModal, setShowModal] = useState(false);
 
-  console.log(comment);
   let { heartCount = 0, content, user, createdAt } = comment;
   const { avatar, username, _id } = user;
   const [temp, setTemp] = useState(content);
@@ -103,7 +102,6 @@ const CommentCard = ({ comment, onLike, onDelete, onUpdate }) => {
           <div
             className="flex items-center gap-2 cursor-pointer"
             onClick={() => {
-              console.log(comment);
               onLike(comment._id, liked);
             }}
           >
