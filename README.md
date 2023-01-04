@@ -97,3 +97,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - Microsoft Word 2022: for documenting technical report
 
 ### References
+
+- Netlify: https://docs.netlify.com/?_ga=2.30254975.1180632270.1672753144-1074277592.1639977789
+- Formik: https://formik.org/docs/overview
+- Yup: https://www.npmjs.com/package/yup
+- DraftJS: https://draftjs.org/docs/getting-started
