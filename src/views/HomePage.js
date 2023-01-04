@@ -12,7 +12,7 @@ import topics from "content/topics";
 import blogApi from "api/blogApi";
 import Loading from "components/loading/Loading";
 import { useNavigate } from "react-router-dom";
-import Button from "components/utilities/button/Button";
+// import Button from "components/utilities/button/Button";
 import defaultImg from "assets/img/default.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -32,11 +32,11 @@ const HomePage = () => {
 
   const handleViewMoreBlog = () => {
     const viewMore = async () => {
-      setLoading(true);
+      // setLoading(true);
       const response = await blogApi.getAll(nextCursor, navigate);
       setBlogs([...blogs, ...response.data.results]);
       setNextCursor(response.data.next_cursor);
-      setLoading(false);
+      // setLoading(false);
     };
 
     viewMore();
@@ -219,7 +219,90 @@ const HomePage = () => {
       </section>
 
       {/* Blog */}
-      <section>
+      <section className="my-8 select-none">
+        <Title>Lastest</Title>
+        <div className="my-10">
+          <Swiper
+            spaceBetween={20}
+            slidesPerView="auto"
+            onSlideChange={() => console.log("slide change")}
+            onSwiper={(swiper) => console.log(swiper)}
+            grabCursor={true}
+            onReachEnd={() => {
+              if (nextCursor !== null) {
+                handleViewMoreBlog();
+              }
+            }}
+          >
+            {loading ? (
+              <Loading />
+            ) : (
+              <>
+                {blogs?.length > 0 &&
+                  blogs.map((blog, index) => (
+                    <SwiperSlide key={index}>
+                      <Blog
+                        blogId={blog._id}
+                        key={index}
+                        author={blog.user.username}
+                        likeCount={blog.heartCount}
+                        date={blog.createdAt.slice(0, 10)}
+                        className="scroll-item max-w-[90%]"
+                        title={blog.title}
+                        img={
+                          blog.banner === "default" ? defaultImg : blog.banner
+                        }
+                      />
+                    </SwiperSlide>
+                  ))}
+              </>
+            )}
+          </Swiper>
+        </div>
+
+        {/* <ScrollContainer className="my-2 md:!gap-4 lg:!gap-5">
+          {loading ? (
+            <Loading />
+          ) : (
+            <>
+              {favBlogs?.length > 0 &&
+                favBlogs.map((blog, index) => (
+                  <SwiperSlide key={index}>
+                    <div
+                      key={index}
+                      className="relative flex w-full md:w-[400px] md:h-[400px] scroll-item"
+                    >
+                      <Image
+                        src={blogBg}
+                        alt="feature blog background"
+                        className="w-full"
+                      />
+
+                      <FeatureBlog
+                        blogId={blog._id}
+                        className="absolute -translate-x-1/2 bottom-10 left-1/2"
+                        name={blog.user.username}
+                        readTime={blog.timeToRead}
+                        title={blog.title}
+                        userAvatar={blog.user.avatar}
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))}
+
+              {nextCursorFav !== null && (
+                <Button
+                  onClick={handleViewMoreFavBlog}
+                  className="md:w-[400px] md:h-[400px] scroll-item !text-3xl"
+                >
+                  Load more
+                </Button>
+              )}
+            </>
+          )}
+        </ScrollContainer> */}
+      </section>
+      {/* <section>
         <Title>Blogs</Title>
         <ScrollContainer className="my-2 md:!gap-4 lg:!gap-5">
           {loading ? (
@@ -252,7 +335,7 @@ const HomePage = () => {
             </>
           )}
         </ScrollContainer>
-      </section>
+      </section> */}
     </Container>
   );
 };
