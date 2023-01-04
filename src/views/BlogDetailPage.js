@@ -115,7 +115,10 @@ const BlogDetailPage = () => {
   };
 
   const handleSendIconClick = () => {
-    if (!user) return;
+    if (!user) {
+      navigate("/login");
+      return;
+    }
 
     setComments([
       ...comments,
@@ -132,6 +135,8 @@ const BlogDetailPage = () => {
         { blogId: blog._id, content: commentContent },
         navigate
       );
+
+      console.log(response);
 
       const newComment = response.data.comment;
       newComment.likes = [];
