@@ -13,16 +13,22 @@ import blogApi from "api/blogApi";
 import Loading from "components/loading/Loading";
 import { useNavigate } from "react-router-dom";
 import Button from "components/utilities/button/Button";
-import defaultImg from "assets/img/default.png"
+import defaultImg from "assets/img/default.png";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+// import useViewport from "../hooks/useViewport";
+
 const HomePage = () => {
   const [blogs, setBlogs] = useState([]);
   const [favBlogs, setFavBlogs] = useState([]);
   const [currentCategory, setCurrentCategory] = useState("");
   const [loading, setLoading] = useState(false);
+  const [favLoading, setFavLoading] = useState(false);
   const [nextCursor, setNextCursor] = useState(undefined);
   const [nextCursorFav, setNextCursorFav] = useState(undefined);
 
   const navigate = useNavigate();
+  // const { width } = useViewport();
 
   const handleViewMoreBlog = () => {
     const viewMore = async () => {
@@ -63,11 +69,11 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchFavBlog = async () => {
-      setLoading(true);
+      setFavLoading(true);
       const response = await blogApi.getAllFavorite(nextCursorFav, navigate);
       setFavBlogs(response.data.results);
       setNextCursor(response.data.next_cursor);
-      setLoading(false);
+      setFavLoading(false);
     };
 
     fetchFavBlog();
@@ -122,33 +128,81 @@ const HomePage = () => {
       {/* Feature Blogs */}
       <section className="my-8">
         <Title>Feature</Title>
+        <div className="my-10">
+          <Swiper
+            spaceBetween={20}
+            slidesPerView="auto"
+            // slidesPerView={width < 1200 ? 1 : width < 1500 ? 2 : 3}
+            onSlideChange={() => console.log("slide change")}
+            onSwiper={(swiper) => console.log(swiper)}
+            grabCursor={true}
+            onReachEnd={() => {
+              if (nextCursorFav !== null) {
+                handleViewMoreFavBlog();
+              }
+            }}
+          >
+            {favLoading ? (
+              <Loading />
+            ) : (
+              <>
+                {favBlogs?.length > 0 &&
+                  favBlogs.map((blog, index) => (
+                    <SwiperSlide key={index}>
+                      <div
+                        key={index}
+                        className="relative flex w-full lg:w-[400px] lg:h-[400px] scroll-item"
+                      >
+                        <Image
+                          src={blogBg}
+                          alt="feature blog background"
+                          className="w-full"
+                        />
 
-        <ScrollContainer className="my-2 md:!gap-4 lg:!gap-5">
+                        <FeatureBlog
+                          blogId={blog._id}
+                          className="absolute -translate-x-1/2 bottom-10 left-1/2"
+                          name={blog.user.username}
+                          readTime={blog.timeToRead}
+                          title={blog.title}
+                          userAvatar={blog.user.avatar}
+                        />
+                      </div>
+                    </SwiperSlide>
+                  ))}
+              </>
+            )}
+          </Swiper>
+        </div>
+
+        {/* <ScrollContainer className="my-2 md:!gap-4 lg:!gap-5">
           {loading ? (
             <Loading />
           ) : (
             <>
               {favBlogs?.length > 0 &&
                 favBlogs.map((blog, index) => (
-                  <div
-                    key={index}
-                    className="relative flex w-full md:w-[400px] md:h-[400px] scroll-item"
-                  >
-                    <Image
-                      src={blogBg}
-                      alt="feature blog background"
-                      className="w-full"
-                    />
+                  <SwiperSlide key={index}>
+                    <div
+                      key={index}
+                      className="relative flex w-full md:w-[400px] md:h-[400px] scroll-item"
+                    >
+                      <Image
+                        src={blogBg}
+                        alt="feature blog background"
+                        className="w-full"
+                      />
 
-                    <FeatureBlog
-                      blogId={blog._id}
-                      className="absolute -translate-x-1/2 bottom-10 left-1/2"
-                      name={blog.user.username}
-                      readTime={blog.timeToRead}
-                      title={blog.title}
-                      userAvatar={blog.user.avatar}
-                    />
-                  </div>
+                      <FeatureBlog
+                        blogId={blog._id}
+                        className="absolute -translate-x-1/2 bottom-10 left-1/2"
+                        name={blog.user.username}
+                        readTime={blog.timeToRead}
+                        title={blog.title}
+                        userAvatar={blog.user.avatar}
+                      />
+                    </div>
+                  </SwiperSlide>
                 ))}
 
               {nextCursorFav !== null && (
@@ -161,7 +215,7 @@ const HomePage = () => {
               )}
             </>
           )}
-        </ScrollContainer>
+        </ScrollContainer> */}
       </section>
 
       {/* Blog */}
