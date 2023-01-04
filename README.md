@@ -2,6 +2,8 @@
 
 ![Screenshot](preview1.png)
 
+![Screenshot](preview2.png)
+
 ### Course Information
 
 - University: Royal Melbourne Institution of Technology (RMIT)
