@@ -15,7 +15,6 @@ import Title from "components/utilities/text/Title";
 import defaultImg from "assets/img/default.png";
 
 const DashboardPage = () => {
-  // const [blogs, setBlogs] = useState([]);
   const [currentCategory, setCurrentCategory] = useState("");
   const [currentSearch, setCurrentSearch] = useState("");
   const [userBlogs, setUserBlogs] = useState([]);
@@ -24,7 +23,6 @@ const DashboardPage = () => {
   const [loadMore, setLoadMore] = useState(false);
 
   const navigate = useNavigate();
-  // const [blogList] = useDebounce(userBlogs, 2000);
 
   // check if user has logged in
   useEffect(() => {
@@ -150,7 +148,7 @@ const DashboardPage = () => {
       <div>
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-3 md:grid-cols-2 place-items-center md:place-items-start">
           {isLoading ? (
-            <div className="col-start-2 col-end-2 w-full text-center">
+            <div className="w-full col-start-2 col-end-2 text-center">
               <Loading />
             </div>
           ) : userBlogs.length > 0 ? (
@@ -168,7 +166,7 @@ const DashboardPage = () => {
               />
             ))
           ) : (
-            <Title className="col-start-2 col-end-2 w-full text-center">
+            <Title className="w-full col-start-2 col-end-2 text-center">
               No blogs found!
             </Title>
           )}
@@ -190,27 +188,6 @@ const DashboardPage = () => {
                 />
               );
             })}
-          {/* {loadMore ? (
-            <Loading />
-          ) : (
-            userBlogs
-              .filter((blog) => !userBlogs.includes(blog))
-              .map((item, index) => {
-                return (
-                  <Blog
-                    editable
-                    blogId={item._id}
-                    likeCount={item.heartCount}
-                    key={index}
-                    img={item.banner !== "default" && item.banner}
-                    author={item.user.username}
-                    date={formatDate(item.user.createdAt)}
-                    title={item.title}
-                    topic={item.category}
-                  />
-                );
-              })
-          )} */}
         </div>
 
         {loadMore && <Loading />}

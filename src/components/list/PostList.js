@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
-// import posts from "../../content/posts";
 import PostCard from "components/post/PostCard";
 import PostListNavBar from "components/post/PostListNavBar";
-// import blogApi from "api/blogApi";
 import Loading from "components/loading/Loading";
 import Container from "components/utilities/container/Container";
 import Button from "components/utilities/button/Button";
@@ -27,7 +25,7 @@ const PostList = ({
         currentCategory: "",
         currentSearch: "",
       });
-      // console.log(response.data);
+
       setNextCursor(response.data.next_cursor);
       setUserBlogs(response.data.results);
       setIsLoading(false);
@@ -107,7 +105,7 @@ const PostList = ({
 
       {!isLoading
         ? !loadMore && (
-            <div className="w-full flex justify-center">
+            <div className="flex justify-center w-full">
               <Button
                 primary
                 className={` !w-[60px] !h-[60px] !min-w-0 p-20 !rounded-full !text-5xl  ${

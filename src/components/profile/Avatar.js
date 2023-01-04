@@ -1,7 +1,5 @@
 import Image from "components/utilities/image/Image";
 import background from "assets/svg/parallelogram.svg";
-// import camera from "assets/svg/camera.svg";
-// import avatar from "assets/svg/avatar.svg";
 import Title from "components/utilities/text/Title";
 import Text from "components/utilities/text/Text";
 
@@ -22,22 +20,13 @@ const Avatar = ({ avatar, username, biography }) => {
             imageClassName={``}
             className={`bg-teriary-purple-100 !rounded-full`}
           />
-          {/* <Image
-            src={camera}
-            alt={"camera"}
-            imageClassName={``}
-            className={`bg-primary-30 w-[8vw] h-[8vw] p-2 sm:p-3 md:p-5 lg:p-8  !rounded-full absolute bottom-0 right-0 cursor-pointer`}
-          /> */}
         </div>
       </div>
       <Title
-          children={username}
-          className={`text-center text-lg md:!text-2xl lg:!text-3xl 2xl:!text-4xl py-4`}
-        />    
-      <Text
-          children={biography}
-          className={`text-center`}
-        />
+        children={username}
+        className={`text-center text-lg md:!text-2xl lg:!text-3xl 2xl:!text-4xl py-4`}
+      />
+      <Text children={biography} className={`text-center`} />
     </div>
   );
 };

@@ -112,7 +112,7 @@ const SetupBlogForm = () => {
       {err && <Error children={err} fluid />}
 
       <div>
-        <div className="flex justify-between items-center pb-4">
+        <div className="flex items-center justify-between pb-4">
           <Label>Content</Label>
 
           <Button

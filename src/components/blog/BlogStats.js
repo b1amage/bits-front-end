@@ -3,11 +3,7 @@ import IconStat from "components/utilities/stat/IconStat";
 import PropTypes from "prop-types";
 
 const BlogStats = ({ viewCount, commentCount, likeCount, onLike }) => {
-  const stats = [
-    // { icon: eye, stat: viewCount },
-    // { icon: comment, stat: commentCount },
-    { icon: like, stat: likeCount, onClick: onLike },
-  ];
+  const stats = [{ icon: like, stat: likeCount, onClick: onLike }];
 
   return (
     <div className="flex items-center gap-5 lg:gap-8">

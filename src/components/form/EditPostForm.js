@@ -12,17 +12,16 @@ import { useNavigate, useParams } from "react-router-dom";
 import Label from "components/utilities/form/Label";
 import topics from "content/topics";
 import Select from "components/utilities/form/Select";
-import {encode} from 'html-entities';
+import { encode } from "html-entities";
 
 const EditPostForm = () => {
-  // const navigate = useNavigate()
   const { blogId } = useParams();
   const [content, setContent] = useState("");
   const [title, setTitle] = useState();
   const [banner, setBanner] = useState();
   const [category, setCategory] = useState();
   const [loading, setLoading] = useState(false);
-  const [err, setErr] = useState()
+  const [err, setErr] = useState();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -70,17 +69,20 @@ const EditPostForm = () => {
       title: title,
       banner: banner,
       category: category,
-      content: encode(content)
+      content: encode(content),
     });
 
-    blogApi.updateBlog({
-      blogId: blogId,
-      title: title,
-      banner: banner,
-      category: category,
-      content: encode(content)
-    }, setErr, navigate)
-
+    blogApi.updateBlog(
+      {
+        blogId: blogId,
+        title: title,
+        banner: banner,
+        category: category,
+        content: encode(content),
+      },
+      setErr,
+      navigate
+    );
   };
   return (
     <>
@@ -116,11 +118,22 @@ const EditPostForm = () => {
             />
           </div>
 
-          <Select id="category" label={"Category"} options={topics.filter(topic => topic.value !== "all")} fluid value={category} setItems={setCategory} />
+          <Select
+            id="category"
+            label={"Category"}
+            options={topics.filter((topic) => topic.value !== "all")}
+            fluid
+            value={category}
+            setItems={setCategory}
+          />
 
           <div className="py-8">
             <Label children="Content" />
-            <EditorForm content={content} setConvertedContent={setContent} className='max-h-[50vh]'/>
+            <EditorForm
+              content={content}
+              setConvertedContent={setContent}
+              className="max-h-[50vh]"
+            />
           </div>
           <Button type="submit" primary fluid>
             Update
