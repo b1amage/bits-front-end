@@ -6,12 +6,6 @@
     title="Optional title"
     style="display: inline-block; margin: 0 auto; heigth: 200px;">
 
-    <img
-    src="./preview2.png"
-    alt="Alt text"
-    title="Optional title"
-    style="display: inline-block; margin: 0 auto; heigth: 200px;">
-
 ### Course Information
 
 - University: Royal Melbourne Institution of Technology (RMIT)
