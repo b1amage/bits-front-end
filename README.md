@@ -102,3 +102,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - Formik: https://formik.org/docs/overview
 - Yup: https://www.npmjs.com/package/yup
 - DraftJS: https://draftjs.org/docs/getting-started
+- TailwindCSS: https://tailwindcss.com/docs/installation
+- Vercel: https://vercel.com/docs
