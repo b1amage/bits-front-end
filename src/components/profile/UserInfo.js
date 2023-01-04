@@ -45,7 +45,7 @@ const UserInfo = ({ loading, user, navigate, userId }) => {
               userId === JSON.parse(localStorage.getItem("user"))?.userId
                 ? "flex"
                 : "hidden"
-            } flex justify-end gap-5 md:gap-8 lg:gap-10`}
+            } flex flex-col md:flex-row justify-end gap-5 md:gap-8 lg:gap-10`}
           >
             <Button
               onClick={() => navigate(`/profile/edit/${userId}`)}
