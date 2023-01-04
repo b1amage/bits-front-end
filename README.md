@@ -1,42 +1,56 @@
 # RBlog Blog web-application
 
+    <img
+    src="./preview1.png"
+    alt="Alt text"
+    title="Optional title"
+    style="display: inline-block; margin: 0 auto; heigth: 200px;">
+
+    <img
+    src="./preview2.png"
+    alt="Alt text"
+    title="Optional title"
+    style="display: inline-block; margin: 0 auto; heigth: 200px;">
+
 ### Course Information
 
--   University: Royal Melbourne Institution of Technology (RMIT)
--   Campus: Saigon South (SGS), Vietnam
+- University: Royal Melbourne Institution of Technology (RMIT)
+- Campus: Saigon South (SGS), Vietnam
 
--   Course: Building IT System
--   Course code: COSC2634
--   Lecturer: Dr. Tran Nhat Quang
+- Course: Building IT System
+- Course code: COSC2634
+- Lecturer: Dr. Tran Nhat Quang
 
 ### Contributors
 
--   Supervisor: Mr. Tran Nhat Quang
+- Supervisor: Mr. Tran Nhat Quang
 
--   Technical writer + Frontend Developer: Do Le Long An (s3963207)
--   Frontend developer: Nguyen Luu Quoc Bao (s3877698)
--   Frontend developer: Bui Quang An (s3877482)
--   Backend developer: Dao Kha Tuan (s3877347)
+- Technical writer + Frontend Developer: Do Le Long An (s3963207)
+- Frontend developer: Nguyen Luu Quoc Bao (s3877698)
+- Frontend developer: Bui Quang An (s3877482)
+- Backend developer: Dao Kha Tuan (s3877347)
 
 ### Project Information
 
--   Project name: RBlog (Blog Web-Application)
--   Purpose: Help users posting their blog in to a website
--   Functionalities:
-    -   Register
-    -   Login
-    -   Filter
-    -   Write blogs
-    -   Commnet blogs
-    -   CRUD on blog
--   Technologies used:
+- Project name: RBlog (Blog Web-Application)
+- Purpose: Help users posting their blog in to a website
+- Functionalities:
+  - Register
+  - Login
+  - Filter
+  - Write blogs
+  - Like blogs
+  - Commnet blogs
+  - Like comments
+  - CRUD on blog
+- Technologies used:
 
-    -   Frontend: HTML, ReactJS, TailwindCSS
-    -   Backend: MongoDB, ExpressJS, NodeJS
-    -   Hosting: Netlify, Vercel
+  - Frontend: HTML, ReactJS, TailwindCSS, DraftJS
+  - Backend: MongoDB, ExpressJS, NodeJS
+  - Hosting: Netlify, Vercel
 
--   Project started date: 1 October 2022
--   Project finished date:
+- Project started date: 1 October 2022
+- Project finished date: 6 January 2023
 
 ### To Run
 
@@ -83,11 +97,11 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 ### Note
 
--   View demo available at: https://rmit-blogie.netlify.app/
+- View demo available at: https://rmit-blog.netlify.app/
 
 ### Supporting tools used
 
--   Figma: for designing the user interfaces
--   Microsoft Word 2022: for documenting technical report
+- Figma: for designing the user interfaces
+- Microsoft Word 2022: for documenting technical report
 
 ### References
