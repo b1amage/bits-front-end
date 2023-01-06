@@ -9,7 +9,7 @@ import notFound from "assets/svg/tv404.svg";
 import Image from "components/utilities/image/Image";
 import Text from "components/utilities/text/Text";
 import Button from "components/utilities/button/Button";
-import defaultImg from "assets/img/default.png"
+import defaultImg from "assets/img/default.png";
 
 const BlogsPage = () => {
   const [blogs, setBlogs] = useState([]);
@@ -28,13 +28,9 @@ const BlogsPage = () => {
         navigate
       );
 
-      console.log("Get more response", response.data);
-
       setBlogs([...blogs, ...response.data.results]);
       setNextCursor(response.data.next_cursor);
 
-      console.log(" next cursor", nextCursor);
-      console.log(" blogs", blogs);
       setLoadingMore(false);
     };
 
@@ -49,11 +45,10 @@ const BlogsPage = () => {
         nextCursor,
         navigate
       );
-      console.log(response.data);
+
       setBlogs(response.data.results);
       setNextCursor(response.data.next_cursor);
-      console.log("first next cursor", nextCursor);
-      console.log("first blogs", blogs);
+
       setLoading(false);
     };
 

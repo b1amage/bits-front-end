@@ -58,7 +58,7 @@ const EditProfileForm = () => {
     if (name === "") {
       setErr("Please enter your username!");
     }
-    
+
     authorApi.updateProfile(
       {
         username: name,

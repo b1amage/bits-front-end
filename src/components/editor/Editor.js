@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Editor } from "react-draft-wysiwyg";
 import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import {
@@ -8,8 +8,13 @@ import {
   ContentState,
 } from "draft-js";
 import draftToHtml from "draftjs-to-html";
-const EditorForm = ({content, setConvertedContent, toolbarOnFocus, className}) => {
-  var overview = content
+const EditorForm = ({
+  content,
+  setConvertedContent,
+  toolbarOnFocus,
+  className,
+}) => {
+  var overview = content;
   // convert HTML content to EditorState
   const contentDataState = ContentState.createFromBlockArray(
     convertFromHTML(overview)
@@ -50,7 +55,6 @@ const EditorForm = ({content, setConvertedContent, toolbarOnFocus, className}) =
         var response = { data: { link: data.image.src } };
 
         resolve(response);
-        // console.log(response);
       });
       xhr.addEventListener("error", () => {
         const error = JSON.parse(xhr.responseText);

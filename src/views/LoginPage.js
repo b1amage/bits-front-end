@@ -4,9 +4,6 @@ import Checkbox from "components/utilities/form/Checkbox";
 import Text from "components/utilities/text/Text";
 import NavLink from "components/navigation/NavLink";
 import LoginForm from "components/form/LoginForm";
-// import AlreadyLogin from "../components/login/AlreadyLogin";
-// import ProfilePage from "./ProfilePage";
-
 
 const LoginPage = () => {
   return (

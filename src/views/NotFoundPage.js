@@ -6,19 +6,19 @@ import Button from "components/utilities/button/Button";
 import { Link } from "react-router-dom";
 
 const NotFoundPage = () => {
-	return (
-		<Container className="flex flex-col items-center justify-center min-h-screen">
-			<Image src={notFound} alt="not found assets" />
+  return (
+    <Container className="flex flex-col items-center justify-center min-h-screen">
+      <Image src={notFound} alt="not found assets" />
 
-			<Text className="mb-5 !font-semibold lg:mb-10 lg:!text-2xl">
-				Sorry, we cannot find that page
-			</Text>
+      <Text className="mb-5 !font-semibold lg:mb-10 lg:!text-2xl">
+        Sorry, we cannot find that page
+      </Text>
 
-			<Button primary>
-				<Link to="/">Go back home</Link>
-			</Button>
-		</Container>
-	);
+      <Button primary>
+        <Link to="/">Go back home</Link>
+      </Button>
+    </Container>
+  );
 };
 
 export default NotFoundPage;

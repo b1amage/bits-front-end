@@ -1,13 +1,13 @@
-import EditPostForm from 'components/form/EditPostForm'
-import Container from 'components/utilities/container/Container'
-import React from 'react'
+import EditPostForm from "components/form/EditPostForm";
+import Container from "components/utilities/container/Container";
+import React from "react";
 
 const EditBlogPage = () => {
   return (
     <Container>
-        <EditPostForm />
+      <EditPostForm />
     </Container>
-  )
-}
+  );
+};
 
-export default EditBlogPage
+export default EditBlogPage;
