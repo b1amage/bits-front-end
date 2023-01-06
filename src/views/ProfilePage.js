@@ -4,8 +4,6 @@ import Container from "components/utilities/container/Container";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import loginApi from "api/loginApi";
-// import Loading from "components/loading/Loading";
-// import blogApi from "api/blogApi";
 import authorApi from "api/userApi";
 import Loading from "components/loading/Loading";
 
@@ -15,26 +13,25 @@ const ProfilePage = () => {
   const [user, setUser] = useState();
   const { userId } = useParams();
   const [userBlogs, setUserBlogs] = useState([]);
-  const [nextCursor, setNextCursor] = useState()
+  const [nextCursor, setNextCursor] = useState();
 
   useEffect(() => {
     if (loginApi.isLogin() === null || !userId) {
-        console.log(userId)
-        console.log(loginApi.isLogin())
-        navigate(`/login`, {replace: true});
-      }
-  }, [navigate, userId])
+      console.log(userId);
+      console.log(loginApi.isLogin());
+      navigate(`/login`, { replace: true });
+    }
+  }, [navigate, userId]);
 
   useEffect(() => {
-      const getUser = async () => {
-        setLoading(true);
-        const response = await authorApi.getById(userId, navigate);
-        console.log(response);
-        setUser(response.data.user);
-        setLoading(false);
-      };
-      getUser();
-
+    const getUser = async () => {
+      setLoading(true);
+      const response = await authorApi.getById(userId, navigate);
+      console.log(response);
+      setUser(response.data.user);
+      setLoading(false);
+    };
+    getUser();
   }, [navigate, userId]);
 
   return (
@@ -44,7 +41,13 @@ const ProfilePage = () => {
       ) : (
         <div className="bg-teriary-gray-20">
           <UserInfo user={user} navigate={navigate} userId={userId} />
-          <PostList userBlogs={userBlogs} userId={userId} setUserBlogs={setUserBlogs} nextCursor={nextCursor} setNextCursor={setNextCursor} />
+          <PostList
+            userBlogs={userBlogs}
+            userId={userId}
+            setUserBlogs={setUserBlogs}
+            nextCursor={nextCursor}
+            setNextCursor={setNextCursor}
+          />
         </div>
       )}
     </Container>

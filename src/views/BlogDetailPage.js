@@ -40,7 +40,6 @@ const BlogDetailPage = () => {
       commentsNextCursor,
       navigate
     );
-    console.log("more comment: ", response);
     setComments([...comments, ...response.data.results]);
     setCommentsNextCursor(response.data.next_cursor);
     setCommentLoading(false);
@@ -66,7 +65,6 @@ const BlogDetailPage = () => {
           commentsNextCursor,
           navigate
         );
-        console.log("comment: ", response);
         setComments(response.data.results);
         setCommentsNextCursor(response.data.next_cursor);
         setCommentLoading(false);
@@ -83,17 +81,12 @@ const BlogDetailPage = () => {
   const handleLikeClick = () => {
     const likeBlog = async () => {
       const response = await blogApi.likeBlog(blog._id, navigate);
-      console.log(response);
       setBlog(response.data.blog);
-      console.log(blog);
     };
 
     const unlikeBlog = async () => {
       const response = await blogApi.unlikeBlog(blog._id, navigate);
-      console.log(response);
       setBlog(response.data.blog);
-
-      console.log(blog);
     };
 
     const user = JSON.parse(localStorage.getItem("user"));
@@ -106,8 +99,6 @@ const BlogDetailPage = () => {
     }
 
     const id = user.userId;
-
-    console.log("likes", blog.likes);
 
     if (blog.likes.length === 0) {
       likeBlog();
@@ -124,7 +115,10 @@ const BlogDetailPage = () => {
   };
 
   const handleSendIconClick = () => {
-    if (!user) return;
+    if (!user) {
+      navigate("/login");
+      return;
+    }
 
     setComments([
       ...comments,
@@ -142,7 +136,8 @@ const BlogDetailPage = () => {
         navigate
       );
 
-      console.log("send comment", response);
+      console.log(response);
+
       const newComment = response.data.comment;
       newComment.likes = [];
 
@@ -165,8 +160,6 @@ const BlogDetailPage = () => {
         return cmt;
       });
 
-      console.log(newComments);
-
       setComments(newComments);
     };
 
@@ -182,8 +175,6 @@ const BlogDetailPage = () => {
 
         return cmt;
       });
-
-      console.log(newComments);
 
       setComments(newComments);
     };
@@ -267,12 +258,12 @@ const BlogDetailPage = () => {
                   </Title>
                 </div>
               ) : (
-                comments.map((item) => (
+                comments.map((item, idx) => (
                   <CommentCard
                     onUpdate={updateComment}
                     onDelete={handleDeleteComment}
                     comment={item}
-                    key={item._id}
+                    key={idx}
                     onLike={handleIconCommentClick}
                   />
                 ))

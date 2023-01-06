@@ -13,8 +13,12 @@ const NotLogin = () => {
 
       <Title>You haven't logged in yet!</Title>
 
-      <Button primary className="my-5 lg:my-10" onClick={() => navigate("/login")}>
-		    Click here to sign in
+      <Button
+        primary
+        className="my-5 lg:my-10"
+        onClick={() => navigate("/login")}
+      >
+        Click here to sign in
       </Button>
     </div>
   );

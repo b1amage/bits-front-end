@@ -12,28 +12,31 @@ import topics from "content/topics";
 import blogApi from "api/blogApi";
 import Loading from "components/loading/Loading";
 import { useNavigate } from "react-router-dom";
-import Button from "components/utilities/button/Button";
-import defaultImg from "assets/img/default.png"
+// import Button from "components/utilities/button/Button";
+import defaultImg from "assets/img/default.png";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+// import useViewport from "../hooks/useViewport";
+
 const HomePage = () => {
   const [blogs, setBlogs] = useState([]);
   const [favBlogs, setFavBlogs] = useState([]);
   const [currentCategory, setCurrentCategory] = useState("");
   const [loading, setLoading] = useState(false);
+  const [favLoading, setFavLoading] = useState(false);
   const [nextCursor, setNextCursor] = useState(undefined);
   const [nextCursorFav, setNextCursorFav] = useState(undefined);
 
   const navigate = useNavigate();
-
-  console.log("blogs", blogs);
+  // const { width } = useViewport();
 
   const handleViewMoreBlog = () => {
     const viewMore = async () => {
-      setLoading(true);
+      // setLoading(true);
       const response = await blogApi.getAll(nextCursor, navigate);
-      console.log("response more", response);
       setBlogs([...blogs, ...response.data.results]);
       setNextCursor(response.data.next_cursor);
-      setLoading(false);
+      // setLoading(false);
     };
 
     viewMore();
@@ -41,18 +44,11 @@ const HomePage = () => {
 
   const handleViewMoreFavBlog = () => {
     const viewMore = async () => {
-      // setLoading(true);
-
-      console.log("before get more: ", favBlogs);
       const response = await blogApi.getAllFavorite(nextCursorFav, navigate);
-      console.log("response more", response);
-      console.log("fav blog", favBlogs);
       const newFavBlog = [...favBlogs, ...response.data.results];
-      console.log("After get more:", newFavBlog);
+
       setFavBlogs(newFavBlog);
       setNextCursorFav(response.data.next_cursor);
-
-      // setLoading(false);
     };
 
     viewMore();
@@ -62,7 +58,6 @@ const HomePage = () => {
     const fetchBlog = async () => {
       setLoading(true);
       const response = await blogApi.getAll(nextCursor, navigate);
-      console.log("response", response);
       setBlogs(response.data.results);
       setNextCursor(response.data.next_cursor);
       setLoading(false);
@@ -74,11 +69,11 @@ const HomePage = () => {
 
   useEffect(() => {
     const fetchFavBlog = async () => {
-      setLoading(true);
+      setFavLoading(true);
       const response = await blogApi.getAllFavorite(nextCursorFav, navigate);
       setFavBlogs(response.data.results);
       setNextCursor(response.data.next_cursor);
-      setLoading(false);
+      setFavLoading(false);
     };
 
     fetchFavBlog();
@@ -93,8 +88,6 @@ const HomePage = () => {
         "favorite",
         navigate
       );
-
-      console.log(responseFavBlog);
 
       const responseBlog = await blogApi.getBlogsByCategory(
         e.target.id,
@@ -135,33 +128,81 @@ const HomePage = () => {
       {/* Feature Blogs */}
       <section className="my-8">
         <Title>Feature</Title>
+        <div className="my-10">
+          <Swiper
+            spaceBetween={20}
+            slidesPerView="auto"
+            // slidesPerView={width < 1200 ? 1 : width < 1500 ? 2 : 3}
+            onSlideChange={() => console.log("slide change")}
+            onSwiper={(swiper) => console.log(swiper)}
+            grabCursor={true}
+            onReachEnd={() => {
+              if (nextCursorFav !== null) {
+                handleViewMoreFavBlog();
+              }
+            }}
+          >
+            {favLoading ? (
+              <Loading />
+            ) : (
+              <>
+                {favBlogs?.length > 0 &&
+                  favBlogs.map((blog, index) => (
+                    <SwiperSlide key={index}>
+                      <div
+                        key={index}
+                        className="relative flex w-full lg:w-[400px] lg:h-[400px] scroll-item"
+                      >
+                        <Image
+                          src={blogBg}
+                          alt="feature blog background"
+                          className="w-full"
+                        />
 
-        <ScrollContainer className="my-2 md:!gap-4 lg:!gap-5">
+                        <FeatureBlog
+                          blogId={blog._id}
+                          className="absolute -translate-x-1/2 bottom-10 left-1/2"
+                          name={blog.user.username}
+                          readTime={blog.timeToRead}
+                          title={blog.title}
+                          userAvatar={blog.user.avatar}
+                        />
+                      </div>
+                    </SwiperSlide>
+                  ))}
+              </>
+            )}
+          </Swiper>
+        </div>
+
+        {/* <ScrollContainer className="my-2 md:!gap-4 lg:!gap-5">
           {loading ? (
             <Loading />
           ) : (
             <>
               {favBlogs?.length > 0 &&
                 favBlogs.map((blog, index) => (
-                  <div
-                    key={index}
-                    className="relative flex w-full md:w-[400px] md:h-[400px] scroll-item"
-                  >
-                    <Image
-                      src={blogBg}
-                      alt="feature blog background"
-                      className="w-full"
-                    />
+                  <SwiperSlide key={index}>
+                    <div
+                      key={index}
+                      className="relative flex w-full md:w-[400px] md:h-[400px] scroll-item"
+                    >
+                      <Image
+                        src={blogBg}
+                        alt="feature blog background"
+                        className="w-full"
+                      />
 
-                    <FeatureBlog
-                      blogId={blog._id}
-                      className="absolute -translate-x-1/2 bottom-10 left-1/2"
-                      name={blog.user.username}
-                      readTime={blog.timeToRead}
-                      title={blog.title}
-                      userAvatar={blog.user.avatar}
-                    />
-                  </div>
+                      <FeatureBlog
+                        blogId={blog._id}
+                        className="absolute -translate-x-1/2 bottom-10 left-1/2"
+                        name={blog.user.username}
+                        readTime={blog.timeToRead}
+                        title={blog.title}
+                        userAvatar={blog.user.avatar}
+                      />
+                    </div>
+                  </SwiperSlide>
                 ))}
 
               {nextCursorFav !== null && (
@@ -174,11 +215,94 @@ const HomePage = () => {
               )}
             </>
           )}
-        </ScrollContainer>
+        </ScrollContainer> */}
       </section>
 
       {/* Blog */}
-      <section>
+      <section className="my-8 select-none">
+        <Title>Lastest</Title>
+        <div className="my-10">
+          <Swiper
+            spaceBetween={20}
+            slidesPerView="auto"
+            onSlideChange={() => console.log("slide change")}
+            onSwiper={(swiper) => console.log(swiper)}
+            grabCursor={true}
+            onReachEnd={() => {
+              if (nextCursor !== null) {
+                handleViewMoreBlog();
+              }
+            }}
+          >
+            {loading ? (
+              <Loading />
+            ) : (
+              <>
+                {blogs?.length > 0 &&
+                  blogs.map((blog, index) => (
+                    <SwiperSlide key={index}>
+                      <Blog
+                        blogId={blog._id}
+                        key={index}
+                        author={blog.user.username}
+                        likeCount={blog.heartCount}
+                        date={blog.createdAt.slice(0, 10)}
+                        className="scroll-item max-w-[90%]"
+                        title={blog.title}
+                        img={
+                          blog.banner === "default" ? defaultImg : blog.banner
+                        }
+                      />
+                    </SwiperSlide>
+                  ))}
+              </>
+            )}
+          </Swiper>
+        </div>
+
+        {/* <ScrollContainer className="my-2 md:!gap-4 lg:!gap-5">
+          {loading ? (
+            <Loading />
+          ) : (
+            <>
+              {favBlogs?.length > 0 &&
+                favBlogs.map((blog, index) => (
+                  <SwiperSlide key={index}>
+                    <div
+                      key={index}
+                      className="relative flex w-full md:w-[400px] md:h-[400px] scroll-item"
+                    >
+                      <Image
+                        src={blogBg}
+                        alt="feature blog background"
+                        className="w-full"
+                      />
+
+                      <FeatureBlog
+                        blogId={blog._id}
+                        className="absolute -translate-x-1/2 bottom-10 left-1/2"
+                        name={blog.user.username}
+                        readTime={blog.timeToRead}
+                        title={blog.title}
+                        userAvatar={blog.user.avatar}
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))}
+
+              {nextCursorFav !== null && (
+                <Button
+                  onClick={handleViewMoreFavBlog}
+                  className="md:w-[400px] md:h-[400px] scroll-item !text-3xl"
+                >
+                  Load more
+                </Button>
+              )}
+            </>
+          )}
+        </ScrollContainer> */}
+      </section>
+      {/* <section>
         <Title>Blogs</Title>
         <ScrollContainer className="my-2 md:!gap-4 lg:!gap-5">
           {loading ? (
@@ -211,7 +335,7 @@ const HomePage = () => {
             </>
           )}
         </ScrollContainer>
-      </section>
+      </section> */}
     </Container>
   );
 };
