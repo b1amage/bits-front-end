@@ -82,7 +82,9 @@ const HomePage = () => {
 
   const handleCategoryClick = (e) => {
     const fetchBlogByCategory = async () => {
+      setFavLoading(true);
       setLoading(true);
+
       const responseFavBlog = await blogApi.getBlogsByCategory(
         e.target.id,
         "favorite",
@@ -97,6 +99,7 @@ const HomePage = () => {
 
       setFavBlogs(responseFavBlog.data.results);
       setBlogs(responseBlog.data.results);
+      setFavLoading(false);
       setLoading(false);
     };
 
