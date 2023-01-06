@@ -21,6 +21,7 @@ const forgotPasswordApi = {
         { withCredentials: true }
       );
       console.log(response);
+      localStorage.setItem("message", "Reset password successful")
       navigate('/successful')
       return response;
     } catch (err) {
