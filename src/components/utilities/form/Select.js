@@ -34,7 +34,7 @@ const Select = ({
 
       <div className="">
         <div className={`block relative w-full px-4 py-2 transition-all duration-300 bg-transparent border-2 rounded-2xl outline-none appearance-none focus:border-secondary bg-trasparent md:text-base md:px-6 md:py-4 border-primary-100`} onClick={handleOnDropdown}>
-            <Text children={value === "" ? "Please select the category" : value} />
+            <Text children={value === "" ? "Please select the category" : value} className='!text-sm lg:!text-lg'/>
             {/* <Input placeholder={value} fluid className="bg-transparent !p-0" /> */}
             <div className="absolute top-1/3 right-4">
                 <img src={dropdown} alt="" />
@@ -45,7 +45,7 @@ const Select = ({
             {options?.length > 0 &&
             options.map((item, index) => (
                 <div onClick={() => handleSelectItem(item)} key={index}>
-                    <Text children={item.value} className="hover:bg-primary-100 px-4 py-2 md:px-6 md:py-4 rounded-[11px] border-b-1 border-b-teriary-gray-80 hover:text-white duration-300"/>    
+                    <Text children={item.value} className="hover:bg-primary-100 !text-sm lg:!text-lg px-4 py-2 md:px-6 md:py-4 rounded-[11px] border-b-1 border-b-teriary-gray-80 hover:text-white duration-300"/>    
                 </div>
             ))}
         </div>
